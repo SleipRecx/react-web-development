@@ -54,72 +54,13 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
+	var _search_bar = __webpack_require__(172);
+
+	var _search_bar2 = _interopRequireDefault(_search_bar);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var search_bar = _react2.default.createClass({
-	  displayName: 'search_bar',
-
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      { className: 'input-group' },
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'input-group-btn' },
-	        _react2.default.createElement(
-	          'button',
-	          { type: 'button', className: 'btn btn-default dropdown-toggle', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
-	          'Action ',
-	          _react2.default.createElement('span', { className: 'caret' })
-	        ),
-	        _react2.default.createElement(
-	          'ul',
-	          { className: 'dropdown-menu' },
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            _react2.default.createElement(
-	              'a',
-	              { href: '#' },
-	              'Action'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            _react2.default.createElement(
-	              'a',
-	              { href: '#' },
-	              'Another action'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            _react2.default.createElement(
-	              'a',
-	              { href: '#' },
-	              'Something else here'
-	            )
-	          ),
-	          _react2.default.createElement('li', { role: 'separator', className: 'divider' }),
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            _react2.default.createElement(
-	              'a',
-	              { href: '#' },
-	              'Separated link'
-	            )
-	          )
-	        )
-	      ),
-	      _react2.default.createElement('input', { type: 'text', className: 'form-control', 'aria-label': '...' })
-	    );
-	  }
-	});
-
-	_reactDom2.default.render(_react2.default.createElement(search_bar), document.getElementById('root'));
+	_reactDom2.default.render(_react2.default.createElement(_search_bar2.default), document.getElementById('root'));
 
 /***/ },
 /* 1 */
@@ -21487,6 +21428,91 @@
 
 	module.exports = ReactDOMNullInputValuePropHook;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 172 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(34);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var search_bar = _react2.default.createClass({
+	  displayName: 'search_bar',
+
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'input-group' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'input-group-btn' },
+	        _react2.default.createElement(
+	          'button',
+	          { type: 'button', className: 'btn btn-default dropdown-toggle', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
+	          'Action ',
+	          _react2.default.createElement('span', { className: 'caret' })
+	        ),
+	        _react2.default.createElement(
+	          'ul',
+	          { className: 'dropdown-menu' },
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              'a',
+	              { href: '#' },
+	              'Action'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              'a',
+	              { href: '#' },
+	              'Another action'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              'a',
+	              { href: '#' },
+	              'Something else here'
+	            )
+	          ),
+	          _react2.default.createElement('li', { role: 'separator', className: 'divider' }),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              'a',
+	              { href: '#' },
+	              'Separated link'
+	            )
+	          )
+	        )
+	      ),
+	      _react2.default.createElement('input', { type: 'text', className: 'form-control', style: { width: '300px' }, placeholder: 'Search', 'aria-label': '...' })
+	    );
+	  }
+	});
+
+	exports.default = search_bar;
 
 /***/ }
 /******/ ]);
