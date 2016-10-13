@@ -83,6 +83,10 @@ td {
     color: #ccc;
 }
 
+.react-rater a:hover{
+    text-decoration: none;
+}
+
 .react-rater a.is-active{
     color: #fc6 ;
 }
