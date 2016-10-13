@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "webpack-watch": "webpack -w",
-
-    "build" : "webpack -p",
+    "build": "webpack -p",
     "express-server": "node ./server",
     "dev": "concurrent --kill-others \"npm run webpack-watch\" \"npm run express-server\"",
     "test": "node .bin/www",
@@ -29,6 +28,7 @@
     "morgan": "~1.7.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-rater": "^0.3.4",
     "serve-favicon": "~2.3.0",
     "webpack": "^1.13.2"
   },

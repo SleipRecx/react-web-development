@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Rater from 'react-rater'
 
 class ResultTable extends Component{
 
@@ -39,6 +40,9 @@ class ResultTable extends Component{
                 else if (colData.key === 'user') {
                     return <td><span className="glyphicon glyphicon-user" aria-hidden="true"></span>{item[colData.key]}</td>;
                     
+                }
+                else if (colData.key === 'userRating'){
+                    return <td><Rater interactive={false} rating={item[colData.key]} /></td>;
                 }
                 else{
                     return <td>{item[colData.key]}</td>;

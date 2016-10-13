@@ -78,3 +78,11 @@ td {
 .As.New {
     background-color: #06c8f9;
 }
+
+.react-rater a{
+    color: #ccc;
+}
+
+.react-rater a.is-active{
+    color: #fc6 ;
+}
