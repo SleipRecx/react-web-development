@@ -7,12 +7,12 @@ class Navbar extends Component {
     return (
       <div className="list-group">
         <a href="#" className="list-group-item active">Home</a>
-        <a href="#" className="list-group-item list-group-item-action">Profiles</a>
-        <a href="#" className="list-group-item list-group-item-action">
+        <a href="/profile" className="list-group-item list-group-item-action">Profiles</a>
+        <a href="/messages" className="list-group-item list-group-item-action">
           <span className="badge">24</span>
           Messages
         </a>
-        <a href="#" className="list-group-item list-group-item-action">My Books</a>
+        <a href="/books" className="list-group-item list-group-item-action">My Books</a>
       </div>
     );
   }

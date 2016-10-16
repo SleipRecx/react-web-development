@@ -23202,12 +23202,12 @@
 	        ),
 	        _react2.default.createElement(
 	          'a',
-	          { href: '#', className: 'list-group-item list-group-item-action' },
+	          { href: '/profile', className: 'list-group-item list-group-item-action' },
 	          'Profiles'
 	        ),
 	        _react2.default.createElement(
 	          'a',
-	          { href: '#', className: 'list-group-item list-group-item-action' },
+	          { href: '/messages', className: 'list-group-item list-group-item-action' },
 	          _react2.default.createElement(
 	            'span',
 	            { className: 'badge' },
@@ -23217,7 +23217,7 @@
 	        ),
 	        _react2.default.createElement(
 	          'a',
-	          { href: '#', className: 'list-group-item list-group-item-action' },
+	          { href: '/books', className: 'list-group-item list-group-item-action' },
 	          'My Books'
 	        )
 	      );

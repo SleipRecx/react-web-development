@@ -62,9 +62,13 @@ td {
 }
 
 
+.list-group-item{
+   border-radius: 0px !important;
+}
+
 /*Custom label colours applied depending on state of the book */
 .New {
-    background-color: #33cc33;  
+    background-color: #33cc33;
 }
 
 .Readable {
