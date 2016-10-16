@@ -1,0 +1,67 @@
+<div class="container">
+
+    <!-- Search field -->
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Books <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a>Books</a></li>
+                        <li><a>Films</a></li>
+                        <li><a>Socks</a></li>
+                    </ul>
+                </div>
+                <input type="text" placeholder="Search..." class="form-control" aria-label="Search...">
+            </div>
+        </div>
+    </div>
+
+    <!-- Item list -->
+    <div class="row">
+        <div class="col-lg-10">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>State</th>
+                    <th>Price</th>
+                    <th>User</th>
+                    <th>User Rating</th>
+                    <th>Added</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of items">
+                    <td>{{item.title}}</td>
+
+                    <!-- perhaps cleaner to have its own method inside its component, but this is for illustrating the use of ngClass -->
+                    <td><span [ngClass]="{
+                    'label': true,
+                    'label-success': item.state === 'New',
+                    'label-default': item.state === 'Normal use',
+                    'label-info': item.state === 'As new',
+                    'label-danger': item.state === 'Readable'
+                    }">{{item.state}}</span>
+                    </td>
+                    <td>{{item.price}} kr</td>
+                    <td><span class="glyphicon glyphicon-user"></span> {{item.user}}</td>
+
+                    <!-- workaround for not being able to run *ngFor without a collection -->
+                    <td class="ratings">
+                        <span class="glyphicon" [ngClass]="{'glyphicon':true, 'glyphicon-star-empty':item.userRating < 1, 'glyphicon-star':item.userRating >= 1}"></span>
+                        <span class="glyphicon" [ngClass]="{'glyphicon':true, 'glyphicon-star-empty':item.userRating < 2, 'glyphicon-star':item.userRating >= 2}"></span>
+                        <span class="glyphicon" [ngClass]="{'glyphicon':true, 'glyphicon-star-empty':item.userRating < 3, 'glyphicon-star':item.userRating >= 3}"></span>
+                        <span class="glyphicon" [ngClass]="{'glyphicon':true, 'glyphicon-star-empty':item.userRating < 4, 'glyphicon-star':item.userRating >= 4}"></span>
+                        <span class="glyphicon" [ngClass]="{'glyphicon':true, 'glyphicon-star-empty':item.userRating < 5, 'glyphicon-star':item.userRating >= 5}"></span>
+                    </td>
+                    <td>{{item.added}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
