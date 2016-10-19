@@ -7,7 +7,7 @@ export default class About extends Component {
         return (
             <div>
                 <h1>
-                    About
+                    {this.props.route.foo}
                 </h1>
             </div>
         );
