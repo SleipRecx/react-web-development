@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
+import {Link} from 'react-router';
 
-import '../../public/style.css';
+import '../../public/styles/style.css';
 import navigationOptions from '../data/navigationOptions';
 
 export default class Navigation extends Component {
@@ -10,7 +11,7 @@ export default class Navigation extends Component {
                 <ul className="list-group">
                     {navigationOptions.map(option =>
                     <li key={option.id} className="list-group-item">
-                        <a href={option.route} className="btn-link">{option.title}</a>
+                        <Link to={option.route}> {option.title}</Link>
                     </li>
                     )}
                 </ul>

@@ -9,6 +9,9 @@ pids
 *.seed
 *.pid.lock
 
+# CSS
+public/styles
+.sass-cache
 
 .DS_Store
 
