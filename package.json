@@ -18,6 +18,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sass": "node-sass src/sass -o public/styles",
+    "watchsass":"node-sass -w src/sass -o public/styles",
+    "dev": "concurrently \"npm start\" \"npm run watchsass\""
   }
 }
