@@ -3,7 +3,7 @@ import Rater from 'react-rater'
 import '../../public/style.css';
 import books from '../data/books';
 import LabelConverter from './LabelConverter';
-
+import Search from './Search';
 
 class Content extends Component{
 
@@ -32,7 +32,7 @@ class Content extends Component{
 
         return (
             <div className="bookTable">
-                <input type="text" value={this.state.searchString} onChange={this.handleChange} placeholder="Search" />
+                <Search value={this.state.searchString} onChange={this.handleChange} />
                 <table className="table table-striped table-bordered">
                     <thead>
                     <tr>
