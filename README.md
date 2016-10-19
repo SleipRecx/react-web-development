@@ -4,9 +4,8 @@ This README would normally document whatever steps are necessary to get your app
 
 ### public ###
 
-#### styles
-* style.css
-
++ styles
+    * style.css
 * index.html
 
 ### server ###
