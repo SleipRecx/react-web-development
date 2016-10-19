@@ -15,6 +15,12 @@ header, footer {
   color: black;
 }
 
+
+.search-input{
+    width: 50% !important;
+  }
+
+
 .app-content {
   min-height: 725px;
 }
@@ -22,16 +28,11 @@ header, footer {
 .bookTable {
   margin-top: 50px;
   margin-left:auto;
-
   margin-right:auto;
 }
 
-.searchInput {
-  width: 500px;
-}
-
 .navigation {
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .square {

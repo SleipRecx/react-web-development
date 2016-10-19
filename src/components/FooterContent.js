@@ -7,7 +7,7 @@ export default class FooterContent extends Component {
         return (
             <div>
                 <p className="text-center">
-                    Put footer stuff here
+
                 </p>
             </div>
         );
