@@ -4,13 +4,15 @@ import '../../public/styles/style.css';
 import books from '../data/books';
 import label_converter from '../data/label_converter';
 import Search from './Search';
+import Button from './Button';
 
 class Content extends Component{
 
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        this.state = { searchString: '' };
+        this.setSearch = this.setSearch.bind(this);
+        this.state = { searchString: '', searchParameter: 'title' };
     }
 
     handleChange(e){
@@ -20,19 +22,32 @@ class Content extends Component{
         this.setState({searchString:e.target.value});
     }
 
+    setSearch(e){
+        this.setState({searchParameter:e.target.getAttribute('data-value')});
+    }
+
     render() {
         var searchString = this.state.searchString.trim().toLowerCase();
         var search_books = books;
+
+        var searchParameter = this.state.searchParameter.trim().toLowerCase();
+
         if(searchString.length > 0){
             // We are searching. Filter the results.
             search_books = books.filter(function(l){
-                return l.title.toLowerCase().match( searchString );
+                return l[searchParameter].toLowerCase().match( searchString );
             });
         }
 
         return (
             <div className="bookTable">
+                <div className="input-group">
+                    
+                <Button onChange={this.setSearch}/>
                 <Search value={this.state.searchString} onChange={this.handleChange} />
+                </div>
+                <br/>
+                <br/>
                 <table className="table table-striped table-bordered">
                     <thead>
                     <tr>
