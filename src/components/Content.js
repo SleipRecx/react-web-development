@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import Rater from 'react-rater'
-import '../../public/style.css';
+import '../../public/styles/style.css';
 import books from '../data/books';
 import LabelConverter from './LabelConverter';
 
