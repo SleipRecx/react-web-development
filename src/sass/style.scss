@@ -1,0 +1,60 @@
+
+@import 'about';
+@import 'content';
+@import 'footer_content';
+@import 'label_converter';
+@import 'layout';
+@import 'navigation';
+@import 'not_found';
+@import 'search';
+
+header, footer {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  background-color: #c0c0c0;
+  color: black;
+}
+
+
+.search-input{
+    width: 50% !important;
+  }
+
+
+.app-content {
+  min-height: 725px;
+}
+
+.bookTable {
+  margin-top: 50px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.navigation {
+  margin-top: 100px;
+}
+
+.square {
+  border-radius: 0;
+}
+
+.label {
+  display: block;
+}
+
+.react-rater a {
+  color: #ccc;
+}
+
+.react-rater .is-active {
+  color: #fc6;
+}
+
+.glyphicon-user{
+  color: grey;
+  border-radius: 30px;
+  background-color: #eee;
+  padding: 4px;
+  margin-right: 4px;
+}

@@ -3,7 +3,7 @@ const navigationOptions = [
     {
         id: 1,
         title: "Home",
-        route: "/"
+        route: ""
     },
     {
         id: 2,

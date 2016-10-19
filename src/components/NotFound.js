@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 
-import '../../public/style.css';
+import '../../public/styles/style.css';
 
 export default class NotFound extends Component {
     render() {
