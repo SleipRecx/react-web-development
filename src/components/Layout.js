@@ -2,7 +2,7 @@ import React from 'react';
 import Navigation from './Navigation';
 import Search from './Search';
 import FooterContent from './FooterContent';
-import '../../public/style.css';
+import '../../public/styles/style.css';
 
 export default class Layout extends React.Component {
     render() {

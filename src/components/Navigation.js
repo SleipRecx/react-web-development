@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import {Link} from 'react-router';
 
-import '../../public/style.css';
+import '../../public/styles/style.css';
 import navigationOptions from '../data/navigationOptions';
 
 export default class Navigation extends Component {
