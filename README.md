@@ -14,8 +14,18 @@ This README would normally document whatever steps are necessary to get your app
 
 ### src ###
 
-#### components
-#### data
-#### sass
++ components
+    * FooterContent.js
+    * Layout.js
+    * Navigation.js
+    * NotFound.js
+    * ResultTable.js
+    * Search.js
++ data
+    * books.js
+    * label_converter.js
+    * nav_options.js
++ sass
+    * Masse sass-filer
 * index.js
 * routes.js
