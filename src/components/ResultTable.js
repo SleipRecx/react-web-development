@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import Rater from 'react-rater'
 import '../../public/styles/style.css';
 import books from '../data/books';
-import LabelConverter from './LabelConverter';
+import label_converter from '../data/label_converter';
 import Search from './Search';
 
 class Content extends Component{
@@ -48,7 +48,7 @@ class Content extends Component{
                         {search_books.map(function(l){ return (
                         <tr key={"book"+ l.id}>
                             <td>{l.title}</td>
-                            <td><span className={"label label-" + LabelConverter(l.state)} >{l.state}</span></td>
+                            <td><span className={"label label-" + label_converter(l.state)} >{l.state}</span></td>
                             <td>{l.price}</td>
                             <td><span className="glyphicon glyphicon-user" aria-hidden="true"></span>{l.user}</td>
                             <td><Rater interactive={false} rating={l.userRating} /></td>
