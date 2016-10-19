@@ -8,22 +8,19 @@ This README would normally document whatever steps are necessary to get your app
 * Version
 * [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
-### How do I get set up? ###
+### public ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* styles
+* index.html
 
-### Contribution guidelines ###
+### server ###
 
-* Writing tests
-* Code review
-* Other guidelines
+* index.js
 
-### Who do I talk to? ###
+### src ###
 
-* Repo owner or admin
-* Other community or team contact
+* components
+* data
+* sass
+* index.js
+* routes.js 
