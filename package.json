@@ -8,8 +8,11 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "express": "^4.14.0",
+    "faker": "^3.1.0",
     "morgan": "^1.7.0",
+    "node-sass": "^3.10.1",
     "react": "^15.3.2",
+    "react-burger-menu": "^1.10.8",
     "react-dom": "^15.3.2",
     "react-rater": "^0.3.4",
     "react-router": "^2.8.1"
@@ -20,7 +23,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "sass": "node-sass src/sass -o public/styles",
-    "watchsass":"node-sass -w src/sass -o public/styles",
+    "watchsass": "node-sass -w src/sass -o public/styles",
     "dev": "concurrently \"npm start\" \"npm run watchsass\""
   }
 }
