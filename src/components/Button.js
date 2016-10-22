@@ -15,15 +15,16 @@ class Button extends Component{
     render() {
         return (
             <div className="input-group-btn">
-                <button type="button" 
+                <button type="button"
                         className="btn btn-default dropdown-toggle"
-                        data-toggle="dropdown" 
+                        data-toggle="dropdown"
                         aria-haspopup="true"
                         value="Title"
                         aria-expanded="false">{this.state.value}<span className="caret"></span></button>
                 <ul className="dropdown-menu">
                   <li><a data-value="Title " onClick={this.change}>Title </a></li>
                   <li><a data-value="User " onClick={this.change}>User </a></li>
+                  <li><a data-value="Price " onClick={this.change}>Price </a></li>
                 </ul>
             </div>
         );
