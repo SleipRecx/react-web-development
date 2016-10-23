@@ -8,13 +8,13 @@ export default class Navigation extends Component {
     render() {
         return (
             <div className="text-center navigation">
-                <ul className="list-group">
+                <div className="list-group">
                     {nav_options.map(option =>
-                    <li key={option.id} className="list-group-item">
+                    <li id={option.id} className="list-group-item">
                         <Link to={option.route}> {option.title}</Link>
                     </li>
                     )}
-                </ul>
+                </div>
             </div>
         );
     }
