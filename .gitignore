@@ -17,6 +17,9 @@ public/styles
 
 .idea
 
+**/.sass-cache
+**/.sass-cache/*
+**.sass-cache**
 
 *.swp
 *~
