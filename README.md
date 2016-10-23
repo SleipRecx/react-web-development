@@ -6,8 +6,8 @@ In order to set up and run our application follow these steps:
  1. Download the complete project.
  2. Install all node dependencies by running ```npm install```
  3. Compile the stylesheet by running '''npm run sass'''
- 4. Run NPM Start the server is now listening on port 3000
- If you want to run the application in development mode the run NPM run dev This will compile the  stylesheet and run the server
+ 4. Run NPM Start the server is now listening on port 3000.
+ If you want to run the application in development mode then run NPM run dev. This will compile the  stylesheet and run the server.
 
 
 
