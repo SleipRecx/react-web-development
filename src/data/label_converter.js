@@ -1,3 +1,7 @@
+/**
+ *
+ * Simple JS file that sets the label item on all books.
+ */
 var LabelConverter = function(label) {
     if(label === "New"){
         return "success";
