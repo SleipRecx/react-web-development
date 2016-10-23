@@ -62,7 +62,7 @@ We are using the express module to always return the main index.html, so react-r
 ###React Router###
 We use the react-router module to handle our routing. A route configuration is basically a set of instructions that tell a router how to try to match the URL and what code to run when it does. Here is an example from our routes.js.
 
-```javascript
+```jsx
 const Routes = (props) => (
     <Router {...props}>
         <Route path="/" component={Layout}>
@@ -73,4 +73,3 @@ const Routes = (props) => (
 );
 
 ```
- 
