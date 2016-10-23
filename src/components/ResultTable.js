@@ -1,53 +1,30 @@
+/**
+ * Component displaying the searchbar and a table for the results of search.
+ *
+ * Imports Rater from react-rater, a react component used for rating.
+ *
+ * Imports label_converter as a function to be used to determine the class (color) of the book tags.
+ *
+ * Imports search and button to be used to filter results.
+ *
+ * Imports books, which contains all of our dummy data.
+ */
 import React, { Component} from 'react';
 import Rater from 'react-rater'
 import '../../public/styles/style.css';
 import label_converter from '../data/label_converter';
 import Search from './Search';
 import Button from './Button';
-var faker = require('faker');
-var books = generate_data();
+import books from '../data/books';
 
 
-function toTitleCase(str){
-   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-}
+export default class Content extends Component{
 
-function generate_data(){
-  var array = [];
-  var book_states = ['New','Readable',"Normal Use","As New"]
-  for(var i=0;i<24; i++){
-     var object = {}
-     object.id=i;
-     object.image= faker.image.avatar();
-     object.user = faker.name.firstName();
-     object.price =Math.round(faker.commerce.price()) + " kr";
-     object.added = faker.date.past().toDateString();
-     object.userRating = Math.floor((Math.random() * 6));
-     object.state = book_states[Math.floor((Math.random() * 4))];
-     var run = true;
-     while(run){
-        run = false;
-        var word = faker.random.words();
-
-        if(word.length > 24){
-           run = true;
-        }
-        if(word.length < 14){
-           run = true;
-        }
-     }
-     object.title = toTitleCase(word);
-     array.push(object);
-  }
-  return array;
-
-}
-
-
-
-
-class Content extends Component{
-
+    /**
+     * Sets the inital state of the search and search filter value. Binds the functions handleChange and setSearch to
+     * this component.
+     * @param props --> arbitrary attribute inputs.
+     */
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -55,6 +32,10 @@ class Content extends Component{
         this.state = { searchString: '', searchParameter: 'title' };
     }
 
+    /**
+     *
+     * @param e
+     */
     handleChange(e){
         // If you comment out this line, the text box will not change its value.
         // This is because in React, an input cannot change independently of the value
@@ -63,13 +44,18 @@ class Content extends Component{
     }
 
 
-
+    /**
+     *
+     * @param e
+     */
     setSearch(e){
         this.setState({searchParameter:e.target.getAttribute('data-value')});
     }
 
 
-
+    /**
+     * @returns {XML}
+     */
     render() {
         var searchString = this.state.searchString.trim().toLowerCase();
         var search_books = books;
@@ -82,8 +68,6 @@ class Content extends Component{
                 return l[searchParameter].toLowerCase().match( searchString );
             });
         }
-
-
 
         return (
             <div className="bookTable">
@@ -126,5 +110,3 @@ class Content extends Component{
         );
     }
 }
-
-export default Content;
