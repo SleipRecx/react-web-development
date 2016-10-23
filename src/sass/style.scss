@@ -1,20 +1,7 @@
-
 @import 'about';
 @import 'result_table';
 @import 'footer_content';
-@import 'label_converter';
 @import 'layout';
 @import 'navigation';
 @import 'not_found';
 @import 'search';
-
-header, footer {
-  padding-top: 50px;
-  padding-bottom: 20px;
-  background-color: #566270;
-  color: black;
-}
-
-.square {
-  border-radius: 0;
-}

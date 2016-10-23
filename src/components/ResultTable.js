@@ -87,7 +87,7 @@ class Content extends Component{
 
         return (
             <div className="bookTable">
-                <div className="input-group">
+                <div className="input-group search-div">
                 <Button onChange={this.setSearch}/>
                 <Search value={this.state.searchString} onChange={this.handleChange} />
                 </div>
@@ -112,7 +112,7 @@ class Content extends Component{
                             <td><span className={"label label-" + label_converter(l.state)} >{l.state}</span></td>
                             <td>{l.price}</td>
                             <td><img src={l.image} className="img-circle" alt="Cinque Terre" width="20" height="20"/>{"     " + l.user}</td>
-                            <td><Rater interactive={false} rating={l.userRating} /></td>
+                            <td><Rater interactive={true} rating={l.userRating} /></td>
                             <td>{l.added}</td>
                         </tr>)
                         })
