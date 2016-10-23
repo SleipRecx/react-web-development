@@ -10,16 +10,15 @@ In order to set up and run our application follow these steps:
 
 
 ##Project Structure##
-### public ###
-+ styles
-    * style.css
+##### public #####
+* favicon.ico
 * index.html
 
-### server ###
+##### server #####
 * index.js
 
-### src ###
-+ components
+##### src #####
++ #####components#####
     * Button.js
     * FooterContent.js
     * Layout.js
@@ -27,11 +26,11 @@ In order to set up and run our application follow these steps:
     * NotFound.js
     * ResultTable.js
     * Search.js
-+ data
++ #####data#####
     * books.js
     * label_converter.js
     * nav_options.js
-+ sass
++ #####sass#####
     * about.scss
     * result_table.scss
     * footer_content.scss
@@ -40,10 +39,23 @@ In order to set up and run our application follow these steps:
     * not_found.scss
     * search.scss
     * style.scss
-* index.js
 * routes.js
+* index.js
 
-###React Components###
+package.json
+
+##Project Structure Documentation##
+
+###/public###
+ ```favicon.ico``` is just our favicon image.
+
+```index.html``` is a html template, when our react app fires up it loads all it's content inside the root div in this file.
+
+###/server###
+ ```index.js``` This javascript file loads dependencies and starts our web server on a specified port.
+
+
+###/src/components###
 All the pages on our website will be split into several react components.
 When performing alterations or maintenance to the application we only need to work on the relevant components.
 In our project we got the following components.
@@ -57,22 +69,24 @@ In our project we got the following components.
 * ```FooterContent.js``` ->  This is just a footer component
 
 
-For more information on react components check out: [https://facebook.github.io/react/]( https://facebook.github.io/react/)  
+For more information on react components check out: [https://facebook.github.io/react/]( https://facebook.github.io/react/)
+ 
 For more information about our components see the comments in each file.
 
-
-###Sass###
-Node package node-sass
-The Style.css is compiled from several Sass scripts. this allows us to modify the style on individual components as needed and include this in our main Sass file.
-When we run the "NPM run sass" the stylesheet style.css is recompiled an updated. We also have a watcher attached when running "Npm run watchsass" or "npm run dev" so we can view real time changes as we update the code. In our project all sass files starting with a underscore are partial sass files that are included in the style.scss file.
-
-For more info on Sass checkout: [http://sass-lang.com/]( http://sass-lang.com/)
-
-###Express server###
-We are using the express module to always return the main index.html, so react-router render the route in the client
+###/src/data###
+* ```books.js``` -> This file generates book mockup data using the faker module. This data is included in the ResultTable component.
+* ```label_converter.js``` -> Simple file that maps book status to appropriate class names.
+* ```nav_options.js``` -> Data file that contains all navigation options we use on the web app. This file is included by the Navigation component.
 
 
-###React Router###
+
+###src/sass###
+This folder contains all our sass files.
+The ```style.scss``` includes all sass files in this folder and get's generated into ```style.css```. This gives us easy access to the style files for each individual component. 
+
+For more info on how sass works checkout: [http://sass-lang.com/]( http://sass-lang.com/)
+
+###src/routes.js###
 We use the react-router module to handle our routing. A route configuration is basically a set of instructions that tell a router how to try to match the URL and what code to run when it does. Here is an example from our routes.js.
 
 ```
@@ -84,6 +98,15 @@ const Routes = (props) => (
         </Route>
     </Router>
 );
-
 ```
 This configuration tells us to always render the Layout component and if the route is "/" render ResultTable component, otherwise render NotFound component.
+
+###src/index.js###
+This file includes all routes from ```routes.js``` and loads our app content into ```public/index.html```
+
+
+###package.json###
+File containing project description and all our dependencies.
+
+More information on how this file works: [https://docs.npmjs.com/files/package.json](https://docs.npmjs.com/files/package.json)
+
