@@ -17,7 +17,7 @@ In order to set up and run our application follow these steps:
 * index.js
 
 ##### src #####
-+ components
++ /components
     * Button.js
     * FooterContent.js
     * Layout.js
@@ -25,11 +25,11 @@ In order to set up and run our application follow these steps:
     * NotFound.js
     * ResultTable.js
     * Search.js
-+ data
++ /data
     * books.js
     * label_converter.js
     * nav_options.js
-+ sass
++ /sass
     * about.scss
     * result_table.scss
     * footer_content.scss
