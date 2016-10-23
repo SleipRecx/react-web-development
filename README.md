@@ -1,16 +1,15 @@
-# README #
 ##Setup and run application##
 This application requires Node.js and NPM installed on your computer.
 In order to set up and run our application follow these steps:
 
  1. Download the complete project.
  2. Install all node dependencies by running ```npm install```
- 3. Compile the stylesheet by running '''npm run sass'''
- 4. Run NPM Start the server is now listening on port 3000.
- If you want to run the application in development mode then run NPM run dev. This will compile the  stylesheet and run the server.
+ 3. Compile the stylesheet by running ```npm run sass```
+ 4. Run ```npm start```, the server is now listening on port 3000
 
 
 
+##Project Structure##
 ### public ###
 + styles
     * style.css
@@ -33,13 +32,13 @@ In order to set up and run our application follow these steps:
     * label_converter.js
     * nav_options.js
 + sass
-    * _about.scss
-    * _result_table.scss
-    * _footer_content.scss
-    * _layout.scss
-    * _navigation.scss
-    * _not_found.scss
-    * _search.scss
+    * about.scss
+    * result_table.scss
+    * footer_content.scss
+    * layout.scss
+    * navigation.scss
+    * not_found.scss
+    * search.scss
     * style.scss
 * index.js
 * routes.js
@@ -49,16 +48,16 @@ All the pages on our website will be split into several react components.
 When performing alterations or maintenance to the application we only need to work on the relevant components.
 In our project we got the following components.
 
- * Layout.js -> A component that renders a layout that is always a part of the page users see.
- * Navigation.js -> A Navigation component, it takes the paths from nav_options.js and renders links.
- * NotFound.js -> A component that gets rendered whenever a non existing path get's accessed.
- * ResultTable.js -> A component rendering all the results filtered by the Search component
- * Button.js ->  A button component that let's you switch between results to search for
- * Search.js -> A search input component, this is a part of the ResultTable component.
- * FooterContent.js ->  This is just a footer component
+* ```Layout.js``` -> A component that renders a layout that is always a part of the page users see.
+* ```Navigation.js``` -> A Navigation component, it takes the paths from nav_options.js and renders links.
+* ```NotFound.js``` -> A component that gets rendered whenever a non existing path get's accessed.
+* ```ResultTable.js``` -> A component rendering all the results filtered by the Search component
+* ```Button.js``` ->  A button component that let's you switch between results to search for
+* ```Search.js``` -> A search input component, this is a part of the ResultTable component.
+* ```FooterContent.js``` ->  This is just a footer component
 
 
-For more information on react components check out: [https://facebook.github.io/react/]( https://facebook.github.io/react/)
+For more information on react components check out: [https://facebook.github.io/react/]( https://facebook.github.io/react/)  
 For more information about our components see the comments in each file.
 
 
