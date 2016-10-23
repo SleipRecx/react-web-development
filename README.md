@@ -1,4 +1,4 @@
-##Setup and run application##
+##Setup and starting the application##
 This application requires Node.js and NPM installed on your computer.
 In order to set up and run our application follow these steps:
 
@@ -6,7 +6,6 @@ In order to set up and run our application follow these steps:
  2. Install all node dependencies by running ```npm install```
  3. Compile the stylesheet by running ```npm run sass```
  4. Run ```npm start```, the server is now listening on port 3000
-
 
 
 ##Project Structure##
@@ -18,7 +17,7 @@ In order to set up and run our application follow these steps:
 * index.js
 
 ##### src #####
-+ #####components#####
++ components
     * Button.js
     * FooterContent.js
     * Layout.js
@@ -26,11 +25,11 @@ In order to set up and run our application follow these steps:
     * NotFound.js
     * ResultTable.js
     * Search.js
-+ #####data#####
++ data
     * books.js
     * label_converter.js
     * nav_options.js
-+ #####sass#####
++ sass
     * about.scss
     * result_table.scss
     * footer_content.scss
@@ -47,12 +46,8 @@ package.json
 ##Project Structure Documentation##
 
 ###/public###
- ```favicon.ico``` is just our favicon image.
-
-```index.html``` is a html template, when our react app fires up it loads all it's content inside the root div in this file.
-
-###/server###
- ```index.js``` This javascript file loads dependencies and starts our web server on a specified port.
+* ```favicon.ico``` is just our favicon image.
+* ```index.html``` is a html template, when our react app fires up it loads all it's content inside the root div in this file.
 
 
 ###/src/components###
@@ -70,7 +65,7 @@ In our project we got the following components.
 
 
 For more information on react components check out: [https://facebook.github.io/react/]( https://facebook.github.io/react/)
- 
+
 For more information about our components see the comments in each file.
 
 ###/src/data###
@@ -82,7 +77,7 @@ For more information about our components see the comments in each file.
 
 ###src/sass###
 This folder contains all our sass files.
-The ```style.scss``` includes all sass files in this folder and get's generated into ```style.css```. This gives us easy access to the style files for each individual component. 
+The ```style.scss``` includes all sass files in this folder and get's generated into ```style.css```. This gives us easy access to the style files for each individual component.
 
 For more info on how sass works checkout: [http://sass-lang.com/]( http://sass-lang.com/)
 
@@ -109,4 +104,3 @@ This file includes all routes from ```routes.js``` and loads our app content int
 File containing project description and all our dependencies.
 
 More information on how this file works: [https://docs.npmjs.com/files/package.json](https://docs.npmjs.com/files/package.json)
-
