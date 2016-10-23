@@ -38,7 +38,7 @@ In order to set up and run our application follow these steps:
     * books.js
     * label_converter.js
     * nav_options.js
-+ sass
++ [sass](#sass)  
     * Masse sass-filer
 * index.js
 * routes.js
@@ -50,15 +50,18 @@ For more information on react components check out: :  [https://facebook.github.
 For more information about our components see the comments in each file.
 
 
+<a name="sass"/>
 ###Sass###
 Node package node-sass
 The Style.css is compiled from several Sass scripts. this allows us to modify the style on individual components as needed and include this in our main Sass file.
 When we run the "NPM run sass" the stylesheet style.css is recompiled an updated. We also have a watcher attached when running "Npm run watchsass" or "npm run dev" so we can view real time changes as we update the code.
 For more info on Sass checkout: [http://sass-lang.com/]( http://sass-lang.com/)
 
+<a name="express"/>
 ###Express server###
 We are using the express module to always return the main index.html, so react-router render the route in the client
 
+<a name="routing"/>
 ###React Router###
 We use the react-router module to handle our routing. A route configuration is basically a set of instructions that tell a router how to try to match the URL and what code to run when it does. Here is an example from our routes.js.
 
@@ -73,3 +76,4 @@ const Routes = (props) => (
 );
 
 ```
+This configuration tells us to always render the Layout component and if the route is "/" render ResultTable component, otherwise render NotFound component. 
