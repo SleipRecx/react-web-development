@@ -46,7 +46,7 @@ In order to set up and run our application follow these steps:
 ###React Components###
 All the pages on our website will be split into several react components.
 When performing alterations or maintenance to the application we only need to work on the relevant components.
-For more information on react components check out: : A [link]( https://facebook.github.io/react/)
+For more information on react components check out: :  [https://facebook.github.io/react/]( https://facebook.github.io/react/)
 For more information about our components see the comments in each file.
 
 
@@ -54,7 +54,7 @@ For more information about our components see the comments in each file.
 Node package node-sass
 The Style.css is compiled from several Sass scripts. this allows us to modify the style on individual components as needed and include this in our main Sass file.
 When we run the "NPM run sass" the stylesheet style.css is recompiled an updated. We also have a watcher attached when running "Npm run watchsass" or "npm run dev" so we can view real time changes as we update the code.
-For more info on Sass checkout: A [link]( http://sass-lang.com/)
+For more info on Sass checkout: [https://facebook.github.io/react/]( http://sass-lang.com/)
 
 ###Express server###
 
