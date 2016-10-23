@@ -1,17 +1,34 @@
+/**
+ * Button component used for filtering the search.
+ */
+
 import React, { Component} from 'react';
 import '../../public/styles/style.css';
 
 class Button extends Component{
+
+    /**
+     * Sets the state of the react component and binds the function "change" to the component.
+     * @param props --> arbitrary attribute inputs
+     */
     constructor(props) {
         super(props);
         this.state = {value: "Title "};
         this.change = this.change.bind(this);
     }
+
+    /**
+     * Used when changing what value to filter search by
+     * @param e --> An event that is triggered
+     */
     change(e){
         this.setState({value: e.target.getAttribute('data-value')});
         this.props.onChange(e);
     };
 
+    /**
+     * @returns {XML}
+     */
     render() {
         return (
             <div className="input-group-btn">
