@@ -2,12 +2,12 @@
 ##Setup and run application##
 This application requires Node.js and NPM installed on your computer.
 In order to set up and run our application follow these steps:
-* Download the complete project.
-* Install all node dependencies by running NPM install
-* Compile the stylesheet by running NPM run sass
-* Run NPM Start the server is now listening on port 3000
+ Download the complete project.
+ Install all node dependencies by running NPM install
+ Compile the stylesheet by running NPM run sass
+ Run NPM Start the server is now listening on port 3000
 
-* If you want to run the application in development mode the run NPM run dev This will compile the  stylesheet and run the server
+ If you want to run the application in development mode the run NPM run dev This will compile the  stylesheet and run the server
 
 
 
