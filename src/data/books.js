@@ -1,4 +1,7 @@
-
+/**
+ *
+ * Early mockup of books. No longer in use.
+ */
 const books = [
   {
       id: 1,
