@@ -37,10 +37,13 @@ For more information on react components check out: https://facebook.github.io/r
 For more information about our components see the comments in each file.
 
 
-
-
 ###Sass###
 Node package node-sass
 The Style.css is compiled from several Sass scripts. this allows us to modify the style on individual components as needed and include this in our main Sass file.
 When we run the "NPM run sass" the stylesheet style.css is recompiled an updated. We also have a watcher attached when running "Npm run watchsass" or "npm run dev" so we can view real time changes as we update the code.
 For more info on Sass checkout: http://sass-lang.com/
+
+###Express server###
+
+We are so far only using a simple Express server for testing purposes. Later in the project we will be expanding on this.
+the server is located in server/index.js
