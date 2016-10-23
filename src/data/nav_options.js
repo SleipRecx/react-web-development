@@ -1,4 +1,7 @@
-
+/**
+ * Defines the navigation options for the Navigation menu
+ *
+ */
 const navigationOptions = [
     {
         id: 1,
