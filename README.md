@@ -58,5 +58,4 @@ For more info on Sass checkout: [http://sass-lang.com/]( http://sass-lang.com/)
 
 ###Express server###
 
-We are so far only using a simple Express server for testing purposes. Later in the project we will be expanding on this.
-the server is located in server/index.js
+We are using the express module to always return the main index.html, so react-router render the route in the client
