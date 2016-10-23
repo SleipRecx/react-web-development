@@ -57,5 +57,20 @@ When we run the "NPM run sass" the stylesheet style.css is recompiled an updated
 For more info on Sass checkout: [http://sass-lang.com/]( http://sass-lang.com/)
 
 ###Express server###
-
 We are using the express module to always return the main index.html, so react-router render the route in the client
+
+###React Router###
+We use the react-router module to handle our routing. A route configuration is basically a set of instructions that tell a router how to try to match the URL and what code to run when it does. Here is an example from our routes.js.
+
+```javascript
+const Routes = (props) => (
+    <Router {...props}>
+        <Route path="/" component={Layout}>
+            <IndexRoute component={ResultTable}/>
+            <Route path="*" component={NotFound} />
+        </Route>
+    </Router>
+);
+
+```
+ 
