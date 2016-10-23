@@ -31,6 +31,12 @@ This README would normally document whatever steps are necessary to get your app
 * routes.js
 
 ###React Components###
+All the pages on our website will be split into several react components.
+When performing alterations or maintenance to the application we only need to work on the relevant components.
+For more information on react components check out: https://facebook.github.io/react/
+For more information about our components see the comments in each file.
+
+
 
 
 ###Sass###
