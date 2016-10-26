@@ -14,7 +14,6 @@ import Rater from 'react-rater'
 import '../../public/styles/style.css';
 import label_converter from '../data/label_converter';
 import Search from './Search';
-import Button from './Button';
 import books from '../data/books';
 
 
@@ -70,41 +69,47 @@ export default class Content extends Component{
         }
 
         return (
-            <div className="bookTable">
-                <div className="input-group search-div">
-                <Button onChange={this.setSearch}/>
-                <Search value={this.state.searchString} onChange={this.handleChange} />
+            <div className="result-table">
+                <div className="row">
+                    <h2 className="text-center">
+                        Søkeresultater
+                    </h2>
                 </div>
-                <br/>
-                <br/>
-                <table className="table table-striped table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>State</th>
-                        <th>Price</th>
-                        <th>User</th>
-                        <th>User Rating</th>
-                        <th>Added</th>
-                    </tr>
-                    </thead>
+                <div className="row">
+                    <div className="col-xs-8 col-xs-offset-2 search-bar-container">
+                        <Search value={this.state.searchString} onChange={this.handleChange} />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-xs-12">
+                        <table className="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>State</th>
+                                <th>Price</th>
+                                <th>User</th>
+                                <th>User Rating</th>
+                                <th>Added</th>
+                            </tr>
+                            </thead>
 
-                    <tbody>
-                        {search_books.map(function(l){ return (
-                        <tr key={"book"+ l.id}>
-                            <td>{l.title}</td>
-                            <td><span className={"label label-" + label_converter(l.state)} >{l.state}</span></td>
-                            <td>{l.price}</td>
-                            <td><img src={l.image} className="img-circle" alt="Cinque Terre" width="20" height="20"/>{"     " + l.user}</td>
-                            <td><Rater interactive={true} rating={l.userRating} /></td>
-                            <td>{l.added}</td>
-                        </tr>)
-                        })
-                    }
-                    </tbody>
-                </table>
-                <br/><br/>
-                <br/>
+                            <tbody>
+                            {search_books.map(function(l){ return (
+                                <tr key={"book"+ l.id}>
+                                    <td>{l.title}</td>
+                                    <td><span className={"label label-" + label_converter(l.state)} >{l.state}</span></td>
+                                    <td>{l.price}</td>
+                                    <td><img src={l.image} className="img-circle" alt="Cinque Terre" width="20" height="20"/>{"     " + l.user}</td>
+                                    <td><Rater interactive={true} rating={l.userRating} /></td>
+                                    <td>{l.added}</td>
+                                </tr>)
+                            })
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
         );

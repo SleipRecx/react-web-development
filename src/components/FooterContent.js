@@ -12,11 +12,11 @@ export default class FooterContent extends Component {
      */
     render() {
         return (
-            <div>
-                <p className="text-center">
-
+            <footer className="navbar navbar-default navbar-static-bottom">
+                <p>
+                    asdasdads
                 </p>
-            </div>
+            </footer>
         );
     }
 }
