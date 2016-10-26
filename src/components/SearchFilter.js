@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import '../../public/styles/style.css';
+import Rater from 'react-rater'
 
 export default class Layout extends Component {
 
     constructor(props){
         super(props);
         this.handleClick = this.handleClick.bind(this);
-        this.state = {class: 'pull-right glyphicon glyphicon-chevron-down'};
+        this.updateFilter = this.updateFilter.bind(this);
+        this.state = {class: 'pull-right glyphicon glyphicon-chevron-down', state_filter: []};
     }
 
     handleClick(){
@@ -14,6 +16,19 @@ export default class Layout extends Component {
             this.setState({class: 'pull-right glyphicon glyphicon-chevron-up'});
         } else {
             this.setState({ class: 'pull-right glyphicon glyphicon-chevron-down'});
+        }
+    }
+
+    updateFilter(e){
+        if (e.target.checked){
+            this.state.state_filter.push(e.target.value)
+            console.log(e.target.value)
+            console.log(this.state.state_filter)
+        }
+        else {
+            this.state.state_filter.splice(this.state.state_filter.indexOf(e.target.value), 1)
+            console.log(e.target.value)
+            console.log(this.state.state_filter)
         }
     }
 
@@ -36,16 +51,16 @@ export default class Layout extends Component {
                         <div id="collapse1" className="panel-collapse collapse">
                             <div className="panel-body">
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value=""/>New</label>
+                                    <label><input type="checkbox" value="New" onChange={this.updateFilter}/>New</label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value=""/>As New</label>
+                                    <label><input type="checkbox" value="As New" onChange={this.updateFilter}/>As New</label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value=""/>Normal Use</label>
+                                    <label><input type="checkbox" value="Normal Use" onChange={this.updateFilter}/>Normal Use</label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value=""/>Readable</label>
+                                    <label><input type="checkbox" value="Readable" onChange={this.updateFilter}/>Readable</label>
                                 </div>
                             </div>
                         </div>
@@ -62,56 +77,32 @@ export default class Layout extends Component {
                             <div className="panel-body">
                                 <div className="checkbox">
                                     <label><input type="checkbox" value=""/>
-                                        <a className="not-active">★</a>
-                                        <a className="not-active">★</a>
-                                        <a className="not-active">★</a>
-                                        <a className="not-active">★</a>
-                                        <a className="not-active">★</a>
+                                        <Rater interactive={false} rating={5}/>
                                     </label>
                                 </div>
                                 <div className="checkbox">
                                     <label><input type="checkbox" value=""/>
-                                        <a className="is-active">★</a>
-                                        <a className="not-active">★</a>
-                                        <a className="not-active">★</a>
-                                        <a className="not-active">★</a>
-                                        <a className="not-active">★</a>
+                                        <Rater interactive={false} rating={4}/>
                                     </label>
                                 </div>
                                 <div className="checkbox">
                                     <label><input type="checkbox" value=""/>
-                                        <a className="is-active">★</a>
-                                        <a className="is-active">★</a>
-                                        <a className="not-active">★</a>
-                                        <a className="not-active">★</a>
-                                        <a className="not-active">★</a>
+                                        <Rater interactive={false} rating={3}/>
                                     </label>
                                 </div>
                                 <div className="checkbox">
                                     <label><input type="checkbox" value=""/>
-                                        <a className="is-active">★</a>
-                                        <a className="is-active">★</a>
-                                        <a className="is-active">★</a>
-                                        <a className="not-active">★</a>
-                                        <a className="not-active">★</a>
+                                        <Rater interactive={false} rating={2}/>
                                     </label>
                                 </div>
                                 <div className="checkbox">
                                     <label><input type="checkbox" value=""/>
-                                        <a className="is-active">★</a>
-                                        <a className="is-active">★</a>
-                                        <a className="is-active">★</a>
-                                        <a className="is-active">★</a>
-                                        <a className="not-active">★</a>
+                                        <Rater interactive={false} rating={1}/>
                                     </label>
                                 </div>
                                 <div className="checkbox">
                                     <label><input type="checkbox" value=""/>
-                                        <a className="is-active">★</a>
-                                        <a className="is-active">★</a>
-                                        <a className="is-active">★</a>
-                                        <a className="is-active">★</a>
-                                        <a className="is-active">★</a>
+                                        <Rater interactive={false} rating={0}/>
                                     </label>
                                 </div>
                             </div>

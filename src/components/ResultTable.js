@@ -64,7 +64,7 @@ export default class Content extends Component{
         if(searchString.length > 0){
             // We are searching. Filter the results.
             search_books = books.filter(function(l){
-                return l[searchParameter].toLowerCase().match( searchString );
+                return l.title.toLowerCase().match( searchString ) || l.user.toLowerCase().match( searchString );
             });
         }
 
