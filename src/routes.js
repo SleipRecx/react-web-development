@@ -19,13 +19,16 @@ import {Router, Route, IndexRoute} from 'react-router';
 import ResultTable from './components/ResultTable';
 import NotFound from './components/NotFound';
 import Layout from './components/Layout';
+import Profile from './components/Profile';
 
 
 const Routes = (props) => (
     <Router {...props}>
         <Route path="/" component={Layout}>
             <IndexRoute component={ResultTable}/>
+            <Route path="/profile" component={Profile}/>
             <Route path="*" component={NotFound} />
+
         </Route>
     </Router>
 );
