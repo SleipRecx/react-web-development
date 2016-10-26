@@ -27,8 +27,7 @@ export default class Content extends Component{
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        this.setSearch = this.setSearch.bind(this);
-        this.state = { searchString: '', searchParameter: 'title' };
+        this.state = { searchString: '', };
     }
 
     /**
@@ -42,24 +41,12 @@ export default class Content extends Component{
         this.setState({searchString:e.target.value});
     }
 
-
-    /**
-     *
-     * @param e
-     */
-    setSearch(e){
-        this.setState({searchParameter:e.target.getAttribute('data-value')});
-    }
-
-
     /**
      * @returns {XML}
      */
     render() {
         var searchString = this.state.searchString.trim().toLowerCase();
         var search_books = books;
-
-        var searchParameter = this.state.searchParameter.trim().toLowerCase();
 
         if(searchString.length > 0){
             // We are searching. Filter the results.
