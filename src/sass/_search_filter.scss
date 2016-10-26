@@ -1,0 +1,36 @@
+
+.search-filter {
+
+  padding-top: 97px;
+
+  a {
+    text-decoration: none;
+  }
+  .panel {
+    background-color: #f8f8f8;
+
+    .panel-body {
+      background-color: white;
+    }
+  }
+
+  .filter-type {
+
+    &:hover {
+      cursor: pointer;
+      color: #555;
+    }
+  }
+
+  .checkbox {
+    font-size: 16px;
+  }
+
+  .not-active {
+    color: #ccc;
+  }
+  .is-active{
+    color: #fc6;
+  }
+
+}
