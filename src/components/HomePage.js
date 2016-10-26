@@ -17,6 +17,17 @@ import '../../public/styles/style.css';
 
 export default class HomePage extends Component{
 
+    constructor(props) {
+        super(props);
+        this.state = { state_filter: [] };
+        this.updateFilter = this.updateFilter.bind(this);
+    }
+
+    updateFilter(e){
+        // gets the array with filter options from SearchFilter and sets it to state_filter
+        this.setState({state_filter:e});
+    }
+
     /**
      * @returns {XML}
      */
@@ -25,10 +36,10 @@ export default class HomePage extends Component{
             <div className="container">
                 <div className="row">
                     <div className="col-xs-2">
-                        <SearchFilter />
+                        <SearchFilter onChange={this.updateFilter}/>
                     </div>
                     <div className="col-xs-10">
-                        <ResultTable/>
+                        <ResultTable items={this.state.state_filter}/>
                     </div>
                 </div>
             </div>

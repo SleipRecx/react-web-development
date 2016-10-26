@@ -20,14 +20,14 @@ import books from '../data/books';
 export default class Content extends Component{
 
     /**
-     * Sets the inital state of the search and search filter value. Binds the functions handleChange and setSearch to
+     * Sets the inital state of the search and search filter value. Binds the function handleChange to
      * this component.
      * @param props --> arbitrary attribute inputs.
      */
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        this.state = { searchString: '', };
+        this.state = { searchString: '', state_filter:this.props.items};
     }
 
     /**
@@ -47,10 +47,20 @@ export default class Content extends Component{
     render() {
         var searchString = this.state.searchString.trim().toLowerCase();
         var search_books = books;
+        var filter = this.props.items;
+
+        // Filters books by state_filter. 
+        // TODO: Should this be optimized some way perhaps?
+        if (filter.length > 0){
+            search_books = search_books.filter(function(l){
+                return filter.includes(l.state);
+            });
+        }
+
 
         if(searchString.length > 0){
             // We are searching. Filter the results.
-            search_books = books.filter(function(l){
+            search_books = search_books.filter(function(l){
                 return l.title.toLowerCase().match( searchString ) || l.user.toLowerCase().match( searchString );
             });
         }

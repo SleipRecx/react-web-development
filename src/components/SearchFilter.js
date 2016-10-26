@@ -20,16 +20,16 @@ export default class Layout extends Component {
     }
 
     updateFilter(e){
+        // Takes the value from the checkbox and depending on state either
+        // adds it or removes it from state_filter. It is then sent on to the parent component.
         if (e.target.checked){
             this.state.state_filter.push(e.target.value)
-            console.log(e.target.value)
-            console.log(this.state.state_filter)
         }
         else {
             this.state.state_filter.splice(this.state.state_filter.indexOf(e.target.value), 1)
-            console.log(e.target.value)
-            console.log(this.state.state_filter)
+
         }
+        this.props.onChange(this.state.state_filter);
     }
 
     /**
@@ -51,16 +51,16 @@ export default class Layout extends Component {
                         <div id="collapse1" className="panel-collapse collapse">
                             <div className="panel-body">
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value="New" onChange={this.updateFilter}/>New</label>
+                                    <label><input type="checkbox" value="1" onChange={this.updateFilter}/>New</label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value="As New" onChange={this.updateFilter}/>As New</label>
+                                    <label><input type="checkbox" value="2" onChange={this.updateFilter}/>As New</label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value="Normal Use" onChange={this.updateFilter}/>Normal Use</label>
+                                    <label><input type="checkbox" value="3" onChange={this.updateFilter}/>Normal Use</label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value="Readable" onChange={this.updateFilter}/>Readable</label>
+                                    <label><input type="checkbox" value="4" onChange={this.updateFilter}/>Readable</label>
                                 </div>
                             </div>
                         </div>

@@ -32,7 +32,7 @@ export default class Search extends Component {
      */
     render() {
         return (
-            <input type="text" className="form-control" value={this.state.value} onChange={this.change} placeholder="Search" />
+            <input type="text" className="form-control" value={this.state.value} onChange={this.change} placeholder="Search by Title/User" />
         );
     }
 }
