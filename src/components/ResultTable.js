@@ -32,6 +32,13 @@ export default class Content extends Component{
         this.state = { searchString: '', searchParameter: 'title' };
     }
 
+    componentWillMount(){
+      var url = "http://localhost:9001/api/books"
+      fetch(url).then(r => r.json())
+      .then(data => console.log(data))
+      .catch(e => console.log("async function failed"))
+    }
+
     /**
      *
      * @param e
