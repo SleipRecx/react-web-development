@@ -1,0 +1,41 @@
+{
+  "CREATE":[{
+      "a book":[{
+          "method":"POST",
+          "url":"/api/book",
+          "parameters":["title","author","state","price","user_id_foreign"],
+          "responses":["200 success","400 badRequest"]}]},{
+      "a user":[{
+          "method":"POST",
+          "url":"/api/user",
+          "parameters":["image_link","facebook_id","first_name","last_name","rating"],
+          "responses":["200 success","400 badRequest"]}]}],
+
+  "GET":[{
+      "all books":[{
+          "method":"GET",
+          "url":"/api/books",
+          "responses":["200 ok","500 serverError"]}]},{
+      "all users":[{
+          "method":"GET",
+          "url":"/api/users",
+          "responses":["200 ok","500 serverError"]}]},{
+      "a book from book id":[{
+          "method":"GET",
+          "url":"/api/book/:id",
+          "responses":["200 ok","400 badRequest"]}]},{
+      "all books from a specific user":[{
+          "method":"GET",
+          "url":"/api/books/user/:id",
+          "responses":["200 ok","400 badRequest"]}]}],
+
+  "DELETE":[{
+      "a book":[{
+          "method":"DELETE",
+          "url":"/api/book:id",
+          "responses":["200 success","500 serverError"]}]},{
+      "a user":[{
+          "method":"DELETE",
+          "url":"/api/user:id",
+          "responses":["200 success","500 serverError"]}]}]
+}
