@@ -24,7 +24,7 @@ export default class Navigation extends Component {
             <div className="text-center navigation">
                 <div className="list-group">
                     {nav_options.map(option =>
-                    <li id={option.id} className="list-group-item">
+                    <li key={option.id} className="list-group-item">
                         <Link to={option.route}> {option.title}</Link>
                     </li>
                     )}
