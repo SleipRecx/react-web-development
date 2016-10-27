@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express-rest-response": "^1.2.0",
     "mysql": "^2.11.1",
     "nodemon": "^1.11.0"
