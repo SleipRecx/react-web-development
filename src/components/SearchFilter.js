@@ -51,16 +51,16 @@ export default class Layout extends Component {
                         <div id="collapse1" className="panel-collapse collapse">
                             <div className="panel-body">
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value="1" onChange={this.updateFilter}/>New</label>
+                                    <label><input type="checkbox" value="New" onChange={this.updateFilter}/>New</label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value="2" onChange={this.updateFilter}/>As New</label>
+                                    <label><input type="checkbox" value="As New" onChange={this.updateFilter}/>As New</label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value="3" onChange={this.updateFilter}/>Normal Use</label>
+                                    <label><input type="checkbox" value="Normal Use" onChange={this.updateFilter}/>Normal Use</label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value="4" onChange={this.updateFilter}/>Readable</label>
+                                    <label><input type="checkbox" value="Readable" onChange={this.updateFilter}/>Readable</label>
                                 </div>
                             </div>
                         </div>

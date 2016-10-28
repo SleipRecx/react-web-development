@@ -3,13 +3,13 @@
  * Simple JS file that sets the label item on all books.
  */
 var LabelConverter = function(label) {
-    if(label === "1"){
+    if(label === "New"){
         return "success";
     }
-    else if(label === "2"){
+    else if(label === "As New"){
         return "info";
     }
-    else if(label === "4"){
+    else if(label === "Readable"){
         return "danger";
     }
     else{

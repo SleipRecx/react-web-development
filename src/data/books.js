@@ -8,7 +8,7 @@ function toTitleCase(str){
 
 function generate_data() {
     let array = [];
-    let book_states = ['1', '2', "3", "4"];
+    let book_states = ['New', 'As New', "Normal Use", "Readable"];
     for (let i = 0; i < 24; i++) {
         let object = {};
         object.id = i;
