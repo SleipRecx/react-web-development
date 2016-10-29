@@ -4,6 +4,7 @@ var mysql = require('mysql');
 var restResponse = require('express-rest-response');
 var bodyParser = require('body-parser');
 fs = require('fs');
+var generate = require('./generate');
 
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -31,7 +32,8 @@ function connect_db(){
     host     : 'it2810-07.idi.ntnu.no',
     user     : 'gruppe7',
     password : 'brusjan07',
-    database : 'book_db'
+    database : 'book_db',
+    multipleStatements: true
   });
    connection.connect();
    return connection
@@ -96,8 +98,7 @@ app.post('/api/book', function(req, res, next) {
    var state = req.body.state;
    var price = req.body.price;
    var date = new Date();
-   var user_id_foreign = req.body.user_id;
-
+   var user_id_foreign = req.body.user_id_foreign;
    var connection = connect_db();
 
    var sql = "INSERT INTO books(title, author, state, price, date_added, user_id_foreign) VALUES (?, ?, ?, ?, ?, ?)";
@@ -185,7 +186,7 @@ app.post('/api/user', function(req, res, next) {
    var connection = connect_db();
    var sql = "INSERT INTO users(facebook_id, image_link, first_name, last_name, rating) VALUES (?, ?, ?, ?, ?)";
 
-   var inserts = [face_,image_link, first_name, last_name, rating];
+   var inserts = [face_id,image_link, first_name, last_name, rating];
    sql = mysql.format(sql, inserts)
    connection.query(sql, function (error, results, fields) {
       if(error){
@@ -218,9 +219,28 @@ app.delete('/api/user/:id', function(req, res, next) {
 });
 
 
-app.get('/', function (req, res) {
-    res.redirect('/api');
+app.delete('/api/down', function (req, res) {
+  var connection = connect_db();
+  var sql = "DELETE FROM books; DELETE FROM users;ALTER TABLE users AUTO_INCREMENT = 1;ALTER TABLE books AUTO_INCREMENT = 1;";
+  connection.query(sql, function (error, results, fields) {
+     if(error){
+        res.rest.badRequest('delete failed because of bad request');
+     }
+     else{
+        res.rest.success('delete successful');
+     }
+  });
+  connection.end();
 });
+
+app.post('/api/up', function (req, res) {
+  var connection = connect_db();
+  var number = req.body.number;
+  generate.up(number);
+  res.rest.success('Wait 15 seconds');
+});
+
+
 
 app.get('/api', function (req, res) {
   fs.readFile('api_doc.json', 'utf8', function (err,data) {
@@ -229,6 +249,9 @@ app.get('/api', function (req, res) {
   });
 });
 
+app.get('/', function (req, res) {
+    res.redirect('/api');
+});
 
 
 app.listen(9001, function () {
