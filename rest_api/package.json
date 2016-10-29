@@ -11,7 +11,10 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express-rest-response": "^1.2.0",
+    "form-data": "^2.1.1",
     "mysql": "^2.11.1",
-    "nodemon": "^1.11.0"
+    "node-fetch": "^1.6.3",
+    "nodemon": "^1.11.0",
+    "query-string": "^4.2.3"
   }
 }
