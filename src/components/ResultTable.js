@@ -49,7 +49,7 @@ export default class Content extends Component{
         var search_books = books;
         var state_filter = this.props.items.state;
         var rating_filter = this.props.items.rating;
-        console.log(rating_filter)
+
         // Filters books by state_filter. 
         // TODO: Should this be optimized some way perhaps?
         if (state_filter.length > 0){
