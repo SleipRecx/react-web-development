@@ -7,8 +7,9 @@ export default class Layout extends Component {
     constructor(props){
         super(props);
         this.handleClick = this.handleClick.bind(this);
-        this.updateFilter = this.updateFilter.bind(this);
-        this.state = {class: 'pull-right glyphicon glyphicon-chevron-down', state_filter: []};
+        this.updateStateFilter = this.updateStateFilter.bind(this);
+        this.updateRatingFilter = this.updateRatingFilter.bind(this);
+        this.state = {class: 'pull-right glyphicon glyphicon-chevron-down', filter: {state: [], rating: []}};
     }
 
     handleClick(){
@@ -19,17 +20,30 @@ export default class Layout extends Component {
         }
     }
 
-    updateFilter(e){
+    updateStateFilter(e){
         // Takes the value from the checkbox and depending on state either
-        // adds it or removes it from state_filter. It is then sent on to the parent component.
+        // adds it to or removes it from state_filter. It is then sent on to the parent component.
         if (e.target.checked){
-            this.state.state_filter.push(e.target.value)
+            this.state.filter.state.push(e.target.value)
         }
         else {
-            this.state.state_filter.splice(this.state.state_filter.indexOf(e.target.value), 1)
+            this.state.filter.state.splice(this.state.filter.state.indexOf(e.target.value), 1)
 
         }
-        this.props.onChange(this.state.state_filter);
+        this.props.onChange(this.state.filter);
+    }
+
+    updateRatingFilter(e){
+        // Takes the value from the checkbox and depending on state either
+        // adds it to or removes it from rating_filter. It is then sent on to the parent component.
+        if (e.target.checked){
+            this.state.filter.rating.push(e.target.value)
+        }
+        else {
+            this.state.filter.rating.splice(this.state.filter.rating.indexOf(e.target.value), 1)
+
+        }
+        this.props.onChange(this.state.filter);
     }
 
     /**
@@ -51,16 +65,16 @@ export default class Layout extends Component {
                         <div id="collapse1" className="panel-collapse collapse">
                             <div className="panel-body">
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value="New" onChange={this.updateFilter}/>New</label>
+                                    <label><input type="checkbox" value="New" onChange={this.updateStateFilter}/>New</label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value="As New" onChange={this.updateFilter}/>As New</label>
+                                    <label><input type="checkbox" value="As New" onChange={this.updateStateFilter}/>As New</label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value="Normal Use" onChange={this.updateFilter}/>Normal Use</label>
+                                    <label><input type="checkbox" value="Normal Use" onChange={this.updateStateFilter}/>Normal Use</label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value="Readable" onChange={this.updateFilter}/>Readable</label>
+                                    <label><input type="checkbox" value="Readable" onChange={this.updateStateFilter}/>Readable</label>
                                 </div>
                             </div>
                         </div>
@@ -76,32 +90,32 @@ export default class Layout extends Component {
                         <div id="collapse2" className="panel-collapse collapse">
                             <div className="panel-body">
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value=""/>
+                                    <label><input type="checkbox" value="5" onChange={this.updateRatingFilter}/>
                                         <Rater interactive={false} rating={5}/>
                                     </label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value=""/>
+                                    <label><input type="checkbox" value="4" onChange={this.updateRatingFilter}/>
                                         <Rater interactive={false} rating={4}/>
                                     </label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value=""/>
+                                    <label><input type="checkbox" value="3" onChange={this.updateRatingFilter}/>
                                         <Rater interactive={false} rating={3}/>
                                     </label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value=""/>
+                                    <label><input type="checkbox" value="2" onChange={this.updateRatingFilter}/>
                                         <Rater interactive={false} rating={2}/>
                                     </label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value=""/>
+                                    <label><input type="checkbox" value="1" onChange={this.updateRatingFilter}/>
                                         <Rater interactive={false} rating={1}/>
                                     </label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value=""/>
+                                    <label><input type="checkbox" value="0" onChange={this.updateRatingFilter}/>
                                         <Rater interactive={false} rating={0}/>
                                     </label>
                                 </div>

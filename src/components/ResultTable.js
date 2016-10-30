@@ -27,7 +27,7 @@ export default class Content extends Component{
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        this.state = { searchString: '', state_filter:this.props.items};
+        this.state = { searchString: '', filter:this.props.items};
     }
 
     /**
@@ -47,13 +47,22 @@ export default class Content extends Component{
     render() {
         var searchString = this.state.searchString.trim().toLowerCase();
         var search_books = books;
-        var filter = this.props.items;
-
+        var state_filter = this.props.items.state;
+        var rating_filter = this.props.items.rating;
+        console.log(rating_filter)
         // Filters books by state_filter. 
         // TODO: Should this be optimized some way perhaps?
-        if (filter.length > 0){
+        if (state_filter.length > 0){
             search_books = search_books.filter(function(l){
-                return filter.includes(l.state);
+                return state_filter.includes(l.state);
+            });
+        }
+
+        // Filters books by rating_filter. 
+        // TODO: Should this be optimized some way perhaps?
+        if (rating_filter.length > 0){
+            search_books = search_books.filter(function(l){
+                return rating_filter.includes(l.userRating.toString());
             });
         }
 

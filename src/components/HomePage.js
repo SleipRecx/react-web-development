@@ -19,13 +19,13 @@ export default class HomePage extends Component{
 
     constructor(props) {
         super(props);
-        this.state = { state_filter: [] };
+        this.state = { filter: {state: [], rating: []} };
         this.updateFilter = this.updateFilter.bind(this);
     }
 
     updateFilter(e){
         // gets the array with filter options from SearchFilter and sets it to state_filter
-        this.setState({state_filter:e});
+        this.setState({filter:e});
     }
 
     /**
@@ -39,7 +39,7 @@ export default class HomePage extends Component{
                         <SearchFilter onChange={this.updateFilter}/>
                     </div>
                     <div className="col-xs-10">
-                        <ResultTable items={this.state.state_filter}/>
+                        <ResultTable items={this.state.filter}/>
                     </div>
                 </div>
             </div>
