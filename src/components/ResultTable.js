@@ -30,6 +30,13 @@ export default class Content extends Component{
         this.state = { searchString: '', filter:this.props.items};
     }
 
+    componentWillMount(){
+      var url = "http://localhost:9001/api/books"
+      fetch(url).then(r => r.json())
+      .then(data => console.log(data))
+      .catch(e => console.log("async function failed"))
+    }
+
     /**
      *
      * @param e
@@ -50,7 +57,7 @@ export default class Content extends Component{
         var state_filter = this.props.items.state;
         var rating_filter = this.props.items.rating;
 
-        // Filters books by state_filter. 
+        // Filters books by state_filter.
         // TODO: Should this be optimized some way perhaps?
         if (state_filter.length > 0){
             search_books = search_books.filter(function(l){
@@ -58,7 +65,7 @@ export default class Content extends Component{
             });
         }
 
-        // Filters books by rating_filter. 
+        // Filters books by rating_filter.
         // TODO: Should this be optimized some way perhaps?
         if (rating_filter.length > 0){
             search_books = search_books.filter(function(l){
@@ -77,13 +84,9 @@ export default class Content extends Component{
         return (
             <div className="result-table">
                 <div className="row">
-                    <h2 className="text-center">
-                        Søkeresultater
-                    </h2>
-                </div>
-                <div className="row">
                     <div className="col-xs-8 col-xs-offset-2 search-bar-container">
-                        <Search value={this.state.searchString} onChange={this.handleChange} />
+                        <Search className="search-bar" value={this.state.searchString} onChange={this.handleChange} />
+                        <br></br>
                     </div>
                 </div>
                 <div className="row">

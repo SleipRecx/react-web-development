@@ -14,7 +14,7 @@ export default class FooterContent extends Component {
         return (
             <footer className="navbar navbar-default navbar-static-bottom">
                 <p>
-                    asdasdads
+                
                 </p>
             </footer>
         );

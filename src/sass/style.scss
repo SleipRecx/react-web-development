@@ -1,6 +1,8 @@
-
 .content-body {
-  min-height: 725px;
+  min-height: calc(100vh - 100px);
+}
+.navbar{
+  margin-bottom: 0px;
 }
 
 @import 'layout';

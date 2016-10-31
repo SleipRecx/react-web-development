@@ -1,17 +1,25 @@
 
 .search-filter {
-
-  padding-top: 97px;
+  padding-top: 90px;
 
   a {
     text-decoration: none;
+      font-size: 10pt;
+  }
+  h6{
+    text-align: center;
+    font-size: 12pt;
+    font-weight: normal;
   }
   .panel {
-    background-color: #f8f8f8;
+    background-color: #fff;
 
     .panel-body {
       background-color: white;
     }
+  }
+  .glyphicon-chevron-down{
+    font-size: 8pt;
   }
 
   .filter-type {
@@ -23,7 +31,7 @@
   }
 
   .checkbox {
-    font-size: 16px;
+    font-size: 10pt;
   }
 
   .not-active {

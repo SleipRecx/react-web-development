@@ -52,15 +52,16 @@ export default class Layout extends Component {
     render() {
         return (
             <div className="search-filter">
-                <h4>Filtrering</h4>
+                <h6>Filter</h6>
+                <br></br>
                 <div className="panel-group">
                     <div className="panel">
                         <div className="panel-heading">
-                            <h4 id="filter-type1" data-toggle="collapse" href="#collapse1" className="panel-title filter-type" onClick={this.handleClick}>
+                            <h7 id="filter-type1" data-toggle="collapse" href="#collapse1" className="panel-title filter-type" onClick={this.handleClick}>
                                 <a>
                                     State <span id="filter-icon1" className={this.state.class}></span>
                                 </a>
-                            </h4>
+                            </h7>
                         </div>
                         <div id="collapse1" className="panel-collapse collapse">
                             <div className="panel-body">
@@ -83,9 +84,9 @@ export default class Layout extends Component {
                 <div className="panel-group">
                     <div className="panel">
                         <div className="panel-heading">
-                            <h4 data-toggle="collapse" href="#collapse2" className="panel-title filter-type" onClick={this.handleClick}>
+                            <h7 data-toggle="collapse" href="#collapse2" className="panel-title filter-type" onClick={this.handleClick}>
                                 <a>User Rating <span className={this.state.class}></span></a>
-                            </h4>
+                            </h7>
                         </div>
                         <div id="collapse2" className="panel-collapse collapse">
                             <div className="panel-body">

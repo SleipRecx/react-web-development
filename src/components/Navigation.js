@@ -32,6 +32,7 @@ export default class Navigation extends Component {
                         <li id={option.id} key={"navOption" + option.id}>
                             <Link to={option.route}> {option.title}</Link>
                         </li>
+
                     )}
                 </ul>
             </div>
