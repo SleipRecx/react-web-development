@@ -21,15 +21,22 @@ export default class Navigation extends Component {
      */
     render() {
         return (
-            <div className="text-center navigation">
-                <div className="list-group">
-                    {nav_options.map(option =>
-                    <li key={option.id} className="list-group-item">
-                        <Link to={option.route}> {option.title}</Link>
-                    </li>
-                    )}
+        <div className="navbar navbar-default navbar-static-top">
+            <div className="container">
+                <div className="navbar-header">
+                    <Link className="navbar-brand" to="/">LOGO</Link>
                 </div>
+
+                <ul className="nav navbar-nav navbar-right text-center">
+                    {nav_options.map(option =>
+                        <li id={option.id} key={"navOption" + option.id}>
+                            <Link to={option.route}> {option.title}</Link>
+                        </li>
+
+                    )}
+                </ul>
             </div>
+        </div>
         );
     }
 }

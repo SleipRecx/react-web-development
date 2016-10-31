@@ -32,9 +32,7 @@ export default class Search extends Component {
      */
     render() {
         return (
-            <div className="form-inline text-center">
-                <input type="text" className="form-control search-input" value={this.state.value} onChange={this.change} placeholder="Search" />
-            </div>
+            <input type="text" className="form-control" value={this.state.value} onChange={this.change} placeholder="Search by Title/User" />
         );
     }
 }

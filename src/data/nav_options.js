@@ -4,11 +4,6 @@
  */
 const navigationOptions = [
     {
-        id: 1,
-        title: "Home",
-        route: ""
-    },
-    {
         id: 2,
         title: "Profile",
         route: "/profile"

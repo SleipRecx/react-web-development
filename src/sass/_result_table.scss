@@ -1,8 +1,10 @@
 
+.result-table {
+  padding-top: 20px;
 
-
-.app-content {
-  min-height: 725px;
+  h2{
+    padding-bottom: 20px;
+  }
 }
 
 .bookTable {
@@ -15,12 +17,16 @@
   display: block;
 }
 
-.react-rater a {
-  color: #ccc;
-}
-
-.react-rater .is-active {
-  color: #fc6;
+.react-rater {
+  a {
+    color: #ccc;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .is-active{
+    color: #fc6;
+  }
 }
 
 .glyphicon-user{
@@ -31,7 +37,6 @@
   margin-right: 4px;
 }
 
-.input-group{
-  width: 65% !important;
-  margin: 0 auto;
+.search-bar-container {
+  margin-bottom: 20px;
 }
