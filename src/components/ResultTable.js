@@ -14,22 +14,27 @@ import Rater from 'react-rater'
 import '../../public/styles/style.css';
 import label_converter from '../data/label_converter';
 import Search from './Search';
-import Button from './Button';
 import books from '../data/books';
 
 
 export default class Content extends Component{
 
     /**
-     * Sets the inital state of the search and search filter value. Binds the functions handleChange and setSearch to
+     * Sets the inital state of the search and search filter value. Binds the function handleChange to
      * this component.
      * @param props --> arbitrary attribute inputs.
      */
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        this.setSearch = this.setSearch.bind(this);
-        this.state = { searchString: '', searchParameter: 'title' };
+        this.state = { searchString: '', filter:this.props.items};
+    }
+
+    componentWillMount(){
+      var url = "http://localhost:9001/api/books"
+      fetch(url).then(r => r.json())
+      .then(data => console.log(data))
+      .catch(e => console.log("async function failed"))
     }
 
     /**
@@ -43,68 +48,77 @@ export default class Content extends Component{
         this.setState({searchString:e.target.value});
     }
 
-
-    /**
-     *
-     * @param e
-     */
-    setSearch(e){
-        this.setState({searchParameter:e.target.getAttribute('data-value')});
-    }
-
-
     /**
      * @returns {XML}
      */
     render() {
         var searchString = this.state.searchString.trim().toLowerCase();
         var search_books = books;
+        var state_filter = this.props.items.state;
+        var rating_filter = this.props.items.rating;
 
-        var searchParameter = this.state.searchParameter.trim().toLowerCase();
+        // Filters books by state_filter.
+        // TODO: Should this be optimized some way perhaps?
+        if (state_filter.length > 0){
+            search_books = search_books.filter(function(l){
+                return state_filter.includes(l.state);
+            });
+        }
+
+        // Filters books by rating_filter.
+        // TODO: Should this be optimized some way perhaps?
+        if (rating_filter.length > 0){
+            search_books = search_books.filter(function(l){
+                return rating_filter.includes(l.userRating.toString());
+            });
+        }
+
 
         if(searchString.length > 0){
             // We are searching. Filter the results.
-            search_books = books.filter(function(l){
-                return l[searchParameter].toLowerCase().match( searchString );
+            search_books = search_books.filter(function(l){
+                return l.title.toLowerCase().match( searchString ) || l.user.toLowerCase().match( searchString );
             });
         }
 
         return (
-            <div className="bookTable">
-                <div className="input-group search-div">
-                <Button onChange={this.setSearch}/>
-                <Search value={this.state.searchString} onChange={this.handleChange} />
+            <div className="result-table">
+                <div className="row">
+                    <div className="col-xs-8 col-xs-offset-2 search-bar-container">
+                        <Search className="search-bar" value={this.state.searchString} onChange={this.handleChange} />
+                        <br></br>
+                    </div>
                 </div>
-                <br/>
-                <br/>
-                <table className="table table-striped table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>State</th>
-                        <th>Price</th>
-                        <th>User</th>
-                        <th>User Rating</th>
-                        <th>Added</th>
-                    </tr>
-                    </thead>
+                <div className="row">
+                    <div className="col-xs-12">
+                        <table className="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>State</th>
+                                <th>Price</th>
+                                <th>User</th>
+                                <th>User Rating</th>
+                                <th>Added</th>
+                            </tr>
+                            </thead>
 
-                    <tbody>
-                        {search_books.map(function(l){ return (
-                        <tr key={"book"+ l.id}>
-                            <td>{l.title}</td>
-                            <td><span className={"label label-" + label_converter(l.state)} >{l.state}</span></td>
-                            <td>{l.price}</td>
-                            <td><img src={l.image} className="img-circle" alt="Cinque Terre" width="20" height="20"/>{"     " + l.user}</td>
-                            <td><Rater interactive={true} rating={l.userRating} /></td>
-                            <td>{l.added}</td>
-                        </tr>)
-                        })
-                    }
-                    </tbody>
-                </table>
-                <br/><br/>
-                <br/>
+                            <tbody>
+                            {search_books.map(function(l){ return (
+                                <tr key={"book"+ l.id}>
+                                    <td>{l.title}</td>
+                                    <td><span className={"label label-" + label_converter(l.state)} >{l.state}</span></td>
+                                    <td>{l.price}</td>
+                                    <td><img src={l.image} className="img-circle" alt="Cinque Terre" width="20" height="20"/>{"     " + l.user}</td>
+                                    <td><Rater interactive={true} rating={l.userRating} /></td>
+                                    <td>{l.added}</td>
+                                </tr>)
+                            })
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
         );

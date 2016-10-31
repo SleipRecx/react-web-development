@@ -1,8 +1,17 @@
-@import 'about';
-@import 'result_table';
-@import 'footer_content';
+.content-body {
+  min-height: calc(100vh - 100px);
+}
+.navbar{
+  margin-bottom: 0px;
+}
+
 @import 'layout';
 @import 'navigation';
-@import 'not_found';
+@import 'home_page';
+@import 'result_table';
 @import 'search';
 @import "profile";
+@import 'search_filter';
+@import 'about';
+@import 'footer_content';
+@import 'not_found';

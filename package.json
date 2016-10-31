@@ -12,10 +12,10 @@
     "morgan": "^1.7.0",
     "node-sass": "^3.10.1",
     "react": "^15.3.2",
-    "react-burger-menu": "^1.10.8",
     "react-dom": "^15.3.2",
     "react-rater": "^0.3.4",
-    "react-router": "^2.8.1"
+    "react-router": "^2.8.1",
+    "bootstrap":"^3.3.7"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -24,6 +24,7 @@
     "eject": "react-scripts eject",
     "sass": "node-sass src/sass -o public/styles",
     "watchsass": "node-sass -w src/sass -o public/styles",
-    "dev": "concurrently \"npm start\" \"npm run watchsass\""
+    "server": "cd rest_api && nodemon index.js",
+    "dev": "concurrently \"npm start\" \"npm run watchsass\" \"npm run server\" "
   }
 }
