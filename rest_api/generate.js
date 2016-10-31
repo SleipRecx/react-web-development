@@ -4,6 +4,11 @@ var fetch = require('node-fetch');
 var queryString = require('query-string');
 var users = []
 
+function randomDate(start, end) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}
+
+
 function toTitleCase(str){
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
@@ -66,13 +71,15 @@ function insert_db_users(array){
 
 function generate_book_data(array) {
   var books = [];
+  var book_states = ['New', 'As New', "Normal Use", "Readable"];
   for (var y = 0; y < array.length; y++) {
     how_many = Math.floor((Math.random() * 13)) + 3;
     for(var i = 0; i < how_many; i++){
       var object = {};
       object.price = Math.round(faker.commerce.price());
       object.added = faker.date.past().toDateString();
-      object.state = Math.floor((Math.random() * 4));
+      object.state = book_states[Math.floor((Math.random() * 4))];
+      object.date = randomDate(new Date(2012, 0, 1), new Date());
       object.author = faker.name.firstName() + " " + faker.name.lastName() ;
       object.foreign = array[y];
       var run = true;
@@ -95,7 +102,6 @@ function generate_book_data(array) {
   return books
 }
 
-
 function insert_db_books(array){
   for (var i = 0; i < array.length; i++){
       var payload = {
@@ -103,6 +109,7 @@ function insert_db_books(array){
       "author": array[i].author,
       "state": array[i].state,
       "price": array[i].price,
+      "date": array[i].date,
       "user_id_foreign":array[i].foreign};
 
       var data = queryString.stringify(payload)
