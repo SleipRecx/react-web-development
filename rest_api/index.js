@@ -90,6 +90,19 @@ app.get('/api/books/user/:id', function (req, res) {
 connection.end();
 });
 
+app.get('/api/books_users', function (req, res) {
+  connection = connect_db();
+  var sql = "SELECT * FROM books JOIN users on user_id_foreign=user_id ";
+  connection.query(sql, function(err, rows, fields) {
+    if (err){
+      res.rest.serverError(err);
+    }
+    else{
+      res.rest.success(rows);
+    }
+  });
+connection.end();
+});
 
 
 app.post('/api/book', function(req, res, next) {
@@ -99,6 +112,11 @@ app.post('/api/book', function(req, res, next) {
    var price = req.body.price;
    var date = new Date();
    var user_id_foreign = req.body.user_id_foreign;
+
+   if(req.body.date != null){
+      // TODO: fix dates
+      date = new Date()
+   }
    var connection = connect_db();
 
    var sql = "INSERT INTO books(title, author, state, price, date_added, user_id_foreign) VALUES (?, ?, ?, ?, ?, ?)";

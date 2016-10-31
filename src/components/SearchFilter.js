@@ -9,22 +9,36 @@ export default class Layout extends Component {
         this.handleClick = this.handleClick.bind(this);
         this.updateStateFilter = this.updateStateFilter.bind(this);
         this.updateRatingFilter = this.updateRatingFilter.bind(this);
-        this.state = {class: 'pull-right glyphicon glyphicon-chevron-down', filter: {state: [], rating: []}};
+        this.state = {
+        class1: 'pull-right glyphicon glyphicon-chevron-right',
+        class2: 'pull-right glyphicon glyphicon-chevron-right',
+        filter: {state: [], rating: []}};
     }
 
-    handleClick(){
-        if (this.state.class === 'pull-right glyphicon glyphicon-chevron-down'){
-            this.setState({class: 'pull-right glyphicon glyphicon-chevron-up'});
+    handleClick(e){
+      console.log(e.currentTarget.id);
+      if(e.currentTarget.id == "filter-type1"){
+        if (this.state.class1 === 'pull-right glyphicon glyphicon-chevron-right'){
+            this.setState({class1: 'pull-right glyphicon glyphicon-chevron-down'});
         } else {
-            this.setState({ class: 'pull-right glyphicon glyphicon-chevron-down'});
+            this.setState({ class1: 'pull-right glyphicon glyphicon-chevron-right'});
         }
+      }
+      else{
+        if (this.state.class2 === 'pull-right glyphicon glyphicon-chevron-right'){
+            this.setState({class2: 'pull-right glyphicon glyphicon-chevron-down'});
+        } else {
+            this.setState({class2: 'pull-right glyphicon glyphicon-chevron-right'});
+        }
+      }
+
     }
 
     updateStateFilter(e){
         // Takes the value from the checkbox and depending on state either
         // adds it to or removes it from state_filter. It is then sent on to the parent component.
         if (e.target.checked){
-            this.state.filter.state.push(e.target.value)
+            this.state.filter.state.push(e.target.id)
         }
         else {
             this.state.filter.state.splice(this.state.filter.state.indexOf(e.target.value), 1)
@@ -59,7 +73,7 @@ export default class Layout extends Component {
                         <div className="panel-heading">
                             <h7 id="filter-type1" data-toggle="collapse" href="#collapse1" className="panel-title filter-type" onClick={this.handleClick}>
                                 <a>
-                                    State <span id="filter-icon1" className={this.state.class}></span>
+                                    State <span id="filter-icon1" className={this.state.class1}></span>
                                 </a>
                             </h7>
                         </div>
@@ -84,8 +98,8 @@ export default class Layout extends Component {
                 <div className="panel-group">
                     <div className="panel">
                         <div className="panel-heading">
-                            <h7 data-toggle="collapse" href="#collapse2" className="panel-title filter-type" onClick={this.handleClick}>
-                                <a>User Rating <span className={this.state.class}></span></a>
+                            <h7 id="filter-type2" data-toggle="collapse" href="#collapse2" className="panel-title filter-type" onClick={this.handleClick}>
+                                <a>User Rating <span className={this.state.class2}></span></a>
                             </h7>
                         </div>
                         <div id="collapse2" className="panel-collapse collapse">
