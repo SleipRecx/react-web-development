@@ -35,7 +35,11 @@
       "all books from a specific user":[{
           "method":"GET",
           "url":"/api/books/user/:id",
-          "responses":["200 ok","400 badRequest"]}]}],
+          "responses":["200 ok","400 badRequest"]}]},{
+      "all books matched with user":[{
+          "method":"GET",
+          "url":"/api/books_users",
+          "responses":["200 ok","500 serverError"]}]}],
 
   "DELETE":[{
       "a book":[{
