@@ -14,7 +14,8 @@ import Rater from 'react-rater'
 import '../../public/styles/style.css';
 import label_converter from '../data/label_converter';
 import Search from './Search';
-import books from '../data/books';
+import bookStore from "../stores/BookStore"
+
 
 
 export default class Content extends Component{
@@ -27,14 +28,22 @@ export default class Content extends Component{
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        this.state = { searchString: '', filter:this.props.items};
+        this.state = {
+          searchString: '',
+          data: bookStore.getAll(),
+          filter:this.props.items};
     }
 
     componentWillMount(){
-      var url = "http://localhost:9001/api/books"
+      bookStore.on("change", () =>{
+        this.setState({
+          data: bookStore.getAll()
+        })
+      });
+      /*var url = "http://localhost:9001/api/books"
       fetch(url).then(r => r.json())
       .then(data => console.log(data))
-      .catch(e => console.log("async function failed"))
+      .catch(e => console.log("async function failed"))*/
     }
 
     /**
@@ -53,7 +62,7 @@ export default class Content extends Component{
      */
     render() {
         var searchString = this.state.searchString.trim().toLowerCase();
-        var search_books = books;
+        var search_books = this.state.data;
         var state_filter = this.props.items.state;
         var rating_filter = this.props.items.rating;
 
@@ -105,7 +114,7 @@ export default class Content extends Component{
 
                             <tbody>
                             {search_books.map(function(l){ return (
-                                <tr key={"book"+ l.id}>
+                                <tr key={l.id}>
                                     <td>{l.title}</td>
                                     <td><span className={"label label-" + label_converter(l.state)} >{l.state}</span></td>
                                     <td>{l.price}</td>
