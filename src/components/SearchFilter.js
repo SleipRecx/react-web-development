@@ -38,7 +38,7 @@ export default class Layout extends Component {
         // Takes the value from the checkbox and depending on state either
         // adds it to or removes it from state_filter. It is then sent on to the parent component.
         if (e.target.checked){
-            this.state.filter.state.push(e.target.id)
+            this.state.filter.state.push(e.target.value)
         }
         else {
             this.state.filter.state.splice(this.state.filter.state.indexOf(e.target.value), 1)
