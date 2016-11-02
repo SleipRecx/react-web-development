@@ -35,9 +35,7 @@ export default class Profile extends Component{
                          </div>
 
                     </div>
-                    <div className="row" >
-                        < ResultTable/>
-                    </div>
+
                 </div>
             </div>
         )
