@@ -25,7 +25,7 @@ export default class CheckboxFilter extends Component {
         return this.props.options.map((option) => {
             return(
                 <div className="checkbox" key={option.id}>
-                    <label><input type="checkbox" value={option.value} onChange={this.props.filterFunction.bind(this)}/>{option.title}</label>
+                    <label><input type="checkbox" value={option.value} onChange={this.props.filterFunction}/>{option.title}</label>
                 </div>
             )
         })
