@@ -67,11 +67,10 @@ export default class Layout extends Component {
         return (
             <div className="search-filter">
                 <h6>Filter</h6>
-                <br></br>
                 <div className="panel-group">
                     <div className="panel">
-                        <div className="panel-heading">
-                            <h7 id="filter-type1" data-toggle="collapse" href="#collapse1" className="panel-title filter-type" onClick={this.handleClick}>
+                        <div id="filter-type1" onClick={this.handleClick} className="panel-heading filter-type" data-toggle="collapse" href="#collapse1">
+                            <h7 className="panel-title">
                                 <a>
                                     State <span id="filter-icon1" className={this.state.class1}></span>
                                 </a>
@@ -97,8 +96,8 @@ export default class Layout extends Component {
                 </div>
                 <div className="panel-group">
                     <div className="panel">
-                        <div className="panel-heading">
-                            <h7 id="filter-type2" data-toggle="collapse" href="#collapse2" className="panel-title filter-type" onClick={this.handleClick}>
+                        <div onClick={this.handleClick} className="panel-heading filter-type" id="filter-type2" data-toggle="collapse" href="#collapse2">
+                            <h7 className="panel-title">
                                 <a>User Rating <span className={this.state.class2}></span></a>
                             </h7>
                         </div>
