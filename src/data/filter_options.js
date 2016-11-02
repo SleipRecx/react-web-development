@@ -2,7 +2,7 @@
  * Defines the filter options for the search.
  *
  */
-import React, {Component} from 'react';
+import React from 'react';
 import Rater from 'react-rater'
 
 function rater(num){
@@ -63,7 +63,7 @@ const filterOptions =
                 id: 6,
                 title: rater(0),
                 value: 0
-            },
+            }
         ]
     }
     ;

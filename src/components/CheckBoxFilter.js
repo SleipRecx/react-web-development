@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Rater from 'react-rater'
 import '../../public/styles/style.css';
 
 export default class CheckboxFilter extends Component {
