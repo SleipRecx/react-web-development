@@ -9,39 +9,56 @@ In order to set up and run our application follow these steps:
 
 
 ##Project Structure##
-##### public/ #####
-* favicon.ico
-* index.html
-
-##### server/ #####
-* index.js
-
-##### src/ #####
-+ components/
-    * Button.js
-    * FooterContent.js
-    * Layout.js
-    * Navigation.js
-    * NotFound.js
-    * ResultTable.js
-    * Search.js
-+ data/
-    * books.js
-    * label_converter.js
-    * nav_options.js
-+ sass/
-    * about.scss
-    * result_table.scss
-    * footer_content.scss
-    * layout.scss
-    * navigation.scss
-    * not_found.scss
-    * search.scss
-    * style.scss
-* routes.js
-* index.js
-
-package.json
+```
+├── README.md
+├── Server
+│   └── index.js
+├── node_modules
+├── package.json
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   └── styles
+│       └── style.css
+├── rest_api
+│   ├── api_doc.json
+│   ├── generate.js
+│   ├── index.js
+│   ├── node_modules
+│   └── package.json
+└── src
+    ├── components
+    │   ├── Button.js
+    │   ├── FooterContent.js
+    │   ├── HomePage.js
+    │   ├── Layout.js
+    │   ├── Navigation.js
+    │   ├── NotFound.js
+    │   ├── ResultTable.js
+    │   ├── Search.js
+    │   └── SearchFilter.js
+    ├── data
+    │   ├── books.js
+    │   ├── label_converter.js
+    │   └── nav_options.js
+    ├── dispatcher.js
+    ├── index.js
+    ├── routes.js
+    ├── sass
+    │   ├── _about.scss
+    │   ├── _content.scss
+    │   ├── _footer_content.scss
+    │   ├── _home_page.scss
+    │   ├── _layout.scss
+    │   ├── _navigation.scss
+    │   ├── _not_found.scss
+    │   ├── _result_table.scss
+    │   ├── _search.scss
+    │   ├── _search_filter.scss
+    │   └── style.scss
+    └── stores
+        └── BookStore.js
+```
 
 ##Project Structure Documentation##
 
