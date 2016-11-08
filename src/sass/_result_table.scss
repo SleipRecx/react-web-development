@@ -40,3 +40,21 @@
 .search-bar-container {
   margin-bottom: 20px;
 }
+
+.price {
+  text-align: center;
+}
+
+.result-object{
+  display: flex;
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 50px;
+
+  li {
+    height: 100%;
+    box-sizing: border-box;
+    display: block;
+    border: solid 1px black;
+  }
+}

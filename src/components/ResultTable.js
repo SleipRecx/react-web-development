@@ -14,6 +14,7 @@ import Rater from 'react-rater'
 import '../../public/styles/style.css';
 import label_converter from '../data/label_converter';
 import Search from './Search';
+import ResultObject from './ResultObject';
 import bookStore from "../stores/BookStore"
 
 
@@ -57,6 +58,25 @@ export default class Content extends Component{
         this.setState({searchString:e.target.value});
     }
 
+    doSomething(){
+
+        let myList = this.state.data;
+
+        myList.push({
+            id: 1000,
+            title: "asd",
+            state: "mystate",
+            price: "myprice",
+            img: "sadsad",
+            added: "added nowo",
+            userRating: "123213"
+        });
+
+        this.setState({
+            data: myList
+        });
+    }
+
     /**
      * @returns {XML}
      */
@@ -98,6 +118,13 @@ export default class Content extends Component{
                         <br></br>
                     </div>
                 </div>
+                <button type="button" className="btn btn-default" onClick={this.doSomething.bind(this)}>Click me</button>
+                {search_books.map(function(l){ return (
+                    <ResultObject title={l.title} state={l.state} price={l.price} user={l.user}
+                                  userRating={l.userRating} added={l.added} image={l.image}/>
+                    )
+                })}
+
                 <div className="row">
                     <div className="col-xs-12">
                         <table className="table table-striped table-bordered">
