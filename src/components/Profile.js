@@ -9,8 +9,8 @@ export default class Profile extends Component{
         super(props);
         this.data = {};
 
-
     }
+
     componentWillMount(){
         this.getData();
         LoginStore.on("change", () =>{
@@ -18,32 +18,25 @@ export default class Profile extends Component{
         });
 
     }
+
     async getData(){
         var data= await LoginStore.decrypt(localStorage.getItem("token"))
        this.data=data;
         this.setState({
             data:data
         })
-        console.log(data);
-        console.log(data.first_name)
     }
+
     render(){
-
-
-
-
-
         return (
             <div>
                 <div className="container">
                     <div className="row">
                          <div className="col-md-3">
-                                <img className="img-responsive" src={this.data.image} alt="NO image"/>
+                                <img className="img-responsive" src={this.data.image} alt="user"/>
                          </div>
                          <div className="col-md-7">
                                 <p className="name">{this.data.first_name} {this.data.last_name}</p>
-
-
 
                          </div>
 
