@@ -17,11 +17,6 @@ const navigationOptions = [
         id: 4,
         title: "My Books",
         route: "/mybooks"
-    },
-    {
-        id: 5,
-        title: "Login",
-        route: "/login"
     }
 ];
 

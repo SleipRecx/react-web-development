@@ -52,10 +52,12 @@ class LoginStore extends EventEmitter{
       }
       case "LOGIN": {
           this.encrypt(action.token);
+          this.emit('change');
           break;
       }
       case "LOGOUT": {
           localStorage.clear();
+          this.emit('change');
           break;
       }
 
