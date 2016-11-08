@@ -1,15 +1,12 @@
 import dispatcher from '../dispatcher'
 
-/*export function newUser(user){
-  dispatcher.dispatch({
-      type: "NEW_USER",
-      user
-  });
-}*/
-
 export function login(user){
-  console.log(user.picture.data.url)
-  var token = {"loggedIn":"true", "id": user.id, "image": user.picture.data.url}
+  var token = {
+    "loggedIn":"true",
+    "face_id": user.id,
+    "first_name": user.name.split(" ")[0],
+    "last_name": user.name.split(" ")[1],
+    "image": user.picture.data.url}
   dispatcher.dispatch({
       type: "LOGIN",
       token
