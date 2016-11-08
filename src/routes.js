@@ -19,13 +19,51 @@ import {Router, Route, IndexRoute} from 'react-router';
 import NotFound from './components/NotFound';
 import Layout from './components/Layout';
 import HomePage from './components/HomePage';
+import loginStore from './stores/LoginStore'
+import Login from './components/Login';
+import Logout from './components/Logout';
+import Messages from './components/Messages';
+import MyBooks from './components/MyBooks';
+import Profile from './components/Profile';
+
+
+
+
+async function login_needed(nextState, replace, callback){
+  var login = await loginStore.loginCheck();
+  if(!login){
+    replace({
+      pathname: '/login',
+      state: { nextPathname: nextState.location.pathname }
+    })
+  }
+  callback();
+}
+
+async function logout_needed(nextState, replace, callback){
+  var login = await loginStore.loginCheck();
+  if(login){
+    replace({
+      pathname: '/logout',
+      state: { nextPathname: nextState.location.pathname }
+    })
+  }
+  callback();
+}
+
+
 
 
 const Routes = (props) => (
     <Router {...props}>
         <Route path="/" component={Layout}>
             <IndexRoute component={HomePage}/>
-            <Route path="*" component={ NotFound} />
+            <Route path="/profile" component={Profile} onEnter={login_needed} />
+            <Route path="/mybooks" component={MyBooks} onEnter={login_needed} />
+            <Route path="/messages" component={Messages} onEnter={login_needed} />
+            <Route path="/login" component={Login} onEnter={logout_needed} />
+            <Route path="/logout" component={Logout}/>
+            <Route path="*" component={NotFound} />
         </Route>
     </Router>
 );
