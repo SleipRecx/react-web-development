@@ -33,6 +33,7 @@ export default class Layout extends Component {
             this.setState({class2: 'pull-right glyphicon glyphicon-chevron-right'});
         }
       }
+    }
 
 
     updateStateFilter(e){
