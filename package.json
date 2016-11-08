@@ -2,7 +2,6 @@
   "name": "last",
   "version": "0.1.0",
   "private": true,
-
   "dependencies": {
     "bootstrap": "^3.3.7",
     "classnames": "^2.2.5",
@@ -12,6 +11,7 @@
     "json-web-token": "^2.0.3",
     "morgan": "^1.7.0",
     "node-sass": "^3.10.1",
+    "query-string": "^4.2.3",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-facebook-login": "^3.4.0",
@@ -19,7 +19,6 @@
     "react-router": "^2.8.1",
     "react-scripts": "0.6.1"
   },
-
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
