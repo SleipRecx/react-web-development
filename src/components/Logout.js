@@ -5,7 +5,7 @@ export default class Logout extends Component {
 
   componentWillMount () {
       LoginActions.logout();
-      this.context.router.push('/login');
+      this.context.router.push('/');
    }
 
    static get contextTypes() {
