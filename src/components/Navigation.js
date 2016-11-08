@@ -13,12 +13,30 @@ import {Link} from 'react-router';
 
 import '../../public/styles/style.css';
 import nav_options from '../data/nav_options';
+import LoginStore from '../stores/LoginStore';
+
 
 export default class Navigation extends Component {
+  constructor(props) {
+      super(props);
+      this.state = {loggedIn: false};
+  }
 
-    /**
-     * @returns {XML}
-     */
+ componentWillMount(){
+   this.login_needed();
+    LoginStore.on("change", () =>{
+        this.login_needed()
+    });
+  }
+
+  async login_needed(){
+    var login = await LoginStore.loginCheck();
+    this.setState({
+      loggedIn: login
+    })
+  }
+
+
     render() {
         return (
         <div className="navbar navbar-default navbar-static-top">
@@ -29,12 +47,16 @@ export default class Navigation extends Component {
 
                 <ul className="nav navbar-nav navbar-right text-center">
                     {nav_options.map(option =>
-                        <li id={option.id} key={"navOption" + option.id}>
+                        <li key={"navOption" + option.id}>
                             <Link to={option.route}> {option.title}</Link>
                         </li>
 
                     )}
+                    <li key={"navOption login-logout"}>
+                        <Link to={this.state.loggedIn ? '/logout' : '/login'}>{this.state.loggedIn ? 'Logout' : 'Login'}</Link>
+                    </li>
                 </ul>
+
             </div>
         </div>
         );
