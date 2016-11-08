@@ -13,16 +13,12 @@
     margin-bottom: 20px;
   }
   .panel {
-    background-color: #efefef;
     border-radius: 0px;
+    border: 1px solid #ddd;
 
     .panel-body {
       background-color: #ffffff;
     }
-
-    .panel-heading{
-      background-color: #f8f8f8;
-   }
 
   }
   .glyphicon-chevron-right{
