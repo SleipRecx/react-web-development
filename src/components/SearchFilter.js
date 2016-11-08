@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../../public/styles/style.css';
+import Rater from 'react-rater'
 import CheckboxFilter from './CheckboxFilter';
 import filterOptions from '../data/filter_options';
 
@@ -15,6 +16,23 @@ export default class Layout extends Component {
         };
     }
 
+    handleClick(e){
+      console.log(e.currentTarget.id);
+      if(e.currentTarget.id === "filter-type1"){
+        if (this.state.class1 === 'pull-right glyphicon glyphicon-chevron-right'){
+            this.setState({class1: 'pull-right glyphicon glyphicon-chevron-down'});
+        } else {
+            this.setState({ class1: 'pull-right glyphicon glyphicon-chevron-right'});
+        }
+      }
+      else{
+        if (this.state.class2 === 'pull-right glyphicon glyphicon-chevron-right'){
+            this.setState({class2: 'pull-right glyphicon glyphicon-chevron-down'});
+        } else {
+            this.setState({class2: 'pull-right glyphicon glyphicon-chevron-right'});
+        }
+      }
+    }
 
 
     updateStateFilter(e){

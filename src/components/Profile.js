@@ -1,6 +1,3 @@
-/**
- * Created by Kameisler on 25.10.2016.
- */
 import React, {Component} from 'react';
 import '../../public/styles/style.css';
 import ResultTable from './ResultTable.js';

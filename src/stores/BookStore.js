@@ -1,6 +1,4 @@
 import { EventEmitter } from "events";
-import dispatcher from "../dispatcher";
-
 
 function dynamicSort(property) {
     var sortOrder = 1;
@@ -49,13 +47,9 @@ class BookStore extends EventEmitter{
     this.emit("change");
   }
 
-    handleActions(action){
-      console.log("recived action");
-    }
+
 
 }
 
 const bookStore = new BookStore();
-dispatcher.register(bookStore.handleActions.bind(bookStore));
-window.dispatcher = dispatcher;
 export default bookStore;
