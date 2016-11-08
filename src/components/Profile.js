@@ -1,32 +1,48 @@
 import React, {Component} from 'react';
 import '../../public/styles/style.css';
 import ResultTable from './ResultTable.js';
+import LoginStore from '../stores/LoginStore';
 
 export default class Profile extends Component{
 
+    constructor(props) {
+        super(props);
+        this.data = {};
+
+
+    }
+    componentWillMount(){
+        this.getData();
+        LoginStore.on("change", () =>{
+            this.getData()
+        });
+
+    }
+    async getData(){
+        var data= await LoginStore.decrypt(localStorage.getItem("token"))
+       this.data=data;
+        this.setState({
+            data:data
+        })
+        console.log(data);
+        console.log(data.first_name)
+    }
     render(){
-        const name="Ken Are Meisler";
-        const rating="5 stars ";
-        const rating1="5 stars this is best seller ever ";
-        const rating2="5 stars So much books all words";
-        const rating3="5 stars  I beliv this seller is number one";
-        const auctions="All auctions";
-        const imgUrl="http://cdn-d4d.kxcdn.com/wp-content/uploads/2015/02/4.jpg";
+
+
+
+
 
         return (
             <div>
                 <div className="container">
                     <div className="row">
                          <div className="col-md-3">
-                                <img className="img-responsive" src={imgUrl} alt="NO image"/>
+                                <img className="img-responsive" src={this.data.image} alt="NO image"/>
                          </div>
                          <div className="col-md-7">
-                                <p className="name">{name}</p>
+                                <p className="name">{this.data.first_name} {this.data.last_name}</p>
 
-                             <p>{rating}</p>
-                             <p>{rating1}</p>
-                             <p>{rating2}</p>
-                             <p>{rating3}</p>
 
 
                          </div>
