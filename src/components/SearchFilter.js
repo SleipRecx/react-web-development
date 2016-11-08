@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../../public/styles/style.css';
 import Rater from 'react-rater'
+import label_converter from '../data/label_converter';
 
 export default class Layout extends Component {
 
@@ -17,7 +18,7 @@ export default class Layout extends Component {
 
     handleClick(e){
       console.log(e.currentTarget.id);
-      if(e.currentTarget.id == "filter-type1"){
+      if(e.currentTarget.id === "filter-type1"){
         if (this.state.class1 === 'pull-right glyphicon glyphicon-chevron-right'){
             this.setState({class1: 'pull-right glyphicon glyphicon-chevron-down'});
         } else {
@@ -80,16 +81,16 @@ export default class Layout extends Component {
                         <div id="collapse1" className="panel-collapse collapse">
                             <div className="panel-body">
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value="New" onChange={this.updateStateFilter}/>New</label>
+                                    <label><input type="checkbox" value="New" onChange={this.updateStateFilter}/><span className={"label label-" + label_converter("New")} >{"New"}</span></label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value="As New" onChange={this.updateStateFilter}/>As New</label>
+                                    <label><input type="checkbox" value="As New" onChange={this.updateStateFilter}/><span className={"label label-" + label_converter("As New")} >{"As New"}</span></label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value="Normal Use" onChange={this.updateStateFilter}/>Normal Use</label>
+                                    <label><input type="checkbox" value="Normal Use" onChange={this.updateStateFilter}/><span className={"label label-" + label_converter("Normal Use")} >{"Normal Use"}</span></label>
                                 </div>
                                 <div className="checkbox">
-                                    <label><input type="checkbox" value="Readable" onChange={this.updateStateFilter}/>Readable</label>
+                                    <label><input type="checkbox" value="Readable" onChange={this.updateStateFilter}/><span className={"label label-" + label_converter("Readable")} >{"Readable"}</span></label>
                                 </div>
                             </div>
                         </div>
