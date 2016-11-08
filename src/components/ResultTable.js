@@ -119,6 +119,26 @@ export default class Content extends Component{
                     </div>
                 </div>
                 <button type="button" className="btn btn-default" onClick={this.doSomething.bind(this)}>Click me</button>
+                <ul className="list-inline row result-object">
+                    <li className="col-sm-3">
+                        Title
+                    </li>
+                    <li className="col-sm-2">
+                        State
+                    </li>
+                    <li className="col-sm-1 price">
+                        Price
+                    </li>
+                    <li className="col-sm-3">
+                        User
+                    </li>
+                    <li className="col-sm-1">
+                        User Rating
+                    </li>
+                    <li className="col-sm-2">
+                        Added
+                    </li>
+                </ul>
                 {search_books.map(function(l){ return (
                     <ResultObject title={l.title} state={l.state} price={l.price} user={l.user}
                                   userRating={l.userRating} added={l.added} image={l.image}/>

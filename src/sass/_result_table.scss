@@ -49,12 +49,16 @@
   display: flex;
   margin-top: 0;
   margin-bottom: 0;
-  height: 50px;
 
-  li {
-    height: 100%;
-    box-sizing: border-box;
-    display: block;
-    border: solid 1px black;
+  li{
+    display: flex;
+    padding: 10px;
   }
+  &:nth-child(odd){
+    background-color: #f0f0f0;
+  }
+  &:nth-child(even){
+    background-color: #ffffff;
+  }
+
 }
