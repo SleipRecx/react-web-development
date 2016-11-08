@@ -36,6 +36,14 @@
           "method":"GET",
           "url":"/api/books/user/:id",
           "responses":["200 ok","400 badRequest"]}]},{
+      "a user from facebook id":[{
+          "method":"GET",
+          "url":" /api/user/face/:face_id",
+          "responses":["200 ok","400 badRequest"]}]},{
+      "a user from id":[{
+          "method":"GET",
+          "url":" /api/user/:id",
+          "responses":["200 ok","400 badRequest"]}]},{
       "all books matched with user":[{
           "method":"GET",
           "url":"/api/books_users",

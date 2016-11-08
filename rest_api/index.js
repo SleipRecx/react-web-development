@@ -90,6 +90,7 @@ app.get('/api/books/user/:id', function (req, res) {
 connection.end();
 });
 
+
 app.get('/api/books_users', function (req, res) {
   connection = connect_db();
   var sql = "SELECT * FROM books JOIN users on user_id_foreign=user_id ";
@@ -179,6 +180,22 @@ app.get('/api/user/:id', function (req, res) {
 connection.end();
 });
 
+app.get('/api/user/face/:face_id', function (req, res) {
+  connection = connect_db();
+  var id = req.params.face_id
+  var sql = "SELECT * FROM users WHERE facebook_id = ?";
+  var inserts = [id];
+  sql = mysql.format(sql, inserts)
+  connection.query(sql, function(err, rows, fields) {
+    if (err){
+      res.rest.serverError(err);
+    }
+    else{
+      res.rest.success(rows);
+    }
+  });
+connection.end();
+});
 
 
 app.get('/api/users', function (req, res) {

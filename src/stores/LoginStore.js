@@ -1,5 +1,6 @@
 import { EventEmitter } from "events";
 import dispatcher from "../dispatcher";
+var queryString = require('query-string');
 var jwt = require('json-web-token');
 let secret = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
 
@@ -45,14 +46,47 @@ class LoginStore extends EventEmitter{
     }
 
 
-  async handleActions(action){
-    switch(action.type){
-      case "NEW_USER": {
-        break;
-      }
-      case "LOGIN": {
-          this.encrypt(action.token);
+    handleNewUser(user_data){
+      console.log(user_data)
+      var payload = {
+      "image_link": user_data.image,
+      "facebook_id": user_data.face_id,
+      "first_name": user_data.first_name,
+      "last_name": user_data.last_name,
+      "rating": 5};
+      var data = queryString.stringify(payload)
+        fetch("http://localhost:9001/api/user",
+        {
+            method: "POST",
+            body: data,
+            headers: {"Content-Type": "application/x-www-form-urlencoded"}
+        })
+        .then(function(res){
+          this.encrypt(user_data);
           this.emit('change');
+        })
+    }
+
+    handleLogin(user_data){
+      var url = "http://localhost:9001/api/user/face/" + user_data.face_id
+      fetch(url).then(r => r.json())
+      .then(data => {
+        if(data.length == 0){
+          this.handleNewUser(user_data)
+        }
+        else{
+          this.encrypt(user_data);
+          this.emit('change');
+        }
+      })
+      .catch(e => console.log("async function failed"))
+
+    }
+
+  handleActions(action){
+    switch(action.type){
+      case "LOGIN": {
+          this.handleLogin(action.token)
           break;
       }
       case "LOGOUT": {
