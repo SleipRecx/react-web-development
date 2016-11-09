@@ -18,3 +18,10 @@ export function logout(){
       type: "LOGOUT"
   });
 }
+
+export function addBook(data){
+  dispatcher.dispatch({
+      type: "ADD_BOOK",
+      data
+  });
+}
