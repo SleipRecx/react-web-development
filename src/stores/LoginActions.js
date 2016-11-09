@@ -6,7 +6,8 @@ export function login(user){
     "face_id": user.id,
     "first_name": user.name.split(" ")[0],
     "last_name": user.name.split(" ")[1],
-    "image": user.picture.data.url}
+    "image": user.picture.data.url,
+    "email":user.email}
   dispatcher.dispatch({
       type: "LOGIN",
       token
