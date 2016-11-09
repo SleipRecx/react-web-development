@@ -47,11 +47,10 @@
 
 .result-object{
   display: flex;
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: 0;
 
   li{
-    border-bottom: solid 1px #ddd;
+    border-top: solid 1px #ddd;
     border-right: solid 1px #ddd;
     display: flex;
     padding: 10px;
@@ -62,10 +61,15 @@
     }
   }
 
+}
+
+.result-table-row {
   &:nth-child(even){
     background-color: #f8f8f8;
   }
-
+  &:last-child{
+    border-bottom: solid 1px #ddd;
+  }
 }
 
 .result-table {
@@ -90,4 +94,9 @@
       }
     }
   }
+}
+
+.result-object-details {
+  border: solid 1px #ddd;
+  padding: 20px;
 }

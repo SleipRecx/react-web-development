@@ -13,6 +13,7 @@ import React, { Component} from 'react';
 import '../../public/styles/style.css';
 import Search from './Search';
 import ResultObject from './ResultObject';
+import ResultObjectDetails from './ResultObjectDetails';
 import bookStore from "../stores/BookStore"
 
 
@@ -167,8 +168,15 @@ export default class Content extends Component{
                         </li>
                     </ul>
                     {search_books.map(function(l){ return (
-                        <ResultObject key={l.id} title={l.title} state={l.state} price={l.price} user={l.user}
-                                      userRating={l.userRating} added={l.added} image={l.image} />
+                        <div key={l.id} className="result-table-row">
+                            <div data-toggle="collapse" href={"#collapseNr" + l.id} data-parent="#resultTable">
+                                <ResultObject title={l.title} state={l.state} price={l.price} user={l.user}
+                                              userRating={l.userRating} added={l.added} image={l.image} />
+                            </div>
+                            <div id={"collapseNr" + l.id} className="collapse">
+                                <ResultObjectDetails author={l.author} userId={l.userId}/>
+                            </div>
+                        </div>
                     )})}
                 </div>
             </div>

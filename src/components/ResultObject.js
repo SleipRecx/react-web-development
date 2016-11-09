@@ -7,6 +7,7 @@ import label_converter from '../data/label_converter';
 export default class ResultObject extends Component {
 
     render() {
+
         return (
                 <ul className="list-inline row result-object">
                     <li className="col-sm-3">
