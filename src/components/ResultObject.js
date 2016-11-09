@@ -8,27 +8,35 @@ export default class ResultObject extends Component {
 
     render() {
         return (
-            <ul className="list-inline row result-object">
-                <li className="col-sm-3">
-                        {this.props.title}
-                </li>
-                <li className="col-sm-2">
-                        <span className={"label label-" + label_converter(this.props.state)} >{this.props.state}</span>
-                </li>
-                <li className="col-sm-1 price">
-                        {this.props.price}
-                </li>
-                <li className="col-sm-3">
-                        <img src={this.props.image} className="img-circle" alt={"Profile pciture of " + this.props.user}
-                             width="20" height="20"/>{"     " + this.props.user}
-                </li>
-                <li className="col-sm-1">
-                        <Rater interactive={true} rating={this.props.userRating}/>
-                </li>
-                <li className="col-sm-2">
-                        {this.props.added}
-                </li>
-            </ul>
+            <div>
+                {this.props.listData.map(function(l){ return (
+                <ul className="list-inline row result-object">
+                    <li className="col-sm-3">
+                        {l.title}
+                    </li>
+                    <li className="col-sm-2">
+                        <span className={"label label-" + label_converter(l.state)} >{l.state}</span>
+                    </li>
+                    <li className="col-sm-1 price">
+                        {l.price}
+                    </li>
+                    <li className="col-sm-3">
+                        <span>
+                            <img src={l.image} className="img-circle" alt={"Profile pciture of " + l.user}
+                                 width="20" height="20"/>{"     " + l.user}
+                        </span>
+                    </li>
+                    <li className="col-sm-1">
+                        <Rater interactive={true} rating={l.userRating}/>
+                    </li>
+                    <li className="col-sm-2">
+                        {l.added}
+                    </li>
+                </ul>
+                )
+                })}
+            </div>
+        
         );
     }
 }

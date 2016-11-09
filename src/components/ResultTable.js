@@ -111,69 +111,35 @@ export default class Content extends Component{
         }
 
         return (
-            <div className="result-table">
+            <div className="result-table container-fluid">
                 <div className="row">
                     <div className="col-xs-8 col-xs-offset-2 search-bar-container">
                         <Search className="search-bar" value={this.state.searchString} onChange={this.handleChange} />
                         <br></br>
                     </div>
                 </div>
-                <button type="button" className="btn btn-default" onClick={this.doSomething.bind(this)}>Click me</button>
-                <ul className="list-inline row result-object">
-                    <li className="col-sm-3">
-                        Title
-                    </li>
-                    <li className="col-sm-2">
-                        State
-                    </li>
-                    <li className="col-sm-1 price">
-                        Price
-                    </li>
-                    <li className="col-sm-3">
-                        User
-                    </li>
-                    <li className="col-sm-1">
-                        User Rating
-                    </li>
-                    <li className="col-sm-2">
-                        Added
-                    </li>
-                </ul>
-                {search_books.map(function(l){ return (
-                    <ResultObject title={l.title} state={l.state} price={l.price} user={l.user}
-                                  userRating={l.userRating} added={l.added} image={l.image}/>
-                    )
-                })}
-
                 <div className="row">
-                    <div className="col-xs-12">
-                        <table className="table table-striped table-bordered">
-                            <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>State</th>
-                                <th>Price</th>
-                                <th>User</th>
-                                <th>User Rating</th>
-                                <th>Added</th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            {search_books.map(function(l){ return (
-                                <tr key={l.id}>
-                                    <td>{l.title}</td>
-                                    <td><span className={"label label-" + label_converter(l.state)} >{l.state}</span></td>
-                                    <td>{l.price}</td>
-                                    <td><img src={l.image} className="img-circle" alt="Cinque Terre" width="20" height="20"/>{"     " + l.user}</td>
-                                    <td><Rater interactive={true} rating={l.userRating} /></td>
-                                    <td>{l.added}</td>
-                                </tr>)
-                            })
-                            }
-                            </tbody>
-                        </table>
-                    </div>
+                    <ul className="list-inline row result-object">
+                        <li className="col-sm-3">
+                            Title
+                        </li>
+                        <li className="col-sm-2">
+                            State
+                        </li>
+                        <li className="col-sm-1 price">
+                            Price
+                        </li>
+                        <li className="col-sm-3">
+                            User
+                        </li>
+                        <li className="col-sm-1">
+                            User Rating
+                        </li>
+                        <li className="col-sm-2">
+                            Added
+                        </li>
+                    </ul>
+                    <ResultObject listData={search_books}/>
                 </div>
             </div>
 
