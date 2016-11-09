@@ -7,6 +7,18 @@
 .center{
   text-align: center;
 }
+.input-group{
+  padding: 10px;
+  margin: 0 auto;
+  width: 40%;
+}
+.input-wrapper{
+  padding-top: 30px;
+}
+.half{
+  width: 30%;
+}
+
 
 @import 'layout';
 @import 'navigation';
