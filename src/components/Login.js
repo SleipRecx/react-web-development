@@ -12,7 +12,9 @@
 
     responseFacebook(response){
       LoginActions.login(response);
-      this.context.router.push('/')
+      setTimeout(()=>{
+            this.context.router.push('/profile')
+          }, 150);
     }
 
     static get contextTypes() {
