@@ -212,6 +212,23 @@ connection.end();
 });
 
 
+app.get('/api/user_books/:id', function (req, res) {
+  connection = connect_db();
+  var id = req.params.id
+  var sql = 'select * from books join users on books.user_id_foreign = users.user_id where user_id_foreign = ?'
+  var inserts = [id];
+  sql = mysql.format(sql, inserts)
+  connection.query(sql, function(err, rows, fields) {
+    if (err){
+      res.rest.serverError(err);
+    }
+    else{
+        res.rest.success(rows);
+    }
+  });
+connection.end();
+});
+
 app.post('/api/user', function(req, res, next) {
    var image_link = req.body.image_link;
    var face_id = req.body.facebook_id;
