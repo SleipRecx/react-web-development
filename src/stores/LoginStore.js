@@ -61,10 +61,12 @@ class LoginStore extends EventEmitter{
             body: data,
             headers: {"Content-Type": "application/x-www-form-urlencoded"}
         })
-        .then(function(res){
+        .then(r => r.json()).then(data => {
+          user_data.id = data.insertId;
           this.encrypt(user_data);
           this.emit('change');
         })
+
     }
 
     handleLogin(user_data){
@@ -75,6 +77,7 @@ class LoginStore extends EventEmitter{
           this.handleNewUser(user_data)
         }
         else{
+          user_data.id = data[0].user_id
           this.encrypt(user_data);
           this.emit('change');
         }
