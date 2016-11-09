@@ -33,12 +33,12 @@ export default class Profile extends Component{
                 <div className="container">
                     <div className="row">
                          <div className="col-md-3">
-                                <img className="img-responsive" src={this.data.image} alt="user"/>
+                                <img className="img-circle" src={this.data.image} alt="user"/>
                          </div>
                          <div className="col-md-7">
-                                <p className="name">{this.data.first_name} {this.data.last_name}</p>
-                              <p className="name">{this.data.email}</p>
-
+                             <p className="name">{this.data.first_name} {this.data.last_name}</p>
+                              <p className="email">{this.data.email}</p>
+                                <p className="name">add user rating(Kanskje)</p>
                          </div>
 
                     </div>
