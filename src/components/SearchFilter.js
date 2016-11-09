@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import '../../public/styles/style.css';
-import Rater from 'react-rater'
 import CheckboxFilter from './CheckboxFilter';
 import filterOptions from '../data/filter_options';
 

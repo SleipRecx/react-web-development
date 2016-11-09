@@ -10,13 +10,36 @@
  * Imports books, which contains all of our dummy data.
  */
 import React, { Component} from 'react';
-import Rater from 'react-rater'
 import '../../public/styles/style.css';
-import label_converter from '../data/label_converter';
 import Search from './Search';
+import ResultObject from './ResultObject';
 import bookStore from "../stores/BookStore"
 
 
+function propComparator(prop, direction) {
+
+    //Ascending
+    if(direction === 1){
+        return function(a, b) {
+            if (a[prop] < b[prop])
+                return -1;
+            if (a[prop] > b[prop])
+                return 1;
+            return 0;
+        }
+    }
+
+    //Descending
+    else{
+        return function(a, b) {
+            if (a[prop] < b[prop])
+                return 1;
+            if (a[prop] > b[prop])
+                return -1;
+            return 0;
+        }
+    }
+}
 
 export default class Content extends Component{
 
@@ -29,9 +52,11 @@ export default class Content extends Component{
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.state = {
-          searchString: '',
-          data: bookStore.getAll(),
-          filter:this.props.items};
+            searchString: '',
+            sortedBy: "title",
+            sortedCount: 1,
+            data: bookStore.getAll(),
+            filter:this.props.items};
     }
 
     componentWillMount(){
@@ -55,6 +80,28 @@ export default class Content extends Component{
         // This is because in React, an input cannot change independently of the value
         // that was assigned to it. In our case this is this.state.searchString.
         this.setState({searchString:e.target.value});
+    }
+
+
+    sortByType(type){
+
+        let myList = this.state.data;
+
+        if(this.state.sortedBy === type){
+            if(this.state.sortedCount === 1){
+                myList.sort(propComparator(type, 0));
+                this.setState({sortedCount: this.state.sortedCount + 1, data: myList});
+            }else{
+                myList.sort(propComparator("title", 1));
+                this.setState({sortedBy: "title", sortedCount: 1,  data: myList});
+            }
+
+        }else{
+            myList.sort(propComparator(type, 1));
+            this.setState({sortedBy: type, sortedCount: 1, data: myList});
+        }
+
+
     }
 
     /**
@@ -91,7 +138,7 @@ export default class Content extends Component{
         }
 
         return (
-            <div className="result-table">
+            <div className="result-table container-fluid">
                 <div className="row">
                     <div className="col-xs-8 col-xs-offset-2 search-bar-container">
                         <Search className="search-bar" value={this.state.searchString} onChange={this.handleChange} />
@@ -99,34 +146,30 @@ export default class Content extends Component{
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-xs-12">
-                        <table className="table table-striped table-bordered">
-                            <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>State</th>
-                                <th>Price</th>
-                                <th>User</th>
-                                <th>User Rating</th>
-                                <th>Added</th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            {search_books.map(function(l){ return (
-                                <tr key={l.id}>
-                                    <td>{l.title}</td>
-                                    <td><span className={"label label-" + label_converter(l.state)} >{l.state}</span></td>
-                                    <td>{l.price}</td>
-                                    <td><img src={l.image} className="img-circle" alt="Cinque Terre" width="20" height="20"/>{"     " + l.user}</td>
-                                    <td><Rater interactive={true} rating={l.userRating} /></td>
-                                    <td>{l.added}</td>
-                                </tr>)
-                            })
-                            }
-                            </tbody>
-                        </table>
-                    </div>
+                    <ul className="list-inline row result-object result-object-header">
+                        <li className="col-sm-3" onClick={() => this.sortByType("title")}>
+                            Title
+                        </li>
+                        <li className="col-sm-2" onClick={() => this.sortByType("state")}>
+                            State
+                        </li>
+                        <li className="col-sm-1 price" onClick={() => this.sortByType("price")}>
+                            Price
+                        </li>
+                        <li className="col-sm-3" onClick={() => this.sortByType("user")}>
+                            User
+                        </li>
+                        <li className="col-sm-1" onClick={() => this.sortByType("userRating")}>
+                            User Rating
+                        </li>
+                        <li className="col-sm-2" onClick={() => this.sortByType("added")}>
+                            Added
+                        </li>
+                    </ul>
+                    {search_books.map(function(l){ return (
+                        <ResultObject key={l.id} title={l.title} state={l.state} price={l.price} user={l.user}
+                                      userRating={l.userRating} added={l.added} image={l.image} />
+                    )})}
                 </div>
             </div>
 
