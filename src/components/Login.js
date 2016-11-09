@@ -12,7 +12,7 @@
 
     responseFacebook(response){
       LoginActions.login(response);
-      this.context.router.push('/profile');
+      this.context.router.push('/')
     }
 
     static get contextTypes() {
@@ -23,19 +23,14 @@
 
     render() {
         return (
-            <div>
-            <center>
-            <br></br>
-            <h1>Login is required to view some pages</h1>
-            <br></br>
             <FacebookLogin
               appId="1743409112576577"
               autoLoad={false}
               fields="id, name,link, gender,email,picture.type(large)"
               scope="public_profile, email"
+              cssClass="facebook-button"
+              textButton="Sign in"
               callback={this.responseFacebook} />
-              </center>
-            </div>
         );
     }
 }
