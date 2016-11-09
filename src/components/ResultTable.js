@@ -10,14 +10,36 @@
  * Imports books, which contains all of our dummy data.
  */
 import React, { Component} from 'react';
-import Rater from 'react-rater'
 import '../../public/styles/style.css';
-import label_converter from '../data/label_converter';
 import Search from './Search';
 import ResultObject from './ResultObject';
 import bookStore from "../stores/BookStore"
 
 
+function propComparator(prop, direction) {
+
+    //Ascending
+    if(direction === 1){
+        return function(a, b) {
+            if (a[prop] < b[prop])
+                return -1;
+            if (a[prop] > b[prop])
+                return 1;
+            return 0;
+        }
+    }
+
+    //Descending
+    else{
+        return function(a, b) {
+            if (a[prop] < b[prop])
+                return 1;
+            if (a[prop] > b[prop])
+                return -1;
+            return 0;
+        }
+    }
+}
 
 export default class Content extends Component{
 
@@ -30,9 +52,11 @@ export default class Content extends Component{
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.state = {
-          searchString: '',
-          data: bookStore.getAll(),
-          filter:this.props.items};
+            searchString: '',
+            sortedBy: "title",
+            sortedCount: 1,
+            data: bookStore.getAll(),
+            filter:this.props.items};
     }
 
     componentWillMount(){
@@ -58,23 +82,26 @@ export default class Content extends Component{
         this.setState({searchString:e.target.value});
     }
 
-    doSomething(){
+
+    sortByType(type){
 
         let myList = this.state.data;
 
-        myList.push({
-            id: 1000,
-            title: "asd",
-            state: "mystate",
-            price: "myprice",
-            img: "sadsad",
-            added: "added nowo",
-            userRating: "123213"
-        });
+        if(this.state.sortedBy === type){
+            if(this.state.sortedCount === 1){
+                myList.sort(propComparator(type, 0));
+                this.setState({sortedCount: this.state.sortedCount + 1, data: myList});
+            }else{
+                myList.sort(propComparator("title", 1));
+                this.setState({sortedBy: "title", sortedCount: 1,  data: myList});
+            }
 
-        this.setState({
-            data: myList
-        });
+        }else{
+            myList.sort(propComparator(type, 1));
+            this.setState({sortedBy: type, sortedCount: 1, data: myList});
+        }
+
+
     }
 
     /**
@@ -119,27 +146,30 @@ export default class Content extends Component{
                     </div>
                 </div>
                 <div className="row">
-                    <ul className="list-inline row result-object">
-                        <li className="col-sm-3">
+                    <ul className="list-inline row result-object result-object-header">
+                        <li className="col-sm-3" onClick={() => this.sortByType("title")}>
                             Title
                         </li>
-                        <li className="col-sm-2">
+                        <li className="col-sm-2" onClick={() => this.sortByType("state")}>
                             State
                         </li>
-                        <li className="col-sm-1 price">
+                        <li className="col-sm-1 price" onClick={() => this.sortByType("price")}>
                             Price
                         </li>
-                        <li className="col-sm-3">
+                        <li className="col-sm-3" onClick={() => this.sortByType("user")}>
                             User
                         </li>
-                        <li className="col-sm-1">
+                        <li className="col-sm-1" onClick={() => this.sortByType("userRating")}>
                             User Rating
                         </li>
-                        <li className="col-sm-2">
+                        <li className="col-sm-2" onClick={() => this.sortByType("added")}>
                             Added
                         </li>
                     </ul>
-                    <ResultObject listData={search_books}/>
+                    {search_books.map(function(l){ return (
+                        <ResultObject key={l.id} title={l.title} state={l.state} price={l.price} user={l.user}
+                                      userRating={l.userRating} added={l.added} image={l.image} />
+                    )})}
                 </div>
             </div>
 

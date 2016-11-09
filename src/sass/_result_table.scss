@@ -67,3 +67,27 @@
   }
 
 }
+
+.result-table {
+  .result-object-header{
+    li{
+      $table-border-color: #BBB;
+      $table-border-size: 1px;
+
+      font-weight: bold;
+
+      border-right: solid $table-border-size $table-border-color;
+      border-bottom: solid $table-border-size $table-border-color;
+      border-top: solid $table-border-size $table-border-color;
+
+      &:first-child{
+        border-left: solid $table-border-size $table-border-color;
+      }
+
+      &:hover{
+        cursor: pointer;
+        background-color: #eaeaea;
+      }
+    }
+  }
+}
