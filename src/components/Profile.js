@@ -37,6 +37,7 @@ export default class Profile extends Component{
                          </div>
                          <div className="col-md-7">
                                 <p className="name">{this.data.first_name} {this.data.last_name}</p>
+                              <p className="name">{this.data.email}</p>
 
                          </div>
 

@@ -14,9 +14,9 @@ function dynamicSort(property) {
 
 class BookStore extends EventEmitter{
   constructor(){
-    super()
+    super();
     this.books = [];
-    var url = "http://localhost:9001/api/books_users"
+    var url = "http://localhost:9001/api/books_users";
     fetch(url).then(r => r.json())
     .then(data => {
       this.handleData(data);
@@ -36,10 +36,12 @@ class BookStore extends EventEmitter{
         image: data[i].image_link,
         price: data[i].price + " kr",
         user: data[i].first_name + " " + data[i].last_name,
+          userId: data[i].user_id_foreign,
         added: data[i].date_added.split("T")[0],
         userRating: data[i].rating,
         state: data[i].state,
-        title: data[i].title
+        title: data[i].title,
+          author: data[i].author
       };
       this.books.push(object)
     }
