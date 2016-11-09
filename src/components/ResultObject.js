@@ -8,7 +8,6 @@ export default class ResultObject extends Component {
 
     render() {
         return (
-            <div>
                 <ul className="list-inline row result-object">
                     <li className="col-sm-3">
                         {this.props.title}
@@ -32,8 +31,7 @@ export default class ResultObject extends Component {
                         {this.props.added}
                     </li>
                 </ul>
-            </div>
-        
+
         );
     }
 }
