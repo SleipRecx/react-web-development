@@ -228,7 +228,8 @@ app.post('/api/user', function(req, res, next) {
          res.rest.badRequest('creation failed because of bad request');
       }
       else{
-         res.rest.created('creation successful');
+
+        res.rest.success(results);
       }
 
    });
