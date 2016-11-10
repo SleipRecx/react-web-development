@@ -14,6 +14,13 @@ export function login(user){
   });
 }
 
+export function loadMoreBooks(data){
+  dispatcher.dispatch({
+      type: "MORE_BOOKS",
+      data
+  });
+}
+
 export function logout(){
   dispatcher.dispatch({
       type: "LOGOUT"

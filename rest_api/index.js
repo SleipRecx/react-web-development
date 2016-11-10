@@ -105,6 +105,23 @@ app.get('/api/books_users', function (req, res) {
 connection.end();
 });
 
+app.get('/api/books_users/:length', function (req, res) {
+  connection = connect_db();
+  var length = req.params.length
+  var sql = "SELECT * FROM books JOIN users on user_id_foreign=user_id limit ?, 20";
+  var length =  parseInt(length)
+  var inserts = [length];
+  sql = mysql.format(sql, inserts)
+  connection.query(sql, function(err, rows, fields) {
+    if (err){
+      res.rest.serverError(err);
+    }
+    else{
+      res.rest.success(rows);
+    }
+  });
+connection.end();
+});
 
 app.post('/api/book', function(req, res, next) {
    var title = req.body.title;
@@ -212,7 +229,7 @@ connection.end();
 });
 
 
-app.get('/api/user_books/:id', function (req, res) {
+app.get('/api/book_user/:id', function (req, res) {
   connection = connect_db();
   var id = req.params.id
   var sql = 'select * from books join users on books.user_id_foreign = users.user_id where user_id_foreign = ?'

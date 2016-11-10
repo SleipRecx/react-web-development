@@ -17,18 +17,17 @@ class BookStore extends EventEmitter{
   constructor(){
     super();
     this.books = [];
-    this.fetchAllBooks()
   }
 
 
-  fetchAllBooks(){
-    var url = "http://localhost:9001/api/books_users";
+  fetchAllBooks(length){
+    var url = "http://localhost:9001/api/books_users/" +length;
     fetch(url).then(r => r.json())
     .then(data => {
-      console.log(data)
       this.handleData(data);
     })
-    .catch(e => console.log("async function failed"))
+    .catch(e => console.log(e))
+
   }
 
   getAll(){
@@ -36,19 +35,21 @@ class BookStore extends EventEmitter{
   }
 
   handleData(data){
-
+    if(data.length == 0){
+      this.emit("no_books")
+    }
     for(var i = 0; i <data.length; i++){
       var object = {
         id: data[i].book_id,
         image: data[i].image_link,
         price: data[i].price + " kr",
         user: data[i].first_name + " " + data[i].last_name,
-          userId: data[i].user_id_foreign,
+        userId: data[i].user_id_foreign,
         added: data[i].date_added.split("T")[0],
         userRating: data[i].rating,
         state: data[i].state,
         title: data[i].title,
-          author: data[i].author
+        author: data[i].author
       };
       this.books.push(object)
     }
@@ -57,10 +58,13 @@ class BookStore extends EventEmitter{
   }
 
   handleActions(action){
-    console.log(action.type)
     switch(action.type){
       case "NEW_BOOK_ADDED": {
-          this.fetchAllBooks();
+          this.fetchAllBooks(0);
+          break;
+      }
+      case "MORE_BOOKS": {
+          this.fetchAllBooks(action.data);
           break;
       }
       default: {

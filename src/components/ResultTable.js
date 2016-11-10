@@ -14,7 +14,10 @@ import '../../public/styles/style.css';
 import Search from './Search';
 import ResultObject from './ResultObject';
 import ResultObjectDetails from './ResultObjectDetails';
-import bookStore from "../stores/BookStore"
+import bookStore from "../stores/BookStore";
+import InfiniteScroll from 'react-infinite-scroller';
+import * as LoginActions from '../stores/LoginActions';
+var Loader = require('halogen/BeatLoader');
 
 
 function propComparator(prop, direction) {
@@ -53,14 +56,26 @@ export default class Content extends Component{
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.getNewBooks = this.getNewBooks.bind(this);
+        this.noMoreBooks = this.noMoreBooks.bind(this)
+        this.loadMoreBooks = this.loadMoreBooks.bind(this);
         this.state = {
             searchString: '',
             sortedBy: "title",
             sortedCount: 1,
+            moreBooks: true,
             data: bookStore.getAll(),
             filter:this.props.items};
     }
 
+    noMoreBooks(){
+      this.setState({
+        moreBooks: false
+      });
+    }
+
+    loadMoreBooks(){
+      LoginActions.loadMoreBooks(this.state.data.length)
+    }
 
     getNewBooks(){
       this.setState({
@@ -70,10 +85,12 @@ export default class Content extends Component{
 
     componentWillMount(){
       bookStore.on("change",this.getNewBooks);
+      bookStore.on("no_books",this.noMoreBooks);
     }
 
     componentWillUnmount(){
       bookStore.removeListener("change",this.getNewBooks);
+      bookStore.removeListener("no_books",this.noMoreBooks);
     }
 
     handleChange(e){
@@ -114,6 +131,7 @@ export default class Content extends Component{
         var search_books = this.state.data;
         var state_filter = this.props.items.state;
         var rating_filter = this.props.items.rating;
+        var loadMore = this.state.moreBooks;
 
         // Filters books by state_filter.
         // TODO: Should this be optimized some way perhaps?
@@ -133,6 +151,7 @@ export default class Content extends Component{
 
 
         if(searchString.length > 0){
+            loadMore = false;
             // We are searching. Filter the results.
             search_books = search_books.filter(function(l){
                 return l.title.toLowerCase().match( searchString ) || l.user.toLowerCase().match( searchString );
@@ -169,18 +188,26 @@ export default class Content extends Component{
                         </li>
                     </ul>
 
-                    {search_books.map(function(l){ return (
-                        <div key={l.id} className="result-table-row">
-                            <div data-toggle="collapse" href={"#collapseNr" + l.id} data-parent="#resultTable">
-                                <ResultObject  title={l.title} state={l.state} price={l.price} user={l.user}
-                                              userRating={l.userRating} added={l.added} image={l.image} />
-                            </div>
-                            <div id={"collapseNr" + l.id } className="collapse">
-                                <ResultObjectDetails author={l.author} userId={l.userId}/>
-                            </div>
-                        </div>
-                    )})}
                 </div>
+                <InfiniteScroll
+                  pageStart={0}
+                  loadMore={this.loadMoreBooks}
+                  hasMore={loadMore}
+                  loader={<div className="loader"><br/><Loader color="#d3d3d3" size="18px" margin="5px"/></div>}>
+                  {search_books.map(function(l){ return (
+                    <div className="row">
+                      <div key={l.id} className="result-table-row">
+                          <div data-toggle="collapse" href={"#collapseNr" + l.id} data-parent="#resultTable">
+                              <ResultObject  title={l.title} state={l.state} price={l.price} user={l.user}
+                                            userRating={l.userRating} added={l.added} image={l.image} />
+                          </div>
+                          <div id={"collapseNr" + l.id } className="collapse">
+                              <ResultObjectDetails author={l.author} userId={l.userId}/>
+                          </div>
+                      </div>
+                      </div>
+                  )})}
+              </InfiniteScroll>
                 <br/>
                 <br/>
                 <br/>
