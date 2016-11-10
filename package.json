@@ -17,7 +17,8 @@
     "react-facebook-login": "^3.4.0",
     "react-rater": "^0.3.4",
     "react-router": "^2.8.1",
-    "react-scripts": "0.6.1"
+    "react-scripts": "0.6.1",
+    "sweetalert2": "node_modules/sweetalert2"
   },
   "scripts": {
     "start": "react-scripts start",
