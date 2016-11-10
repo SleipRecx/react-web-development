@@ -5,7 +5,10 @@
   h2{
     padding-bottom: 20px;
   }
+
 }
+
+
 
 .bookTable {
   margin-top: 50px;
@@ -50,7 +53,7 @@
   margin: 0;
 
   li{
-    border-top: solid 1px #ddd;
+    border-bottom: solid 1px #ddd;
     border-right: solid 1px #ddd;
     display: flex;
     padding: 10px;
@@ -108,7 +111,12 @@
         background-color: #eaeaea;
       }
     }
+
   }
+}
+
+.color{
+  background-color: #f9f9f9;
 }
 
 .result-object-details {
