@@ -22,7 +22,7 @@ class MyBookStore extends EventEmitter{
   }
 
   fetchBooks(id){
-    var url = "http://localhost:9001/api/user_books/" + id
+    var url = "http://localhost:9001/api/book_user/" + id
     fetch(url).then(r => r.json())
     .then(data => {
       this.books = data;
@@ -31,7 +31,7 @@ class MyBookStore extends EventEmitter{
   }
 
   fetchNewBooks(id){
-    var url = "http://localhost:9001/api/user_books/" + id
+    var url = "http://localhost:9001/api/book_user/" + id
     fetch(url).then(r => r.json())
     .then(data => {
       this.books = data;
