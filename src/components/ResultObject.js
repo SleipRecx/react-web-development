@@ -13,7 +13,7 @@ export default class ResultObject extends Component {
                     <li className="col-sm-3">
                         {this.props.title}
                     </li>
-                    <li className="col-sm-2">
+                    <li className="col-sm-2 price">
                         <span className={"label label-" + label_converter(this.props.state)} >{this.props.state}</span>
                     </li>
                     <li className="col-sm-1 price">
@@ -25,7 +25,7 @@ export default class ResultObject extends Component {
                                  width="20" height="20"/>{"     " + this.props.user}
                         </span>
                     </li>
-                    <li className="col-sm-1">
+                    <li className="col-sm-2 price">
                         <Rater interactive={true} rating={this.props.userRating}/>
                     </li>
                     <li className="col-sm-2">

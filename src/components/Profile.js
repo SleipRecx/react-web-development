@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import '../../public/styles/style.css';
-import ResultTable from './ResultTable.js';
 import LoginStore from '../stores/LoginStore';
 
 export default class Profile extends Component{
@@ -11,7 +10,7 @@ export default class Profile extends Component{
 
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.getData();
         LoginStore.on("change", () =>{
             this.getData()

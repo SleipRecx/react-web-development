@@ -52,6 +52,7 @@ export default class Content extends Component{
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        this.getNewBooks = this.getNewBooks.bind(this);
         this.state = {
             searchString: '',
             sortedBy: "title",
@@ -60,22 +61,21 @@ export default class Content extends Component{
             filter:this.props.items};
     }
 
-    componentWillMount(){
-      bookStore.on("change", () =>{
-        this.setState({
-          data: bookStore.getAll()
-        })
+
+    getNewBooks(){
+      this.setState({
+        data: bookStore.getAll()
       });
-      /*var url = "http://localhost:9001/api/books"
-      fetch(url).then(r => r.json())
-      .then(data => console.log(data))
-      .catch(e => console.log("async function failed"))*/
     }
 
-    /**
-     *
-     * @param e
-     */
+    componentWillMount(){
+      bookStore.on("change",this.getNewBooks);
+    }
+
+    componentWillUnmount(){
+      bookStore.removeListener("change",this.getNewBooks);
+    }
+
     handleChange(e){
         // If you comment out this line, the text box will not change its value.
         // This is because in React, an input cannot change independently of the value
@@ -104,6 +104,7 @@ export default class Content extends Component{
 
 
     }
+
 
     /**
      * @returns {XML}
@@ -152,7 +153,7 @@ export default class Content extends Component{
                             Title
                         </li>
                         <li className="col-sm-2" onClick={() => this.sortByType("state")}>
-                            State
+                            Condition
                         </li>
                         <li className="col-sm-1 price" onClick={() => this.sortByType("price")}>
                             Price
@@ -160,25 +161,30 @@ export default class Content extends Component{
                         <li className="col-sm-3" onClick={() => this.sortByType("user")}>
                             User
                         </li>
-                        <li className="col-sm-1" onClick={() => this.sortByType("userRating")}>
-                            User Rating
+                        <li className="col-sm-2 price" onClick={() => this.sortByType("userRating")}>
+                            Rating
                         </li>
                         <li className="col-sm-2" onClick={() => this.sortByType("added")}>
                             Added
                         </li>
                     </ul>
+
                     {search_books.map(function(l){ return (
                         <div key={l.id} className="result-table-row">
                             <div data-toggle="collapse" href={"#collapseNr" + l.id} data-parent="#resultTable">
-                                <ResultObject title={l.title} state={l.state} price={l.price} user={l.user}
+                                <ResultObject  title={l.title} state={l.state} price={l.price} user={l.user}
                                               userRating={l.userRating} added={l.added} image={l.image} />
                             </div>
-                            <div id={"collapseNr" + l.id} className="collapse">
+                            <div id={"collapseNr" + l.id } className="collapse">
                                 <ResultObjectDetails author={l.author} userId={l.userId}/>
                             </div>
                         </div>
                     )})}
                 </div>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
             </div>
 
         );

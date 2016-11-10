@@ -5,23 +5,47 @@ import '../../public/styles/style.css';
 import label_converter from '../data/label_converter';
 import ReactDOM from 'react-dom';
 import * as LoginActions from '../stores/LoginActions'
+import { default as swal } from 'sweetalert2'
+import "sweetalert2/dist/sweetalert2.min.css"
 
 export default class MyBooks extends Component {
   constructor(props) {
       super(props);
+      this.getBooksFromStore = this.getBooksFromStore.bind(this);
+      this.getNewBookFromStore = this.getNewBookFromStore.bind(this);
       this.state = {data: myBookStore.getAllBooks()};
       this.buttonPressed = this.buttonPressed.bind(this);
   }
 
-  componentWillMount(){
-    myBookStore.on("change", () =>{
-      this.setState({
-        data: myBookStore.getAllBooks()
-      })
-      this.clearForm()
+  getBooksFromStore(){
+    this.setState({
+      data: myBookStore.getAllBooks()
     });
+  }
 
-}
+  getNewBookFromStore(){
+    this.setState({
+      data: myBookStore.getAllBooks()
+    })
+    this.clearForm();
+    swal({
+      title: 'Book was successfully added',
+      type: 'success',
+      timer: 1200,
+      showConfirmButton: false
+
+    });
+  }
+
+  componentWillMount(){
+    myBookStore.on("data_loaded", this.getBooksFromStore);
+    myBookStore.on("new_book", this.getNewBookFromStore);
+  }
+
+  componentWillUnmount(){
+    myBookStore.removeListener("data_loaded", this.getBooksFromStore);
+    myBookStore.removeListener("new_book", this.getNewBookFromStore);
+  }
 
 clearForm(){
   ReactDOM.findDOMNode(this.refs.price).value = ""
@@ -38,6 +62,7 @@ buttonPressed(e) {
     object.title =  ReactDOM.findDOMNode(this.refs.title).value
     object.author = ReactDOM.findDOMNode(this.refs.author).value
     LoginActions.addBook(object);
+
 }
 
   render() {
@@ -45,14 +70,15 @@ buttonPressed(e) {
         <div>
               <br/>
               <center><h3>Your Books</h3></center>
+
                   <div className="result-table container">
                       <div className="row">
-                          <ul className="list-inline row result-object result-object-header">
+                          <ul className="list-inline row result-object result-object-header color">
                               <li className="col-sm-3">
                                   Title
                               </li>
-                              <li className="col-sm-2">
-                                  State
+                              <li className="col-sm-2 price">
+                                  Condition
                               </li>
                               <li className="col-sm-1 price">
                                   Price
@@ -60,8 +86,8 @@ buttonPressed(e) {
                               <li className="col-sm-3">
                                   User
                               </li>
-                              <li className="col-sm-1">
-                                  User Rating
+                              <li className="col-sm-2 price">
+                                  Rating
                               </li>
                               <li className="col-sm-2">
                                   Added
@@ -73,6 +99,7 @@ buttonPressed(e) {
                           )})}
                       </div>
                   </div>
+              <br/>
               <center><h3>Add New Book</h3></center>
 
               <div className="input-wrapper">

@@ -67,9 +67,8 @@ export default class Layout extends Component {
 
         return (
             <div className="search-filter">
-                <h6>Filter Search</h6>
-                <CheckboxFilter checkboxId="1" title="State" filterFunction={this.updateStateFilter} options={this.state.filter_options.states} />
-                <CheckboxFilter checkboxId="2" title="User Rating" filterFunction={this.updateRatingFilter} options={this.state.filter_options.user_ratings}/>
+                <CheckboxFilter checkboxId="2" title="Rating" filterFunction={this.updateRatingFilter} options={this.state.filter_options.user_ratings}/>
+                <CheckboxFilter checkboxId="1" title="Condition" filterFunction={this.updateStateFilter} options={this.state.filter_options.states} />
             </div>
         );
     }
