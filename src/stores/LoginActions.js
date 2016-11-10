@@ -26,3 +26,9 @@ export function addBook(data){
       data
   });
 }
+
+export function newBookAdded(){
+  dispatcher.dispatch({
+      type: "NEW_BOOK_ADDED"
+  });
+}
