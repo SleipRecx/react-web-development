@@ -2,6 +2,7 @@ import { EventEmitter } from "events";
 import loginStore from "./LoginStore"
 import dispatcher from "../dispatcher";
 var queryString = require('query-string');
+import * as LoginActions from '../stores/LoginActions'
 
 class MyBookStore extends EventEmitter{
   constructor(){
@@ -25,7 +26,16 @@ class MyBookStore extends EventEmitter{
     fetch(url).then(r => r.json())
     .then(data => {
       this.books = data;
-      this.emit('change');
+      this.emit('data_loaded');
+    })
+  }
+
+  fetchNewBooks(id){
+    var url = "http://localhost:9001/api/user_books/" + id
+    fetch(url).then(r => r.json())
+    .then(data => {
+      this.books = data;
+      this.emit('new_book');
     })
   }
 
@@ -49,7 +59,8 @@ async addNewBook(book_data){
           headers: {"Content-Type": "application/x-www-form-urlencoded"}
       })
       .then(r => r.json()).then(data => {
-        this.fetchBooks(id);
+        this.fetchNewBooks(id);
+        LoginActions.newBookAdded();
       })
 
   }

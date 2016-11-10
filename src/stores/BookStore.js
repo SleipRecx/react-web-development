@@ -1,4 +1,5 @@
 import { EventEmitter } from "events";
+import dispatcher from "../dispatcher";
 
 function dynamicSort(property) {
     var sortOrder = 1;
@@ -16,13 +17,18 @@ class BookStore extends EventEmitter{
   constructor(){
     super();
     this.books = [];
+    this.fetchAllBooks()
+  }
+
+
+  fetchAllBooks(){
     var url = "http://localhost:9001/api/books_users";
     fetch(url).then(r => r.json())
     .then(data => {
+      console.log(data)
       this.handleData(data);
     })
     .catch(e => console.log("async function failed"))
-
   }
 
   getAll(){
@@ -30,9 +36,10 @@ class BookStore extends EventEmitter{
   }
 
   handleData(data){
+
     for(var i = 0; i <data.length; i++){
       var object = {
-        id: i,
+        id: data[i].book_id,
         image: data[i].image_link,
         price: data[i].price + " kr",
         user: data[i].first_name + " " + data[i].last_name,
@@ -49,9 +56,24 @@ class BookStore extends EventEmitter{
     this.emit("change");
   }
 
+  handleActions(action){
+    console.log(action.type)
+    switch(action.type){
+      case "NEW_BOOK_ADDED": {
+          this.fetchAllBooks();
+          break;
+      }
+      default: {
+        break;
+      }
+
+    }
+  }
+
 
 
 }
 
 const bookStore = new BookStore();
+dispatcher.register(bookStore.handleActions.bind(bookStore));
 export default bookStore;

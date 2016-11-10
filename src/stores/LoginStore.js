@@ -7,7 +7,7 @@ let secret = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
 class LoginStore extends EventEmitter{
 
  loginCheck(){
-    return new Promise(async function(resolve, reject) {
+    return new Promise(function(resolve, reject) {
       var token = localStorage.getItem("token");
       jwt.decode(secret, token, function (err, decode) {
         if(err){
@@ -73,7 +73,7 @@ class LoginStore extends EventEmitter{
       var url = "http://localhost:9001/api/user/face/" + user_data.face_id
       fetch(url).then(r => r.json())
       .then(data => {
-        if(data.length == 0){
+        if(data.length === 0){
           this.handleNewUser(user_data)
         }
         else{
