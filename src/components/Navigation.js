@@ -54,7 +54,7 @@ export default class Navigation extends Component {
         <div className="navbar navbar-default navbar-static-top">
             <div className="container">
                 <div className="navbar-header">
-                    <Link className="navbar-brand" to="/">LOGO</Link>
+                    <Link className="navbar-brand" to="/">THE BOOKSHELF</Link>
                 </div>
 
                 <ul className="nav navbar-nav navbar-right text-center">
