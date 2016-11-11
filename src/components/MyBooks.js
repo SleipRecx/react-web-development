@@ -128,7 +128,7 @@ buttonPressed(e) {
                                   Price
                               </li>
                               <li className="col-sm-3">
-                                  User
+                                  Seller
                               </li>
                               <li className="col-sm-2 price">
                                   Rating

@@ -6,8 +6,9 @@ export default class ResultObjectDetails extends Component {
     render() {
         return (
             <div className="result-object-details">
-                <h1>Author: {this.props.author}</h1>
-                <h1>User ID: {this.props.userId}</h1>
+                <h3>Title: {this.props.title}</h3>
+                <h3>Author: {this.props.author}</h3>
+                <h3>Seller: {this.props.user}</h3>
             </div>
         );
     }

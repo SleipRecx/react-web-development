@@ -85,7 +85,7 @@ export default class Content extends Component{
         this.moreBooksCounter ++
     }
 
-    getNewBooks(){  
+    getNewBooks(){
       this.setState({
         data: bookStore.getBooksWithLimit()
       });
@@ -211,7 +211,7 @@ export default class Content extends Component{
                             Price
                         </li>
                         <li className="col-sm-3" onClick={() => this.sortByType("user")}>
-                            User
+                            Seller
                         </li>
                         <li className="col-sm-2 price" onClick={() => this.sortByType("userRating")}>
                             Rating
@@ -235,7 +235,7 @@ export default class Content extends Component{
                                             userRating={l.userRating} added={l.added} image={l.image} />
                           </div>
                           <div id={"collapseNr" + l.id } className="collapse">
-                              <ResultObjectDetails author={l.author} userId={l.userId}/>
+                              <ResultObjectDetails title={l.title} author={l.author} user={l.user}/>
                           </div>
                       </div>
                       </div>

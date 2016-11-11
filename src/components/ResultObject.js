@@ -26,7 +26,7 @@ export default class ResultObject extends Component {
                         </span>
                     </li>
                     <li className="col-sm-2 price">
-                        <Rater interactive={true} rating={this.props.userRating}/>
+                        <Rater interactive={false} rating={this.props.userRating}/>
                     </li>
                     <li className="col-sm-2">
                         {this.props.added}
