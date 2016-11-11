@@ -22,6 +22,21 @@ import SearchInput, {createFilter} from 'react-search-input'
 
 function propComparator(prop, direction) {
 
+    if (prop === "price"){
+       // Ascending
+       if (direction === 1){
+            return function(a,b) {
+                return (parseInt(a[prop]) - parseInt(b[prop])) 
+            }
+        }
+        // Descending
+        else{
+            return function(a,b) {
+                return (parseInt(b[prop]) - parseInt(a[prop])) 
+            }
+        }
+    }
+
     //Ascending
     if(direction === 1){
         return function(a, b) {
