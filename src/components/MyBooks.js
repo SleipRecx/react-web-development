@@ -75,17 +75,17 @@ buttonPressed(e) {
 
             <div className="input-group">
             <span className="input-group-addon" id="basic-addon3">Title</span>
-            <input type="text" className="form-control" ref="title" id="basic-url" aria-describedby="basic-addon3"/>
+            <input type="text" className="form-control" ref="title" id="basic-url" aria-describedby="basic-addon3" required/>
           </div>
 
           <div className="input-group">
           <span className="input-group-addon" name="author" id="basic-addon3">Author</span>
-          <input type="text" className="form-control" ref="author" id="basic-url" aria-describedby="basic-addon3"/>
+          <input type="text" className="form-control" ref="author" id="basic-url" aria-describedby="basic-addon3" required/>
           </div>
 
           <div className="input-group">
             <span className="input-group-addon">kr</span>
-            <input className="form-control" ref="price" type="number" placeholder="Price" id="example-number-input"/>
+            <input className="form-control" ref="price" type="number" placeholder="Price" id="example-number-input" required/>
           </div>
 
           <div className="input-group">

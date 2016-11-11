@@ -22,6 +22,22 @@ import SearchInput, {createFilter} from 'react-search-input'
 
 function propComparator(prop, direction) {
 
+    // For the special case of price, which must be sorted numerically
+    if (prop === "price"){
+        // Ascending
+        if (direction === 1){
+            return function(a,b) {
+                return (parseInt(a[prop]) - parseInt(b[prop])) 
+            }
+        }
+        // Descending
+        else{
+            return function(a,b) {
+                return (parseInt(b[prop]) - parseInt(a[prop])) 
+            }
+        }
+    }
+
     //Ascending
     if(direction === 1){
         return function(a, b) {
@@ -110,12 +126,7 @@ export default class Content extends Component{
     }
 
 
-
-
     handleChange(term){
-        // If you comment out this line, the text box will not change its value.
-        // This is because in React, an input cannot change independently of the value
-        // that was assigned to it. In our case this is this.state.searchString.
         this.setState({searchString: term});
     }
 
@@ -233,9 +244,9 @@ export default class Content extends Component{
                               <ResultObjectDetails author={l.author} userId={l.userId}/>
                           </div>
                       </div>
-                      </div>
+                    </div>
                   )})}
-              </InfiniteScroll>
+                </InfiniteScroll>
                 <br/>
                 <br/>
                 <br/>
