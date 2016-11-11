@@ -9,7 +9,7 @@ class MyBookStore extends EventEmitter{
     super()
     this.books = [];
     this.getUserData().then(result =>{
-      this.fetchBooks(result.id)
+      this.fetchBooks(result.id, false)
     });
   }
 
@@ -21,23 +21,20 @@ class MyBookStore extends EventEmitter{
     return loginStore.decrypt(localStorage.getItem('token'))
   }
 
-  fetchBooks(id){
-    var url = "http://localhost:9001/api/book_user/" + id
+  fetchBooks(id, new_book){
+    var url = "http://localhost:9001/api/all/books/user/" + id
     fetch(url).then(r => r.json())
     .then(data => {
       this.books = data;
-      this.emit('data_loaded');
+      if(new_book){
+        this.emit('new_book');
+      }
+      else{
+          this.emit('data_loaded');
+      }
     })
   }
 
-  fetchNewBooks(id){
-    var url = "http://localhost:9001/api/book_user/" + id
-    fetch(url).then(r => r.json())
-    .then(data => {
-      this.books = data;
-      this.emit('new_book');
-    })
-  }
 
 async addNewBook(book_data){
     var id = undefined
@@ -59,7 +56,7 @@ async addNewBook(book_data){
           headers: {"Content-Type": "application/x-www-form-urlencoded"}
       })
       .then(r => r.json()).then(data => {
-        this.fetchNewBooks(id);
+        this.fetchBooks(id, true);
         LoginActions.newBookAdded();
       })
 
