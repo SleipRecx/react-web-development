@@ -7,7 +7,7 @@ export default class CheckboxFilter extends Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
         this.state = {
-            class: 'pull-right glyphicon glyphicon-chevron-right'
+            class: 'pull-right glyphicon glyphicon-chevron-down'
         };
     }
 
@@ -47,7 +47,7 @@ export default class CheckboxFilter extends Component {
                             {this.props.title} <span className={this.state.class}></span>
                         </h7>
                     </div>
-                    <div id={collapseId} className="panel-collapse collapse">
+                    <div id={collapseId} className="panel-collapse collapse in">
                         <div className="panel-body">
                             {options}
                         </div>
