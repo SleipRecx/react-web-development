@@ -5,7 +5,10 @@
   h2{
     padding-bottom: 20px;
   }
+
 }
+
+
 
 .bookTable {
   margin-top: 50px;
@@ -47,14 +50,76 @@
 
 .result-object{
   display: flex;
-  margin-top: 0;
-  margin-bottom: 0;
-  height: 50px;
+  margin: 0;
 
-  li {
-    height: 100%;
-    box-sizing: border-box;
-    display: block;
-    border: solid 1px black;
+  li{
+    border-bottom: solid 1px #ddd;
+    border-right: solid 1px #ddd;
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    &:first-child{
+      border-left: solid 1px #ddd;
+    }
   }
+
+}
+
+.result-table-row {
+  &:nth-child(even){
+    background-color: #f8f8f8;
+    .result-object{
+      &:hover{
+        background-color: #eeeeee;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &:nth-child(odd){
+    .result-object{
+      &:hover{
+        background-color: #fafafa;
+        cursor: pointer;
+      }
+    }
+  }
+  &:last-child{
+    border-bottom: solid 1px #ddd;
+  }
+}
+
+.result-table {
+  .result-object-header{
+    li{
+      $table-border-color: #BBB;
+      $table-border-size: 1px;
+
+      font-weight: bold;
+
+      border-right: solid $table-border-size $table-border-color;
+      border-bottom: solid $table-border-size $table-border-color;
+      border-top: solid $table-border-size $table-border-color;
+
+      &:first-child{
+        border-left: solid $table-border-size $table-border-color;
+      }
+
+      &:hover{
+        cursor: pointer;
+        background-color: #eaeaea;
+      }
+    }
+
+  }
+}
+
+.color{
+  background-color: #f9f9f9;
+}
+
+.result-object-details {
+  border: solid 1px #ddd;
+  padding: 20px;
 }

@@ -7,7 +7,7 @@ let secret = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
 class LoginStore extends EventEmitter{
 
  loginCheck(){
-    return new Promise(async function(resolve, reject) {
+    return new Promise(function(resolve, reject) {
       var token = localStorage.getItem("token");
       jwt.decode(secret, token, function (err, decode) {
         if(err){
@@ -47,7 +47,6 @@ class LoginStore extends EventEmitter{
 
 
     handleNewUser(user_data){
-      console.log(user_data)
       var payload = {
       "image_link": user_data.image,
       "facebook_id": user_data.face_id,
@@ -61,20 +60,23 @@ class LoginStore extends EventEmitter{
             body: data,
             headers: {"Content-Type": "application/x-www-form-urlencoded"}
         })
-        .then(function(res){
+        .then(r => r.json()).then(data => {
+          user_data.id = data.insertId;
           this.encrypt(user_data);
           this.emit('change');
         })
+
     }
 
     handleLogin(user_data){
       var url = "http://localhost:9001/api/user/face/" + user_data.face_id
       fetch(url).then(r => r.json())
       .then(data => {
-        if(data.length == 0){
+        if(data.length === 0){
           this.handleNewUser(user_data)
         }
         else{
+          user_data.id = data[0].user_id
           this.encrypt(user_data);
           this.emit('change');
         }

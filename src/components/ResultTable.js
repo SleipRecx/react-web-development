@@ -10,14 +10,40 @@
  * Imports books, which contains all of our dummy data.
  */
 import React, { Component} from 'react';
-import Rater from 'react-rater'
 import '../../public/styles/style.css';
-import label_converter from '../data/label_converter';
-import Search from './Search';
 import ResultObject from './ResultObject';
-import bookStore from "../stores/BookStore"
+import ResultObjectDetails from './ResultObjectDetails';
+import bookStore from "../stores/BookStore";
+import InfiniteScroll from 'react-infinite-scroller';
+import * as LoginActions from '../stores/LoginActions';
+var Loader = require('halogen/BeatLoader');
+import SearchInput, {createFilter} from 'react-search-input'
 
 
+function propComparator(prop, direction) {
+
+    //Ascending
+    if(direction === 1){
+        return function(a, b) {
+            if (a[prop] < b[prop])
+                return -1;
+            if (a[prop] > b[prop])
+                return 1;
+            return 0;
+        }
+    }
+
+    //Descending
+    else{
+        return function(a, b) {
+            if (a[prop] < b[prop])
+                return 1;
+            if (a[prop] > b[prop])
+                return -1;
+            return 0;
+        }
+    }
+}
 
 export default class Content extends Component{
 
@@ -29,62 +55,111 @@ export default class Content extends Component{
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        this.getNewBooks = this.getNewBooks.bind(this);
+        this.noMoreBooks = this.noMoreBooks.bind(this)
+        this.loadMoreBooks = this.loadMoreBooks.bind(this);
+        this.getAllBooks = this.getAllBooks.bind(this);
+        this.allData =[]
         this.state = {
-          searchString: '',
-          data: bookStore.getAll(),
-          filter:this.props.items};
+            searchString: '',
+            sortedBy: "title",
+            sortedCount: 1,
+            all_books: [],
+            filterKeys: ['title', 'user'],
+            moreBooks: true,
+            data: bookStore.getBooksWithLimit(),
+            filter:this.props.items};
+    }
+
+    noMoreBooks(){
+      this.setState({
+        moreBooks: false
+      });
+    }
+
+    loadMoreBooks(){
+      LoginActions.loadMoreBooks(this.state.data.length)
+    }
+
+    getNewBooks(){
+      this.setState({
+        data: bookStore.getBooksWithLimit()
+      });
+    }
+
+    getAllBooks(){
+      this.setState({
+        all_books: bookStore.getAllBooks()
+      });
     }
 
     componentWillMount(){
-      bookStore.on("change", () =>{
-        this.setState({
-          data: bookStore.getAll()
-        })
-      });
-      /*var url = "http://localhost:9001/api/books"
-      fetch(url).then(r => r.json())
-      .then(data => console.log(data))
-      .catch(e => console.log("async function failed"))*/
+      bookStore.on("change",this.getNewBooks);
+      bookStore.on("no_books",this.noMoreBooks);
+      bookStore.on("all_data",this.getAllBooks);
     }
 
-    /**
-     *
-     * @param e
-     */
-    handleChange(e){
+    componentDidMount(){
+      this.getAllBooks();
+    }
+
+    componentWillUnmount(){
+      bookStore.removeListener("change",this.getNewBooks);
+      bookStore.removeListener("no_books",this.noMoreBooks);
+      bookStore.removeListener("all_data",this.getAllBooks);
+    }
+
+
+
+
+    handleChange(term){
         // If you comment out this line, the text box will not change its value.
         // This is because in React, an input cannot change independently of the value
         // that was assigned to it. In our case this is this.state.searchString.
-        this.setState({searchString:e.target.value});
+        this.setState({searchString: term});
     }
 
-    doSomething(){
 
+    sortByType(type){
         let myList = this.state.data;
 
-        myList.push({
-            id: 1000,
-            title: "asd",
-            state: "mystate",
-            price: "myprice",
-            img: "sadsad",
-            added: "added nowo",
-            userRating: "123213"
-        });
+        if(this.state.sortedBy === type){
+            if(this.state.sortedCount === 1){
+                myList.sort(propComparator(type, 0));
+                this.setState({sortedCount: this.state.sortedCount + 1, data: myList});
+            }else{
+                myList.sort(propComparator("title", 1));
+                this.setState({sortedBy: "title", sortedCount: 1,  data: myList});
+            }
 
-        this.setState({
-            data: myList
-        });
+        }else{
+            myList.sort(propComparator(type, 1));
+            this.setState({sortedBy: type, sortedCount: 1, data: myList});
+        }
     }
+
+    shouldLoadMore(array){
+      if(array.length < 20){
+          return false
+      }
+      return true
+    }
+
 
     /**
      * @returns {XML}
      */
     render() {
         var searchString = this.state.searchString.trim().toLowerCase();
-        var search_books = this.state.data;
+        var search_books= this.state.data.filter(createFilter(this.state.searchString.trim().toLowerCase(), this.state.filterKeys))
+
         var state_filter = this.props.items.state;
         var rating_filter = this.props.items.rating;
+        var loadMore = this.state.moreBooks;
+
+        if(searchString.length > 0){
+          search_books = this.state.all_books
+        }
 
         // Filters books by state_filter.
         // TODO: Should this be optimized some way perhaps?
@@ -108,53 +183,63 @@ export default class Content extends Component{
             search_books = search_books.filter(function(l){
                 return l.title.toLowerCase().match( searchString ) || l.user.toLowerCase().match( searchString );
             });
+            loadMore = this.shouldLoadMore(search_books);
         }
 
         return (
-            <div className="result-table">
+            <div className="result-table container-fluid">
                 <div className="row">
                     <div className="col-xs-8 col-xs-offset-2 search-bar-container">
-                        <Search className="search-bar" value={this.state.searchString} onChange={this.handleChange} />
+                        <SearchInput placeholder="Search users and titles" throttle={200} className="search-input" onChange={this.handleChange} />
                         <br></br>
                     </div>
                 </div>
-                <button type="button" className="btn btn-default" onClick={this.doSomething.bind(this)}>Click me</button>
-                {search_books.map(function(l){ return (
-                    <ResultObject title={l.title} state={l.state} price={l.price} user={l.user}
-                                  userRating={l.userRating} added={l.added} image={l.image}/>
-                    )
-                })}
-
                 <div className="row">
-                    <div className="col-xs-12">
-                        <table className="table table-striped table-bordered">
-                            <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>State</th>
-                                <th>Price</th>
-                                <th>User</th>
-                                <th>User Rating</th>
-                                <th>Added</th>
-                            </tr>
-                            </thead>
+                    <ul className="list-inline row result-object result-object-header">
+                        <li className="col-sm-3" onClick={() => this.sortByType("title")}>
+                            Title
+                        </li>
+                        <li className="col-sm-2" onClick={() => this.sortByType("state")}>
+                            Condition
+                        </li>
+                        <li className="col-sm-1 price" onClick={() => this.sortByType("price")}>
+                            Price
+                        </li>
+                        <li className="col-sm-3" onClick={() => this.sortByType("user")}>
+                            User
+                        </li>
+                        <li className="col-sm-2 price" onClick={() => this.sortByType("userRating")}>
+                            Rating
+                        </li>
+                        <li className="col-sm-2" onClick={() => this.sortByType("added")}>
+                            Added
+                        </li>
+                    </ul>
 
-                            <tbody>
-                            {search_books.map(function(l){ return (
-                                <tr key={l.id}>
-                                    <td>{l.title}</td>
-                                    <td><span className={"label label-" + label_converter(l.state)} >{l.state}</span></td>
-                                    <td>{l.price}</td>
-                                    <td><img src={l.image} className="img-circle" alt="Cinque Terre" width="20" height="20"/>{"     " + l.user}</td>
-                                    <td><Rater interactive={true} rating={l.userRating} /></td>
-                                    <td>{l.added}</td>
-                                </tr>)
-                            })
-                            }
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
+                <InfiniteScroll
+                  pageStart={0}
+                  loadMore={this.loadMoreBooks}
+                  hasMore={loadMore}
+                  loader={<div className="loader"><br/><Loader color="#d3d3d3" size="18px" margin="5px"/></div>}>
+                  {search_books.map(function(l){ return (
+                    <div className="row">
+                      <div key={l.id} className="result-table-row">
+                          <div data-toggle="collapse" href={"#collapseNr" + l.id} data-parent="#resultTable">
+                              <ResultObject  title={l.title} state={l.state} price={l.price} user={l.user}
+                                            userRating={l.userRating} added={l.added} image={l.image} />
+                          </div>
+                          <div id={"collapseNr" + l.id } className="collapse">
+                              <ResultObjectDetails author={l.author} userId={l.userId}/>
+                          </div>
+                      </div>
+                      </div>
+                  )})}
+              </InfiniteScroll>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
             </div>
 
         );

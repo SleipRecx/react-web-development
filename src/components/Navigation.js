@@ -14,6 +14,7 @@ import {Link} from 'react-router';
 import '../../public/styles/style.css';
 import nav_options from '../data/nav_options';
 import LoginStore from '../stores/LoginStore';
+import Login from './Login';
 
 
 export default class Navigation extends Component {
@@ -52,8 +53,8 @@ export default class Navigation extends Component {
                         </li>
 
                     )}
-                    <li key={"navOption login-logout"}>
-                        <Link to={this.state.loggedIn ? '/logout' : '/login'}>{this.state.loggedIn ? 'Logout' : 'Login'}</Link>
+                    <li key={"toggle-login"}>
+                        {this.state.loggedIn ? (<Link to="/logout">Log out</Link>) : (<Login/>)}
                     </li>
                 </ul>
 
