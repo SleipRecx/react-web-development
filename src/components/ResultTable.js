@@ -11,13 +11,13 @@
  */
 import React, { Component} from 'react';
 import '../../public/styles/style.css';
-import Search from './Search';
 import ResultObject from './ResultObject';
 import ResultObjectDetails from './ResultObjectDetails';
 import bookStore from "../stores/BookStore";
 import InfiniteScroll from 'react-infinite-scroller';
 import * as LoginActions from '../stores/LoginActions';
 var Loader = require('halogen/BeatLoader');
+import SearchInput, {createFilter} from 'react-search-input'
 
 
 function propComparator(prop, direction) {
@@ -58,12 +58,16 @@ export default class Content extends Component{
         this.getNewBooks = this.getNewBooks.bind(this);
         this.noMoreBooks = this.noMoreBooks.bind(this)
         this.loadMoreBooks = this.loadMoreBooks.bind(this);
+        this.getAllBooks = this.getAllBooks.bind(this);
+        this.allData =[]
         this.state = {
             searchString: '',
             sortedBy: "title",
             sortedCount: 1,
+            all_books: [],
+            filterKeys: ['title', 'user'],
             moreBooks: true,
-            data: bookStore.getAll(),
+            data: bookStore.getBooksWithLimit(),
             filter:this.props.items};
     }
 
@@ -79,30 +83,44 @@ export default class Content extends Component{
 
     getNewBooks(){
       this.setState({
-        data: bookStore.getAll()
+        data: bookStore.getBooksWithLimit()
+      });
+    }
+
+    getAllBooks(){
+      this.setState({
+        all_books: bookStore.getAllBooks()
       });
     }
 
     componentWillMount(){
       bookStore.on("change",this.getNewBooks);
       bookStore.on("no_books",this.noMoreBooks);
+      bookStore.on("all_data",this.getAllBooks);
+    }
+
+    componentDidMount(){
+      this.getAllBooks();
     }
 
     componentWillUnmount(){
       bookStore.removeListener("change",this.getNewBooks);
       bookStore.removeListener("no_books",this.noMoreBooks);
+      bookStore.removeListener("all_data",this.getAllBooks);
     }
 
-    handleChange(e){
+
+
+
+    handleChange(term){
         // If you comment out this line, the text box will not change its value.
         // This is because in React, an input cannot change independently of the value
         // that was assigned to it. In our case this is this.state.searchString.
-        this.setState({searchString:e.target.value});
+        this.setState({searchString: term});
     }
 
 
     sortByType(type){
-
         let myList = this.state.data;
 
         if(this.state.sortedBy === type){
@@ -118,8 +136,13 @@ export default class Content extends Component{
             myList.sort(propComparator(type, 1));
             this.setState({sortedBy: type, sortedCount: 1, data: myList});
         }
+    }
 
-
+    shouldLoadMore(array){
+      if(array.length < 20){
+          return false
+      }
+      return true
     }
 
 
@@ -128,10 +151,15 @@ export default class Content extends Component{
      */
     render() {
         var searchString = this.state.searchString.trim().toLowerCase();
-        var search_books = this.state.data;
+        var search_books= this.state.data.filter(createFilter(this.state.searchString.trim().toLowerCase(), this.state.filterKeys))
+
         var state_filter = this.props.items.state;
         var rating_filter = this.props.items.rating;
         var loadMore = this.state.moreBooks;
+
+        if(searchString.length > 0){
+          search_books = this.state.all_books
+        }
 
         // Filters books by state_filter.
         // TODO: Should this be optimized some way perhaps?
@@ -151,18 +179,18 @@ export default class Content extends Component{
 
 
         if(searchString.length > 0){
-            loadMore = false;
             // We are searching. Filter the results.
             search_books = search_books.filter(function(l){
                 return l.title.toLowerCase().match( searchString ) || l.user.toLowerCase().match( searchString );
             });
+            loadMore = this.shouldLoadMore(search_books);
         }
 
         return (
             <div className="result-table container-fluid">
                 <div className="row">
                     <div className="col-xs-8 col-xs-offset-2 search-bar-container">
-                        <Search className="search-bar" value={this.state.searchString} onChange={this.handleChange} />
+                        <SearchInput placeholder="Search users and titles" throttle={200} className="search-input" onChange={this.handleChange} />
                         <br></br>
                     </div>
                 </div>
