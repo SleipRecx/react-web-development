@@ -79,7 +79,7 @@ export default class Content extends Component{
     }
 
     loadMoreBooks(){
-      if (this.moreBooksCounter ==1 || this.moreBooksCounter > 3){
+      if (this.moreBooksCounter ===1 || this.moreBooksCounter > 3){
         LoginActions.loadMoreBooks(this.state.data.length)
       }
         this.moreBooksCounter ++
@@ -235,7 +235,7 @@ export default class Content extends Component{
                                             userRating={l.userRating} added={l.added} image={l.image} />
                           </div>
                           <div id={"collapseNr" + l.id } className="collapse">
-                              <ResultObjectDetails title={l.title} author={l.author} user={l.user}/>
+                              <ResultObjectDetails id={l.userId} title={l.title} author={l.author} user={l.user}/>
                           </div>
                       </div>
                       </div>
