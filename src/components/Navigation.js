@@ -59,13 +59,14 @@ export default class Navigation extends Component {
 
                 <ul className="nav navbar-nav navbar-right text-center">
 
-                <li>
-                    {this.state.loggedIn ? (<Link to="/mybooks">Your Books <span className="glyphicon glyphicon-book"></span></Link>) : (<span/>)}
-                </li>
+
                 <li>
                     {this.state.loggedIn ? (<Link to="/profile">{this.state.name} <span className="glyphicon glyphicon-user"></span></Link>) : (<span/>)}
                 </li>
-                  <li key={"toggle-login"}>
+                <li>
+                    {this.state.loggedIn ? (<Link to="/mybooks">Your Books <span className="glyphicon glyphicon-book"></span></Link>) : (<span/>)}
+                </li>
+                  <li>
                       {this.state.loggedIn ? (<Link to="/logout">Log out  <span className="glyphicon glyphicon-log-out"></span></Link>) : (<Login/>)}
                   </li>
                 </ul>
