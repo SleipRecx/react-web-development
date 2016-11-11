@@ -20,7 +20,10 @@ import Login from './Login';
 export default class Navigation extends Component {
   constructor(props) {
       super(props);
-      this.state = {loggedIn: false};
+      this.state = {
+        loggedIn: false,
+        name: "User"
+      };
   }
 
  componentWillMount(){
@@ -28,6 +31,7 @@ export default class Navigation extends Component {
     LoginStore.on("change", () =>{
         this.login_needed()
     });
+    this.get_data();
   }
 
   async login_needed(){
@@ -36,6 +40,14 @@ export default class Navigation extends Component {
       loggedIn: login
     })
   }
+
+  async get_data(){
+    var data = await LoginStore.decrypt(localStorage.getItem("token"));
+    this.setState({
+      name: data.first_name + " " + data.last_name
+    })
+  }
+
 
 
     render() {
@@ -47,15 +59,16 @@ export default class Navigation extends Component {
                 </div>
 
                 <ul className="nav navbar-nav navbar-right text-center">
-                    {nav_options.map(option =>
-                        <li key={"navOption" + option.id}>
-                            <Link to={option.route}> {option.title}</Link>
-                        </li>
 
-                    )}
-                    <li key={"toggle-login"}>
-                        {this.state.loggedIn ? (<Link to="/logout">Log out</Link>) : (<Login/>)}
-                    </li>
+                <li>
+                    {this.state.loggedIn ? (<Link to="/mybooks">Your Books <span className="glyphicon glyphicon-book"></span></Link>) : (<span/>)}
+                </li>
+                <li>
+                    {this.state.loggedIn ? (<Link to="/profile">{this.state.name} <span className="glyphicon glyphicon-user"></span></Link>) : (<span/>)}
+                </li>
+                  <li key={"toggle-login"}>
+                      {this.state.loggedIn ? (<Link to="/logout">Log out  <span className="glyphicon glyphicon-log-out"></span></Link>) : (<Login/>)}
+                  </li>
                 </ul>
 
             </div>

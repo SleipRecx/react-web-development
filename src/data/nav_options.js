@@ -5,7 +5,7 @@
 const navigationOptions = [
     {
         id: 2,
-        title: "Profile",
+        title: "s",
         route: "/profile"
     },
     {
