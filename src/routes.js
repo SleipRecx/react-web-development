@@ -25,6 +25,7 @@ import Messages from './components/Messages';
 import MyBooks from './components/MyBooks';
 import Profile from './components/Profile';
 import NoAccess from './components/NoAccess';
+import Seller from './components/SellerPage';
 
 
 
@@ -50,6 +51,7 @@ const Routes = (props) => (
             <Route path="/mybooks" component={MyBooks} onEnter={login_needed} />
             <Route path="/messages" component={Messages} onEnter={login_needed} />
             <Route path="/noaccess" component={NoAccess}/>
+            <Route path="/seller/:id" component={Seller} />
             <Route path="/logout" component={Logout}/>
             <Route path="*" component={NotFound} />
         </Route>

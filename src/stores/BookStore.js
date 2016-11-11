@@ -60,7 +60,7 @@ class BookStore extends EventEmitter{
     if(reset){
       this.books = []
     }
-    if(data.length == 0){
+    if(data.length === 0){
       this.emit("no_books")
     }
     for(var i = 0; i <data.length; i++){
