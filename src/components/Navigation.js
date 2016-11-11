@@ -12,7 +12,6 @@ import React, { Component} from 'react';
 import {Link} from 'react-router';
 
 import '../../public/styles/style.css';
-import nav_options from '../data/nav_options';
 import LoginStore from '../stores/LoginStore';
 import Login from './Login';
 
