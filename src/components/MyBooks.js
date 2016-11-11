@@ -31,10 +31,9 @@ export default class MyBooks extends Component {
     swal({
       title: 'Book was successfully added',
       type: 'success',
-      timer: 1200,
+      timer: 1100,
       showConfirmButton: false
-
-    });
+    }).catch(swal.noop);
   }
 
   componentWillMount(){
@@ -68,6 +67,51 @@ buttonPressed(e) {
   render() {
       return (
         <div>
+          <br/>
+          <center><h3>Add New Book</h3></center>
+
+          <div className="input-wrapper">
+          <form onSubmit={this.buttonPressed}>
+
+            <div className="input-group">
+            <span className="input-group-addon" id="basic-addon3">Title</span>
+            <input type="text" className="form-control" ref="title" id="basic-url" aria-describedby="basic-addon3"/>
+          </div>
+
+          <div className="input-group">
+          <span className="input-group-addon" name="author" id="basic-addon3">Author</span>
+          <input type="text" className="form-control" ref="author" id="basic-url" aria-describedby="basic-addon3"/>
+          </div>
+
+          <div className="input-group">
+            <span className="input-group-addon">kr</span>
+            <input className="form-control" ref="price" type="number" placeholder="Price" id="example-number-input"/>
+          </div>
+
+          <div className="input-group">
+          <div className="radio-inline">
+            <label><input type="radio" name="optradio" value="New" /><span className={"label label-" + label_converter("New")} >New</span></label>
+          </div>
+          <div className="radio-inline">
+            <label><input type="radio" name="optradio" value="As New" /><span className={"label label-" + label_converter("As New")} >As New</span></label>
+          </div>
+          <div className="radio-inline">
+            <label><input type="radio" name="optradio" value="Normal Use" /><span className={"label label-" + label_converter("Normal Use")} >Normal Use</span></label>
+          </div>
+          <div className="radio-inline">
+            <label><input type="radio"  name="optradio" value="Readable" /><span className={"label label-" + label_converter("Readable")} >Readable</span></label>
+          </div>
+
+          </div>
+
+          <center>
+          <div className="input-group">
+            <input type="submit" className="btn btn-info" value="Submit Book"/>
+          </div>
+          </center>
+          </form>
+
+        </div>
               <br/>
               <center><h3>Your Books</h3></center>
 
@@ -100,52 +144,8 @@ buttonPressed(e) {
                       </div>
                   </div>
               <br/>
-              <center><h3>Add New Book</h3></center>
-
-              <div className="input-wrapper">
-              <form onSubmit={this.buttonPressed}>
-
-                <div className="input-group">
-                <span className="input-group-addon" id="basic-addon3">Title</span>
-                <input type="text" className="form-control" ref="title" id="basic-url" aria-describedby="basic-addon3"/>
-              </div>
-
-              <div className="input-group">
-              <span className="input-group-addon" name="author" id="basic-addon3">Author</span>
-              <input type="text" className="form-control" ref="author" id="basic-url" aria-describedby="basic-addon3"/>
-              </div>
-
-              <div className="input-group">
-                <span className="input-group-addon">kr</span>
-                <input className="form-control" ref="price" type="number" placeholder="Price" id="example-number-input"/>
-              </div>
-
-              <div className="input-group">
-              <div className="radio-inline">
-                <label><input type="radio" name="optradio" value="New" /><span className={"label label-" + label_converter("New")} >New</span></label>
-              </div>
-              <div className="radio-inline">
-                <label><input type="radio" name="optradio" value="As New" /><span className={"label label-" + label_converter("As New")} >As New</span></label>
-              </div>
-              <div className="radio-inline">
-                <label><input type="radio" name="optradio" value="Normal Use" /><span className={"label label-" + label_converter("Normal Use")} >Normal Use</span></label>
-              </div>
-              <div className="radio-inline">
-                <label><input type="radio"  name="optradio" value="Readable" /><span className={"label label-" + label_converter("Readable")} >Readable</span></label>
-              </div>
-
-              </div>
-
-              <center>
-              <div className="input-group">
-                <input type="submit" className="btn btn-info" value="Submit Book"/>
-              </div>
-              </center>
-              </form>
-
-            </div>
-            <br/>
-
+              <br/>
+              <br/>
           </div>
       );
   }

@@ -76,7 +76,7 @@ connection.end();
 app.get('/api/books/user/:id', function (req, res) {
   connection = connect_db();
   var id = req.params.id
-  var sql = "SELECT * FROM books WHERE user_id_foreign = ?";
+  var sql = "SELECT * FROM books WHERE user_id_foreign = ? order by book_id ";
   var inserts = [id];
   sql = mysql.format(sql, inserts)
   connection.query(sql, function(err, rows, fields) {
@@ -91,9 +91,9 @@ connection.end();
 });
 
 
-app.get('/api/books_users', function (req, res) {
+app.get('/api/all/books/users', function (req, res) {
   connection = connect_db();
-  var sql = "SELECT * FROM books JOIN users on user_id_foreign=user_id ";
+  var sql = "SELECT * FROM books JOIN users on user_id_foreign=user_id order by book_id ";
   connection.query(sql, function(err, rows, fields) {
     if (err){
       res.rest.serverError(err);
@@ -105,10 +105,10 @@ app.get('/api/books_users', function (req, res) {
 connection.end();
 });
 
-app.get('/api/books_users/:length', function (req, res) {
+app.get('/api/all/books/users/limit/:length', function (req, res) {
   connection = connect_db();
   var length = req.params.length
-  var sql = "SELECT * FROM books JOIN users on user_id_foreign=user_id limit ?, 20";
+  var sql = "SELECT * FROM books JOIN users on user_id_foreign=user_id order by book_id DESC limit ?, 20";
   var length =  parseInt(length)
   var inserts = [length];
   sql = mysql.format(sql, inserts)
@@ -118,6 +118,23 @@ app.get('/api/books_users/:length', function (req, res) {
     }
     else{
       res.rest.success(rows);
+    }
+  });
+connection.end();
+});
+
+app.get('/api/all/books/user/:id', function (req, res) {
+  connection = connect_db();
+  var id = req.params.id
+  var sql = 'select * from books join users on books.user_id_foreign = users.user_id where user_id_foreign = ? order by book_id DESC'
+  var inserts = [id];
+  sql = mysql.format(sql, inserts)
+  connection.query(sql, function(err, rows, fields) {
+    if (err){
+      res.rest.serverError(err);
+    }
+    else{
+        res.rest.success(rows);
     }
   });
 connection.end();
@@ -229,22 +246,7 @@ connection.end();
 });
 
 
-app.get('/api/book_user/:id', function (req, res) {
-  connection = connect_db();
-  var id = req.params.id
-  var sql = 'select * from books join users on books.user_id_foreign = users.user_id where user_id_foreign = ?'
-  var inserts = [id];
-  sql = mysql.format(sql, inserts)
-  connection.query(sql, function(err, rows, fields) {
-    if (err){
-      res.rest.serverError(err);
-    }
-    else{
-        res.rest.success(rows);
-    }
-  });
-connection.end();
-});
+
 
 app.post('/api/user', function(req, res, next) {
    var image_link = req.body.image_link;

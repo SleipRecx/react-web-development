@@ -47,7 +47,6 @@ class LoginStore extends EventEmitter{
 
 
     handleNewUser(user_data){
-      console.log(user_data)
       var payload = {
       "image_link": user_data.image,
       "facebook_id": user_data.face_id,

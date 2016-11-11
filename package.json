@@ -8,6 +8,7 @@
     "express": "^4.14.0",
     "faker": "^3.1.0",
     "flux": "^3.1.0",
+    "halogen": "^0.2.0",
     "json-web-token": "^2.0.3",
     "morgan": "^1.7.0",
     "node-sass": "^3.10.1",
@@ -19,7 +20,8 @@
     "react-rater": "^0.3.4",
     "react-router": "^2.8.1",
     "react-scripts": "0.6.1",
-    "sweetalert2": "node_modules/sweetalert2"
+    "react-search-input": "^0.10.3",
+    "sweetalert2": "^6.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
