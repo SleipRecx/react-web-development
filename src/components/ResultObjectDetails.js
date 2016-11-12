@@ -7,11 +7,26 @@ export default class ResultObjectDetails extends Component {
     render() {
         return (
             <div className="result-object-details">
-                <h3>Title: {this.props.title}</h3>
-                <h3>Author: {this.props.author}</h3>
-                <h3>Seller:  <Link to={"/seller/" + this.props.id}>{this.props.user}</Link></h3>
+                <row>
+                    <div className="col-xs-4">
+                        <div className="placeholder-image">
 
-
+                        </div>
+                    </div>
+                    <div className="col-xs-8">
+                        <h3>Title: {this.props.title}</h3>
+                        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Pellentesque a finibus leo, sit amet interdum massa. Vestibulum convallis
+                            sapien nec odio placerat, nec condimentum neque volutpat. Duis porttitor
+                            commodo augue a euismod. Maecenas non placerat sem. Suspendisse sollicitudin
+                            ex ut molestie tempor. Cras in porta metus. Maecenas dapibus dapibus diam a venenatis.
+                            Cras et metus a metus dictum blandit. Aliquam erat volutpat. Vestibulum purus erat, cursus
+                            in justo a, sodales gravida nisl. Fusce gravida urna neque, ut facilisis dolor facilisis eu.</p>
+                        <p>Author: {this.props.author}</p>
+                        <p>Seller:  <Link to={"/seller/" + this.props.id}>{this.props.user}</Link></p>
+                    </div>
+                    <div className="clearfix"></div>
+                </row>
             </div>
         );
     }
