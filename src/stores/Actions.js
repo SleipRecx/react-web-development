@@ -26,6 +26,12 @@ export function logout(){
       type: "LOGOUT"
   });
 }
+export function deleteBook(id){
+  dispatcher.dispatch({
+      type: "DELETE_BOOK",
+      id
+  });
+}
 
 export function addBook(data){
   dispatcher.dispatch({
