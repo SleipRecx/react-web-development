@@ -7,7 +7,7 @@ import "sweetalert2/dist/sweetalert2.min.css"
 
 export default class ResultObjectMyBook extends Component {
 
-  test(){
+  deleteBook(){
     var id = this.props.id
     swal({
     title: 'Are you sure?',
@@ -42,7 +42,7 @@ export default class ResultObjectMyBook extends Component {
                         {this.props.added}
                     </li>
                     <li className="col-sm-1 price">
-                      <span  onClick={this.test.bind(this)}className="glyphicon glyphicon-remove"></span>
+                      <span  onClick={this.deleteBook.bind(this)}className="glyphicon glyphicon-remove"></span>
                     </li>
                 </ul>
 
