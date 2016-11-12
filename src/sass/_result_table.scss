@@ -8,8 +8,6 @@
 
 }
 
-
-
 .bookTable {
   margin-top: 50px;
   margin-left:auto;
@@ -63,7 +61,7 @@
 }
 
 .result-table-row {
-  &:nth-child(even){
+  &:nth-child(odd){
     background-color: #f8f8f8;
     .result-object{
       &:hover{
@@ -73,7 +71,7 @@
     }
   }
 
-  &:nth-child(odd){
+  &:nth-child(even){
     .result-object{
       &:hover{
         background-color: #fafafa;
@@ -88,6 +86,8 @@
 
 .result-table {
   .result-object-header{
+
+
     li{
       $table-border-color: #BBB;
       $table-border-size: 1px;
@@ -118,4 +118,10 @@
 .result-object-details {
   border: solid 1px #ddd;
   padding: 20px;
+}
+
+
+
+#user-chevron, #title-chevron, #state-chevron, #price-chevron, #user-chevron, #userRating-chevron, #added-chevron{
+  font-size: 12px;
 }

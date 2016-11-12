@@ -10,6 +10,7 @@
  * Imports books, which contains all of our dummy data.
  */
 import React, { Component} from 'react';
+import $ from 'jquery';
 import '../../public/styles/style.css';
 import ResultObject from './ResultObject';
 import ResultObjectDetails from './ResultObjectDetails';
@@ -19,26 +20,33 @@ import * as LoginActions from '../stores/LoginActions';
 var Loader = require('halogen/BeatLoader');
 import SearchInput, {createFilter} from 'react-search-input'
 
+function removeChevrons(){
+    $(".result-object-header").find("span").removeClass("glyphicon glyphicon-chevron-down glyphicon-chevron-up");
+}
 
 function propComparator(prop, direction) {
+    removeChevrons();
 
     if (prop === "price"){
        // Ascending
        if (direction === 1){
+           $("#" + prop + "-chevron").addClass("glyphicon glyphicon-chevron-down");
             return function(a,b) {
-                return (parseInt(a[prop]) - parseInt(b[prop])) 
+                return (parseInt(a[prop], 10) - parseInt(b[prop], 10))
             }
         }
         // Descending
         else{
+           $("#" + prop + "-chevron").addClass("glyphicon glyphicon-chevron-up");
             return function(a,b) {
-                return (parseInt(b[prop]) - parseInt(a[prop])) 
+                return (parseInt(b[prop], 10) - parseInt(a[prop], 10))
             }
         }
     }
 
     //Ascending
     if(direction === 1){
+        $("#" + prop + "-chevron").addClass("glyphicon glyphicon-chevron-down");
         return function(a, b) {
             if (a[prop] < b[prop])
                 return -1;
@@ -50,6 +58,7 @@ function propComparator(prop, direction) {
 
     //Descending
     else{
+        $("#" + prop + "-chevron").addClass("glyphicon glyphicon-chevron-up");
         return function(a, b) {
             if (a[prop] < b[prop])
                 return 1;
@@ -95,7 +104,7 @@ export default class Content extends Component{
 
     loadMoreBooks(){
       if (this.moreBooksCounter ===1 || this.moreBooksCounter > 3){
-        LoginActions.loadMoreBooks(this.state.data.length)
+        LoginActions.loadMoreBooks(this.state.data.length);
       }
         this.moreBooksCounter ++
     }
@@ -141,20 +150,21 @@ export default class Content extends Component{
 
 
     sortByType(type){
-        let myList = this.state.data;
+        let books = this.state.data;
 
         if(this.state.sortedBy === type){
             if(this.state.sortedCount === 1){
-                myList.sort(propComparator(type, 0));
-                this.setState({sortedCount: this.state.sortedCount + 1, data: myList});
+                books.sort(propComparator(type, 0));
+                this.setState({sortedCount: this.state.sortedCount + 1, data: books});
             }else{
-                myList.sort(propComparator("title", 1));
-                this.setState({sortedBy: "title", sortedCount: 1,  data: myList});
+                books.sort(propComparator("title", 1));
+                removeChevrons();
+                this.setState({sortedBy: "", sortedCount: 0,  data: books});
             }
 
         }else{
-            myList.sort(propComparator(type, 1));
-            this.setState({sortedBy: type, sortedCount: 1, data: myList});
+            books.sort(propComparator(type, 1));
+            this.setState({sortedBy: type, sortedCount: 1, data: books});
         }
     }
 
@@ -217,22 +227,40 @@ export default class Content extends Component{
                 <div className="row">
                     <ul className="list-inline row result-object result-object-header">
                         <li className="col-sm-3" onClick={() => this.sortByType("title")}>
-                            Title
+                            <div>
+                                Title
+                                <span id="title-chevron" className="pull-right"></span>
+                            </div>
                         </li>
                         <li className="col-sm-2" onClick={() => this.sortByType("state")}>
-                            Condition
+                            <div>
+                                Condition
+                                <span id="state-chevron" className="pull-right"></span>
+                            </div>
                         </li>
-                        <li className="col-sm-1 price" onClick={() => this.sortByType("price")}>
-                            Price
+                        <li className="col-sm-1" onClick={() => this.sortByType("price")}>
+                            <div>
+                                Price
+                                <span id="price-chevron" className="pull-right"></span>
+                            </div>
                         </li>
                         <li className="col-sm-3" onClick={() => this.sortByType("user")}>
-                            Seller
+                            <div>
+                                Seller
+                                <span id="user-chevron" className="pull-right"></span>
+                            </div>
                         </li>
-                        <li className="col-sm-2 price" onClick={() => this.sortByType("userRating")}>
-                            Rating
+                        <li className="col-sm-2" onClick={() => this.sortByType("userRating")}>
+                            <div>
+                                Rating
+                                <span id="userRating-chevron" className="pull-right"></span>
+                            </div>
                         </li>
                         <li className="col-sm-2" onClick={() => this.sortByType("added")}>
-                            Added
+                            <div>
+                                Added
+                                <span id="added-chevron" className="pull-right"></span>
+                            </div>
                         </li>
                     </ul>
 
@@ -243,8 +271,8 @@ export default class Content extends Component{
                   hasMore={loadMore}
                   loader={<div className="loader"><br/><Loader color="#d3d3d3" size="18px" margin="5px"/></div>}>
                   {search_books.map(function(l){ return (
-                    <div className="row">
-                      <div key={l.id} className="result-table-row">
+                    <div key={l.id} className="row result-table-row">
+                      <div>
                           <div data-toggle="collapse" href={"#collapseNr" + l.id} data-parent="#resultTable">
                               <ResultObject  title={l.title} state={l.state} price={l.price} user={l.user}
                                             userRating={l.userRating} added={l.added} image={l.image} />
