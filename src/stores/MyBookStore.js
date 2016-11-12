@@ -2,14 +2,14 @@ import { EventEmitter } from "events";
 import loginStore from "./LoginStore"
 import dispatcher from "../dispatcher";
 var queryString = require('query-string');
-import * as LoginActions from '../stores/LoginActions'
+import * as Actions from '../stores/Actions'
 
 class MyBookStore extends EventEmitter{
   constructor(){
     super()
     this.books = [];
     this.getUserData().then(result =>{
-      this.fetchBooks(result.id, false)
+      this.fetchBooks(result.id, "data_loaded")
     });
   }
 
@@ -21,20 +21,28 @@ class MyBookStore extends EventEmitter{
     return loginStore.decrypt(localStorage.getItem('token'))
   }
 
-  fetchBooks(id, new_book){
+  fetchBooks(id, action){
     var url = "http://localhost:9001/api/all/books/user/" + id
     fetch(url).then(r => r.json())
     .then(data => {
       this.books = data;
-      if(new_book){
-        this.emit('new_book');
-      }
-      else{
-          this.emit('data_loaded');
-      }
+      this.emit(action)
     })
+    return true
   }
 
+
+async deleteBook(id){
+  fetch("http://localhost:9001/api/book/" + id,{
+      method: "DELETE"
+  })
+  .then(r => r.json()).then(data => {
+      this.getUserData().then(result =>{
+      this.fetchBooks(result.id, "delete_book");
+      Actions.newBookAdded();
+    });
+  })
+}
 
 async addNewBook(book_data){
     var id = undefined
@@ -56,8 +64,8 @@ async addNewBook(book_data){
           headers: {"Content-Type": "application/x-www-form-urlencoded"}
       })
       .then(r => r.json()).then(data => {
-        this.fetchBooks(id, true);
-        LoginActions.newBookAdded();
+        this.fetchBooks(id, "new_book");
+        Actions.newBookAdded();
       })
 
   }
@@ -67,6 +75,10 @@ async addNewBook(book_data){
     switch(action.type){
       case "ADD_BOOK": {
           this.addNewBook(action.data)
+          break;
+      }
+      case "DELETE_BOOK": {
+          this.deleteBook(action.id);
           break;
       }
       default: {
