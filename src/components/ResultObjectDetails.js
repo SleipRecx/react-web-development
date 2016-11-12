@@ -23,7 +23,11 @@ export default class ResultObjectDetails extends Component {
                             Cras et metus a metus dictum blandit. Aliquam erat volutpat. Vestibulum purus erat, cursus
                             in justo a, sodales gravida nisl. Fusce gravida urna neque, ut facilisis dolor facilisis eu.</p>
                         <p><b>Author:</b> {this.props.author}</p>
-                        <p><b>Seller:</b>  <Link to={"/seller/" + this.props.id}>{this.props.user}</Link></p>
+                        <p><b>Seller:</b>  <Link to={"/seller/" + this.props.id}>{this.props.user}</Link>
+                            <form className="pull-right" action="mailto:seller@bookshelf.com">
+                                <button type="submit" className="btn btn-primary" >Contact seller <i className="glyphicon glyphicon-envelope"></i></button>
+                            </form>
+                        </p>
                     </div>
                     <div className="clearfix"></div>
                 </row>
