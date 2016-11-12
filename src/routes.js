@@ -51,7 +51,7 @@ const Routes = (props) => (
             <Route path="/mybooks" component={MyBooks} onEnter={login_needed} />
             <Route path="/messages" component={Messages} onEnter={login_needed} />
             <Route path="/noaccess" component={NoAccess}/>
-            <Route path="/seller/:id" component={Seller} />
+            <Route path="/seller/:id" component={Seller} onEnter={login_needed}/>
             <Route path="/logout" component={Logout}/>
             <Route path="*" component={NotFound} />
         </Route>
