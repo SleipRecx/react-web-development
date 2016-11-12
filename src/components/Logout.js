@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import * as LoginActions from '../stores/LoginActions'
+import * as Actions from '../stores/Actions'
 
 export default class Logout extends Component {
 
   componentWillMount () {
-      LoginActions.logout();
+      Actions.logout();
       this.context.router.push('/');
    }
 

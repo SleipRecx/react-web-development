@@ -16,7 +16,7 @@ import ResultObject from './ResultObject';
 import ResultObjectDetails from './ResultObjectDetails';
 import bookStore from "../stores/BookStore";
 import InfiniteScroll from 'react-infinite-scroller';
-import * as LoginActions from '../stores/LoginActions';
+import * as Actions from '../stores/Actions';
 var Loader = require('halogen/BeatLoader');
 import SearchInput, {createFilter} from 'react-search-input'
 
@@ -87,8 +87,8 @@ export default class Content extends Component{
         this.moreBooksCounter = 1;
         this.state = {
             searchString: '',
-            sortedBy: "title",
-            sortedDirection: 1,
+            sortedBy: "added",
+            sortedDirection: 0,
             sortedCount: 1,
             all_books: [],
             filterKeys: ['title', 'user'],
@@ -105,7 +105,7 @@ export default class Content extends Component{
 
     loadMoreBooks(){
       if (this.moreBooksCounter ===1 || this.moreBooksCounter > 3){
-        LoginActions.loadMoreBooks(this.state.data.length);
+        Actions.loadMoreBooks(this.state.data.length);
       }
         this.moreBooksCounter ++
     }
@@ -220,7 +220,7 @@ export default class Content extends Component{
             <div className="result-table container-fluid">
                 <div className="row">
                     <div className="col-xs-8 col-xs-offset-2 search-bar-container">
-                        <SearchInput placeholder="Search users and titles" throttle={200} className="search-input" onChange={this.handleChange} />
+                        <SearchInput placeholder="Search Titles and Users" throttle={200} className="search-input" onChange={this.handleChange} />
                         <br></br>
                     </div>
                 </div>
@@ -269,7 +269,7 @@ export default class Content extends Component{
                   pageStart={0}
                   loadMore={this.loadMoreBooks}
                   hasMore={loadMore}
-                  loader={<div className="loader"><br/><Loader color="#d3d3d3" size="18px" margin="5px"/></div>}>
+                  loader={<div className="loader"><br/><Loader color="#2f4f4f" size="18px" margin="5px"/></div>}>
                   {search_books.sort(this.sortByProp(this.state.sortedBy, this.state.sortedDirection)).map(function(l){ return (
                     <div key={l.id} className="row result-table-row">
                       <div>

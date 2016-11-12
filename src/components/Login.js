@@ -1,6 +1,6 @@
   import React, { Component } from 'react';
   import FacebookLogin from 'react-facebook-login';
-  import * as LoginActions from '../stores/LoginActions'
+  import * as Actions from '../stores/Actions'
 
   import '../../public/styles/style.css';
 
@@ -11,7 +11,7 @@
     }
 
     responseFacebook(response){
-      LoginActions.login(response);
+      Actions.login(response);
       setTimeout(()=>{
             this.context.router.push('/profile')
           }, 150);
