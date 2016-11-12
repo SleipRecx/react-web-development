@@ -62,10 +62,10 @@
 
 .result-table-row {
   &:nth-child(odd){
-    background-color: #f8f8f8;
+    background-color: #fff;
     .result-object{
       &:hover{
-        background-color: #eeeeee;
+        background-color: #fcfcfc;
         cursor: pointer;
       }
     }
@@ -74,7 +74,7 @@
   &:nth-child(even){
     .result-object{
       &:hover{
-        background-color: #fafafa;
+        background-color: #fcfcfc;
         cursor: pointer;
       }
     }
@@ -89,7 +89,7 @@
 
 
     li{
-      $table-border-color: #BBB;
+      $table-border-color: #bbb;
       $table-border-size: 1px;
 
       font-weight: bold;
@@ -104,7 +104,7 @@
 
       &:hover{
         cursor: pointer;
-        background-color: #eaeaea;
+        background-color: #fcfcfc;
       }
     }
 
@@ -112,19 +112,30 @@
 }
 
 .color{
-  background-color: #f9f9f9;
+  background-color: #fff;
 }
 
+
 .result-object-details {
-  border: solid 1px #ddd;
+  border-left: 1px solid #ddd;
+  border-bottom:  1px solid #ddd;
+  border-right: 1px solid #ddd;
   padding: 20px;
 }
 
 .placeholder-image {
   margin: 30px auto auto auto;
-  height: 200px;
-  width: 200px;
-  background-color: #5f7bff;
+  .glyphicon{
+    font-size: 130px;
+  }
+}
+
+.glyphicon-remove{
+  color: grey;
+  &:hover{
+    cursor: pointer;
+    color: black;
+  }
 }
 
 
