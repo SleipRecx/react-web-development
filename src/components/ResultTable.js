@@ -88,6 +88,7 @@ export default class Content extends Component{
         this.state = {
             searchString: '',
             sortedBy: "title",
+            sortedDirection: 1,
             sortedCount: 1,
             all_books: [],
             filterKeys: ['title', 'user'],
@@ -139,6 +140,9 @@ export default class Content extends Component{
     }
 
 
+    sortByProp(type, direction){
+        return propComparator(type, direction);
+    }
 
 
     handleChange(term){
@@ -150,21 +154,17 @@ export default class Content extends Component{
 
 
     sortByType(type){
-        let books = this.state.data;
+
+        this.setState({sortedBy: type});
 
         if(this.state.sortedBy === type){
             if(this.state.sortedCount === 1){
-                books.sort(propComparator(type, 0));
-                this.setState({sortedCount: this.state.sortedCount + 1, data: books});
+                this.setState({sortedDirection: 0, sortedCount: 2})
             }else{
-                books.sort(propComparator("title", 1));
-                removeChevrons();
-                this.setState({sortedBy: "", sortedCount: 0,  data: books});
+                this.setState({sortedDirection: 1, sortedCount: 1})
             }
-
         }else{
-            books.sort(propComparator(type, 1));
-            this.setState({sortedBy: type, sortedCount: 1, data: books});
+            this.setState({sortedType: type, sortedCount: 1, sortedDirection: 1})
         }
     }
 
@@ -270,7 +270,7 @@ export default class Content extends Component{
                   loadMore={this.loadMoreBooks}
                   hasMore={loadMore}
                   loader={<div className="loader"><br/><Loader color="#d3d3d3" size="18px" margin="5px"/></div>}>
-                  {search_books.map(function(l){ return (
+                  {search_books.sort(this.sortByProp(this.state.sortedBy, this.state.sortedDirection)).map(function(l){ return (
                     <div key={l.id} className="row result-table-row">
                       <div>
                           <div data-toggle="collapse" href={"#collapseNr" + l.id} data-parent="#resultTable">
