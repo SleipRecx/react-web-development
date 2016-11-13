@@ -1,3 +1,7 @@
+/**
+ * This component is used to display the content of the “My Books” page. This is where the user can view its books for sale,
+ * as well as add and delete books.
+ */
 import React, { Component } from 'react';
 import myBookStore from '../stores/MyBookStore';
 import ResultObject from './ResultObjectMyBook';
@@ -9,6 +13,11 @@ import { default as swal } from 'sweetalert2'
 import "sweetalert2/dist/sweetalert2.min.css"
 
 export default class MyBooks extends Component {
+
+    /**
+     * Sets the state to contain all books related to the user.
+     * @param props
+     */
   constructor(props) {
       super(props);
       this.getBooksFromStore = this.getBooksFromStore.bind(this);
@@ -18,6 +27,10 @@ export default class MyBooks extends Component {
       this.buttonPressed = this.buttonPressed.bind(this);
   }
 
+    /**
+     * Updates list of books after deleting a book and shows a confirmation to make sure the user sees that
+     * the book has been deleted.
+     */
   getBooksFromStoreAfterDelete(){
     this.setState({
       data: myBookStore.getAllBooks()
@@ -30,12 +43,19 @@ export default class MyBooks extends Component {
     }).catch(swal.noop);
   }
 
+    /**
+     * Fetches books from the bookStore
+     */
   getBooksFromStore(){
     this.setState({
       data: myBookStore.getAllBooks()
     });
   }
 
+    /**
+     * Updates list of books after a new book has been added and shows a confirmation to make sure the user sees that
+     * the book has been added.
+     */
   getNewBookFromStore(){
     this.setState({
       data: myBookStore.getAllBooks()
@@ -49,25 +69,38 @@ export default class MyBooks extends Component {
     }).catch(swal.noop);
   }
 
+    /**
+     * Listens for successful data retrieval from database and updates data if successful.
+     */
   componentWillMount(){
     myBookStore.on("data_loaded", this.getBooksFromStore);
     myBookStore.on("new_book", this.getNewBookFromStore);
     myBookStore.on("delete_book", this.getBooksFromStoreAfterDelete);
   }
 
+    /**
+     * Removes listener to make sure listeners aren't stacked on each page load.
+     */
   componentWillUnmount(){
     myBookStore.removeListener("data_loaded", this.getBooksFromStore);
     myBookStore.removeListener("new_book", this.getNewBookFromStore);
     myBookStore.removeListener("delete_book", this.getBooksFromStoreAfterDelete);
   }
 
-clearForm(){
+    /**
+     * Clears the form after a book is added.
+     */
+    clearForm(){
   ReactDOM.findDOMNode(this.refs.price).value = ""
   ReactDOM.findDOMNode(this.refs.title).value = ""
   ReactDOM.findDOMNode(this.refs.author).value = ""
 }
 
-buttonPressed(e) {
+    /**
+     * Takes in the values of the form and uses the data to add a new book.
+     * @param e
+     */
+    buttonPressed(e) {
     e.preventDefault();
     var form = e.target
     var object = {}
@@ -79,6 +112,10 @@ buttonPressed(e) {
 
 }
 
+    /**
+     * 
+     * @returns {XML}
+     */
   render() {
       return (
         <div>
