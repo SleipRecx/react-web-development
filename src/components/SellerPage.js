@@ -1,7 +1,7 @@
 /**
  * Component for displaying the seller page.
  *
- * Imports sellserStore in order to retrieve data about sellers.
+ * Imports sellerStore in order to retrieve data about sellers.
  */
 import React, {Component} from 'react';
 import Rater from 'react-rater'
