@@ -153,7 +153,7 @@ buttonPressed(e) {
                               </li>
                           </ul>
                           {this.state.data.map(function(l){ return (
-                              <ResultObject key={l.book_id} title={l.title} author={l.author} state={l.state} price={l.price} id={l.book_id} added={l.date_added.split("T")[0]} />
+                              <ResultObject key={l.book_id} title={l.title} author={l.author} state={l.state} price={l.price + " kr"} id={l.book_id} added={l.date_added.split("T")[0]} />
                           )})}
                       </div>
                   </div>
