@@ -1,29 +1,37 @@
 import React, {Component} from 'react';
 import '../../public/styles/style.css';
 import LoginStore from '../stores/LoginStore';
+import ProfileStore from '../stores/ProfileStore';
+import * as Actions from '../stores/Actions'
 
 export default class Profile extends Component{
 
     constructor(props) {
         super(props);
-        this.data = {};
+        this.fetchToken = this.fetchToken.bind(this);
         this.visited = JSON.parse(localStorage.getItem("visited_books")) || [];
+        this.state = {
+          user: {},
+          token: this.fetchToken()
+        }
+    }
+
+
+    componentWillMount(){
+      LoginStore.on("change", this.fetchToken);
 
     }
 
-    componentDidMount(){
-        this.getData();
-        LoginStore.on("change", () =>{
-            this.getData()
-        });
-
+    componentWillUnmount(){
+      LoginStore.removeListener("change", this.fetchToken);
     }
 
-    async getData(){
+
+    async fetchToken(){
       var data= await LoginStore.decrypt(localStorage.getItem("token"))
        this.data=data;
         this.setState({
-            data:data
+            token: data
         })
     }
 
@@ -33,11 +41,11 @@ export default class Profile extends Component{
                 <div className="container">
                     <div className="row">
                          <div className="col-md-3">
-                                <img className="img-circle profile-image" src={this.data.image} alt="user"/>
+                                <img className="img-circle profile-image" src={this.state.token.image} alt="user"/>
                          </div>
                          <div className="col-md-7">
-                             <p className="name">{this.data.first_name} {this.data.last_name}</p>
-                              <p className="email">{this.data.email}</p>
+                             <p className="name">{this.state.token.first_name} {this.state.token.last_name}</p>
+                              <p className="email">{this.state.token.email}</p>
                                 <p className="name">add user rating(Kanskje)</p>
                          </div>
 
