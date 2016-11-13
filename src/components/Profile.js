@@ -52,11 +52,9 @@ export default class Profile extends Component{
         user: ProfileStore.getUser()
       })
 
-      console.log(this.state.user)
-    }
-    toSeller(sellerID){
 
     }
+
 
     render(){
         return (
@@ -85,7 +83,7 @@ export default class Profile extends Component{
                     <h4 className="booksViewed">Recently Viewed Books</h4>
                     <div className="row" >
                         <ul className="list-inline  result-object result-object-header color">
-                            <li className="col-sm-3 "pull-right >
+                            <li className="col-sm-3 ">
                                 Title
 
                             </li>
