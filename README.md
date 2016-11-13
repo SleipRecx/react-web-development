@@ -1,4 +1,11 @@
-##What is it?
+#What is it?
+
+
+##Table of Contents
+* [Getting Started](https://bitbucket.org/trondaal/it2810-07-oppgave-3/overview#markdown-header-getting-started)
+* [Folder Structure](https://bitbucket.org/trondaal/it2810-07-oppgave-3/overview#markdown-header-folder-structure)
+* [Folder Structure Explanation](https://bitbucket.org/trondaal/it2810-07-oppgave-3/overview#markdown-header-folder-structure-explanation)
+* [Dependencies List](https://bitbucket.org/trondaal/it2810-07-oppgave-3/overview#markdown-header-list-of-all-dependencies)
 
 ##Getting Started
 This application requires Node.js and NPM installed on your computer.
@@ -9,12 +16,10 @@ In order to set up and run our application follow these steps:
  3. Compile the stylesheet by running ```npm run sass```
  4. Run ```npm run dev``` The application is now running.
 
-#Documentation
-##Table of Contents
-[Folder Structure](https://bitbucket.org/trondaal/it2810-07-oppgave-3/overview#markdown-header-folder-structure)
 
 ##Folder Structure##
 ![structure.png](https://bitbucket.org/repo/6bKr4j/images/3606287871-structure.png)
+
 ##Folder Structure Explanation##
 
 ####/public
@@ -69,7 +74,7 @@ We use the react-router module to handle our routing. A route configuration is b
 ```
 This configuration tells us to always render the Layout component and if the route is "/" render HomePage component, otherwise render NotFound component.
 
-####src/index.js
+####index.js
 This file includes all routes from ```routes.js``` and loads our app content into ```public/index.html```
 
 
@@ -77,7 +82,7 @@ This file includes all routes from ```routes.js``` and loads our app content int
 File containing project description and all our dependencies.
 More information on how this file works: [https://docs.npmjs.com/files/package.json](https://docs.npmjs.com/files/package.json)
 
-####/rest_api  This folder is a node project in it's self.
+###/rest_api  This folder is a node project in it's self.
 * ```index.js``` File containing the routing and api logic.
 * ```generate.js``` Node script that populates our database with mockup data.
 * ```package.json``` Contains all dependencies used by the api.
@@ -86,7 +91,7 @@ More information on how this file works: [https://docs.npmjs.com/files/package.j
 This documentation is accessible at [http://it2810-07.idi.ntnu.no:9001/api](http://it2810-07.idi.ntnu.no:9001/api)
 
 
-##List of all dependencies:
+##List of all dependencies
 * react-dom
 * react-router
 * react-scripts
