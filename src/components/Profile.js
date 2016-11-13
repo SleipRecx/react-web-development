@@ -116,7 +116,7 @@ export default class Profile extends Component{
                             <div key={l.id} className="row result-table-row" >
                                 <div>
                             <div data-toggle="collapse"  href={"#collapseNr" + l.id} data-parent="#Profile">
-                            <ResultObject   title={l.title} state={l.state} price={l.price} user={l.userId}
+                            <ResultObject   title={l.title} state={l.state} price={l.price} user={l.user}
                                           userRating={l.userRating} added={l.added} image={l.image} />
                             </div>
                                 <div id={"collapseNr" + l.id } className="collapse">
