@@ -21,7 +21,6 @@ import Layout from './components/Layout';
 import HomePage from './components/HomePage';
 import loginStore from './stores/LoginStore'
 import Logout from './components/Logout';
-import Messages from './components/Messages';
 import MyBooks from './components/MyBooks';
 import Profile from './components/Profile';
 import NoAccess from './components/NoAccess';
@@ -48,7 +47,6 @@ const Routes = (props) => (
             <IndexRoute component={HomePage}/>
             <Route path="/profile" component={Profile} onEnter={login_needed} />
             <Route path="/mybooks" component={MyBooks} onEnter={login_needed} />
-            <Route path="/messages" component={Messages} onEnter={login_needed} />
             <Route path="/noaccess" component={NoAccess}/>
             <Route path="/seller/:id" component={Seller} onEnter={login_needed}/>
             <Route path="/logout" component={Logout}/>
