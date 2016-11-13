@@ -51,7 +51,7 @@ class SellerStore extends EventEmitter{
 
 
 }
-
+ // Registeres object to dispatcher and exports it
 const sellerStore = new SellerStore();
 dispatcher.register(sellerStore.handleActions.bind(sellerStore));
 export default sellerStore;

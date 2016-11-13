@@ -21,6 +21,7 @@ class MyBookStore extends EventEmitter{
     return loginStore.decrypt(localStorage.getItem('token'))
   }
 
+  // Fetches book with book_id = id from db using the api then emits provided action
   fetchBooks(id, action){
     var url = "http://localhost:9001/api/all/books/user/" + id
     fetch(url).then(r => r.json())
@@ -31,8 +32,8 @@ class MyBookStore extends EventEmitter{
     return true
   }
 
-
-async deleteBook(id){
+  // Deltes book with book_id = id from db using the api then fetches books and uses actions to dispatch event
+  deleteBook(id){
   fetch("http://localhost:9001/api/book/" + id,{
       method: "DELETE"
   })
@@ -44,6 +45,7 @@ async deleteBook(id){
   })
 }
 
+// Adds a new book to db using the api
 async addNewBook(book_data){
     var id = undefined
     await this.getUserData().then(result =>{
@@ -70,7 +72,7 @@ async addNewBook(book_data){
 
   }
 
-
+  // Listens for dispatched actions
   handleActions(action){
     switch(action.type){
       case "ADD_BOOK": {
@@ -91,7 +93,7 @@ async addNewBook(book_data){
 
 }
 
+ // Registeres object to dispatcher and exports it
 const myBookStore = new MyBookStore();
 dispatcher.register(myBookStore.handleActions.bind(myBookStore));
-window.dispatcher = dispatcher;
 export default myBookStore;

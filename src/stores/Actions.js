@@ -1,3 +1,4 @@
+// This files exports all available dispatch actions
 import dispatcher from '../dispatcher'
 
 export function login(user){
