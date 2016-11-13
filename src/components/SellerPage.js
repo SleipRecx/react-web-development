@@ -59,7 +59,7 @@ export default class Seller extends Component {
                             <h2>{this.state.user.first_name + " " + this.state.user.last_name}</h2>
                             <Rater interactive={true} rating={this.state.user.rating}/>
                             <form action={"mailto:"+this.state.user.email}>
-                                <button type="submit" className="btn btn-default" >Contact seller <i className="glyphicon glyphicon-envelope"></i></button>
+                                <button type="submit" className="btn btn-primary" >Contact seller <i className="glyphicon glyphicon-envelope"></i></button>
                             </form>
                         </div>
                         <div className="col-xs-8 seller-books">

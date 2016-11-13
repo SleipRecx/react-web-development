@@ -1,9 +1,73 @@
+
+$background: darkslategray;
+$color: #dbe6e6;
+$hover: #efefef;
+
 .content-body {
   min-height: calc(100vh - 100px);
 }
 .navbar{
   margin-bottom: 0px;
+  background-color: $background;
+  border: 0;
+  border-radius: 0;
+
+  .navbar-brand {
+    color: $color;
+    &:hover {
+      color: $hover;
+    }
+    &:focus {
+      color: $hover;
+    }
+    &:active {
+      color: $hover;
+    }
+    &:target {
+      color: $hover;
+    }
+  }
 }
+
+.navbar-default .navbar-nav>li>a {
+  color: $color;
+  &:hover {
+    color: $hover;
+  }
+  &:focus {
+    color: $hover;
+  }
+  &:active {
+    color: $hover;
+  }
+  &:target {
+    color: $hover;
+  }
+}
+
+.btn.btn-primary{
+  color: $color;
+  background-color: $background;
+  border: 0;
+  &:hover {
+    color: $hover;
+    background-color: darken($background, 2%);
+  }
+  &:focus {
+    color: $hover;
+    background-color: darken($background, 2%);
+  }
+  &:active {
+    color: $hover;
+    background-color: darken($background, 2%);
+  }
+  &:target {
+    color: $hover;
+    background-color: darken($background, 2%);
+  }
+}
+
+
 .center{
   text-align: center;
 }
