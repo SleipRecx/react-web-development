@@ -1,13 +1,21 @@
 /**
- * Component displaying the searchbar and a table for the results of search.
+ * Component displaying the searchbar, filters and a table for the results of search.
  *
- * Imports Rater from react-rater, a react component used for rating.
+ * Imports jquery
  *
- * Imports label_converter as a function to be used to determine the class (color) of the book tags.
+ * Imports ResultObject, which is the row of info about a book, and ResultObjectDetails
+ * which is the extra info one gets when clicking on a row.
  *
- * Imports search and button to be used to filter results.
+ * Imports bookStore, which contains all of our dummy data.
  *
- * Imports books, which contains all of our dummy data.
+ * Imports InfiniteScroll which handles loading of data when scrolling.
+ *
+ * Imports Actions to be used when communicating with database.
+ *
+ * Imports Loader, a simple graphical representation of loading data that appears when 
+ * scrolling to the bottom of the list and it expands.
+ *
+ * Imports SearchInput to be used to search for results.
  */
 import React, { Component} from 'react';
 import $ from 'jquery';
@@ -20,16 +28,21 @@ import * as Actions from '../stores/Actions';
 var Loader = require('halogen/BeatLoader');
 import SearchInput, {createFilter} from 'react-search-input'
 
+// removes the arrow on a sorted column when another column is pressed
 function removeChevrons(){
     $(".result-object-header").find("span").removeClass("glyphicon glyphicon-chevron-down glyphicon-chevron-up");
 }
 
+// Sorting function that takes as parameters the sorting value and a direction, 
+// i.e. if it should be ascending or descending.
 function propComparator(prop, direction) {
     removeChevrons();
 
+    // Unique logic to sort on price, since this has to be sorted 
+    // numerically rather than alphabetically
     if (prop === "price"){
-       // Ascending
-       if (direction === 1){
+        // Ascending
+        if (direction === 1){
            $("#" + prop + "-chevron").addClass("glyphicon glyphicon-chevron-down");
             return function(a,b) {
                 return (parseInt(a[prop], 10) - parseInt(b[prop], 10))
@@ -72,7 +85,7 @@ function propComparator(prop, direction) {
 export default class Content extends Component{
 
     /**
-     * Sets the inital state of the search and search filter value. Binds the function handleChange to
+     * Sets the inital state of the search, sorting and search filter value. Binds the functions listed to
      * this component.
      * @param props --> arbitrary attribute inputs.
      */
@@ -104,7 +117,7 @@ export default class Content extends Component{
     }
 
     loadMoreBooks(){
-      if (this.moreBooksCounter ===1 || this.moreBooksCounter > 3){
+      if (this.moreBooksCounter === 1 || this.moreBooksCounter > 3){
         Actions.loadMoreBooks(this.state.data.length);
       }
         this.moreBooksCounter ++
@@ -130,7 +143,6 @@ export default class Content extends Component{
 
     componentDidMount(){
       this.getAllBooks()
-
     }
 
     componentWillUnmount(){
@@ -139,20 +151,17 @@ export default class Content extends Component{
       bookStore.removeListener("all_data",this.getAllBooks);
     }
 
-
+    // Calls sorting function propComparator
     sortByProp(type, direction){
         return propComparator(type, direction);
     }
 
-
     handleChange(term){
-        // If you comment out this line, the text box will not change its value.
-        // This is because in React, an input cannot change independently of the value
-        // that was assigned to it. In our case this is this.state.searchString.
         this.setState({searchString: term});
     }
 
-
+    // Sets the states for sorting type and direction, which are then used by
+    // sortByProp upon rendering the books.
     sortByType(type){
 
         this.setState({sortedBy: type});
@@ -175,6 +184,7 @@ export default class Content extends Component{
       return true
     }
 
+    // Saves the selected book to a user's viewed book-history
     saveVisited(object){
       var allBooks = JSON.parse(localStorage.getItem("visited_books")) || [];
       var books = allBooks.filter(key => key.id === object.id)
@@ -200,7 +210,6 @@ export default class Content extends Component{
         }
 
         // Filters books by state_filter.
-        // TODO: Should this be optimized some way perhaps?
         if (state_filter.length > 0){
             search_books = search_books.filter(function(l){
                 return state_filter.includes(l.state);
@@ -208,16 +217,14 @@ export default class Content extends Component{
         }
 
         // Filters books by rating_filter.
-        // TODO: Should this be optimized some way perhaps?
         if (rating_filter.length > 0){
             search_books = search_books.filter(function(l){
                 return rating_filter.includes(l.userRating.toString());
             });
         }
 
-
+        // Filters by search string
         if(searchString.length > 0){
-            // We are searching. Filter the results.
             search_books = search_books.filter(function(l){
                 return l.title.toLowerCase().match( searchString ) || l.user.toLowerCase().match( searchString );
             });
@@ -280,24 +287,23 @@ export default class Content extends Component{
                   loader={<div className="loader"><br/><Loader color="#2f4f4f" size="18px" margin="5px"/></div>}>
                   {search_books.sort(this.sortByProp(this.state.sortedBy, this.state.sortedDirection)).map((l) =>{ return (
                     <div key={l.id} className="row result-table-row">
-                      <div>
-                          <div data-toggle="collapse" onClick={this.saveVisited.bind(this,l)} href={"#collapseNr" + l.id} data-parent="#resultTable">
-                              <ResultObject  title={l.title} state={l.state} price={l.price} user={l.user}
-                                            userRating={l.userRating} added={l.added} image={l.image} />
-                          </div>
-                          <div id={"collapseNr" + l.id } className="collapse">
-                              <ResultObjectDetails email={l.email} id={l.userId} title={l.title} author={l.author} user={l.user}/>
-                          </div>
-                      </div>
-                      </div>
-                  )})}
-              </InfiniteScroll>
+                        <div>
+                            <div data-toggle="collapse" onClick={this.saveVisited.bind(this,l)} href={"#collapseNr" + l.id} data-parent="#resultTable">
+                                <ResultObject title={l.title} state={l.state} price={l.price} user={l.user}
+                                              userRating={l.userRating} added={l.added} image={l.image} />
+                            </div>
+                            <div id={"collapseNr" + l.id } className="collapse">
+                                <ResultObjectDetails email={l.email} id={l.userId} title={l.title} author={l.author} user={l.user}/>
+                            </div>
+                        </div>
+                    </div>
+                    )})}
+                </InfiniteScroll>
                 <br/>
                 <br/>
                 <br/>
                 <br/>
             </div>
-
         );
     }
 }
