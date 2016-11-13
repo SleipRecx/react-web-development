@@ -1,7 +1,7 @@
 #What is it?
-This project is an web application that allows people to resell books, basically the same concept as ibok.no.
+This project is a web application that allows people to resell books, basically the same concept as ibok.no.
 
-It allows users to register and login using the facebook, once inside it's possible to search for books, add books, remove books, and visit book seller's page. 
+It allows users to register and login using the facebook, once inside it's possible to search for books, add books, remove books, and visit a book seller's page. 
 
 ##Table of Contents
 * [Getting Started](https://bitbucket.org/trondaal/it2810-07-oppgave-3/overview#markdown-header-getting-started)
@@ -14,10 +14,11 @@ It allows users to register and login using the facebook, once inside it's possi
 This application requires Node.js and NPM installed on your computer.
 In order to set up and run our application follow these steps:
 
- 1. Clone or fork this repo.
- 2. Install dependencies by running ```npm install```
- 3. Compile the stylesheet by running ```npm run sass```
- 4. Run ```npm run dev``` The application is now running.
+ 1. Download the complete project.
+ 2. Install all node dependencies for the client by running ```npm install``` in the root folder.
+ 3. Set up the server by navigating to ```/rest_api``` and run ```npm install```
+ 4. Compile the stylesheet by running ```npm run sass```
+ 5. Run ```npm run dev``` . This will run the client at :3000 and the restAPI at :9001
 
 
 ##Folder Structure##
