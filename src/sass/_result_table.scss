@@ -58,6 +58,16 @@
     }
   }
 
+  &.header {
+    li {
+      background-color: darkslategrey;
+      color: white;
+      border-top: solid 1px darkslategrey;
+      border-left: solid 1px darkslategrey;
+      border-right: solid 1px darkslategrey;
+    }
+  }
+
 }
 
 .result-table-row {
@@ -138,6 +148,67 @@
   }
 }
 
+.user-information {
+  min-height: calc(100vh - 100px);
+  padding-top: 100px;
+  padding-bottom: 100px;
+  color: black;
+
+  a {
+    font-size: 3em;
+  }
+
+  form {
+    margin-top: 15px;
+  }
+
+}
+
+.image-container {
+
+  margin: 15px 0 50px 0;
+
+  img{
+    width: 60%;
+    border-radius: 500px;
+    height: auto;
+    -webkit-box-shadow:0 0 5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow:0 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow:0 0 5px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.seller-books {
+  min-height: calc(100vh - 100px);
+  padding: 150px 30px 50px 30px;
+
+  li {
+    background-color: white;
+  }
+
+  ::-webkit-scrollbar {
+    height: 6px;
+    width: 13px;
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: darkslategrey;
+    border-radius: 1ex;
+  }
+  ::-webkit-scrollbar-thumb:active, ::-webkit-scrollbar-thumb:hover{
+    background: #4d7d7d;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: #f1f1f1;
+  }
+}
+
+.book-list {
+  max-height: 500px;
+  overflow-y: auto;
+}
 
 #user-chevron, #title-chevron, #state-chevron, #price-chevron, #user-chevron, #userRating-chevron, #added-chevron{
   font-size: 12px;
