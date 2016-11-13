@@ -12,6 +12,7 @@ import LoginStore from '../stores/LoginStore';
 import ProfileStore from '../stores/ProfileStore';
 import ResultObject from './ResultObject';
 import ResultObjectDetails from './ResultObjectDetails';
+import ProfileImage from './ProfileImage';
 import * as Actions from '../stores/Actions'
 import Rater from 'react-rater'
 
@@ -72,7 +73,7 @@ export default class Profile extends Component{
                 <div className="container">
                     <div className="row">
                          <div className="col-md-3">
-                                <img className="img-circle profile-image" src={this.state.token.image} alt="user"/>
+                             <ProfileImage imageLink={this.state.token.image}/>
                          </div>
                          <div className="col-md-7">
                              <p className="name">{this.state.token.first_name} {this.state.token.last_name}</p>
