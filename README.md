@@ -197,4 +197,4 @@ The web page stores a token for each session based on facebook login.
 
 
 ####The web page shall have a slightly “fancy” alternative view of the list. For instance view on map or a graphical representation of data, wordcloud etc...
-The web page has graphical representation of user rating by using star rating.
+The web page has graphical representation of user rating by using star rating. We also have a wordcloud for recently viewed books
