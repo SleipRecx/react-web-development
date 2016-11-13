@@ -5,10 +5,14 @@ footer {
 
   a {
 
-    color: #6daef3;
+    color: #6dd4f3;
     &:hover{
       cursor: pointer;
-      color: #71b6ff;
+      color: #66c0df;
     }
+  }
+
+  .unpad {
+    padding-left: 0;
   }
 }
