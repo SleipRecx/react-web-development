@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import '../../public/styles/style.css';
 import LoginStore from '../stores/LoginStore';
 import ProfileStore from '../stores/ProfileStore';
+import ResultObject from './ResultObject';
+import ResultObjectDetails from './ResultObjectDetails';
+import {Link} from 'react-router';
 import * as Actions from '../stores/Actions'
 import Rater from 'react-rater'
 
@@ -63,18 +66,10 @@ export default class Profile extends Component{
                          </div>
                          <div className="col-md-7">
                              <p className="name">{this.state.token.first_name} {this.state.token.last_name}</p>
-                              <p className="email">{this.state.token.email}</p>
-                              <h2><Rater interactive={false} rating={this.state.user.rating}/></h2>
-                              <ul className="list-group">
-                              <li className="list-group-item"><b>Recently Viewed Books</b></li>
-                                {this.state.visited.map((book_object) =>{
-                                  return(
-                                    <li key={book_object.id} className="list-group-item">{book_object.title}</li>
-                                )
-                                })}
+                             <h2><Rater interactive={false} rating={this.state.user.rating}/></h2>
+                              <p className="email"><a href={"mailto:"+ this.state.token.email}>{this.state.token.email}</a></p>
 
 
-                              </ul>
                          </div>
 
                     </div>
@@ -83,6 +78,38 @@ export default class Profile extends Component{
 
 
 
+                </div>
+                <div className="result-table container">
+                    <h4 className="booksViewed">Recently Viewed Books</h4>
+                    <div >
+                        <ul className="list-inline row result-object result-object-header color">
+                            <li className="col-sm-3">
+                                Title
+                            </li>
+                            <li className="col-sm-2 price">
+                                Condition
+                            </li>
+                            <li className="col-sm-1 price">
+                                Price
+                            </li>
+                            <li className="col-sm-3 ">
+                                Seller
+                            </li>
+                            <li className="col-sm-2">
+                                Rating
+                            </li>
+                            <li className="col-sm-2">
+                                Added
+                            </li>
+
+                        </ul>
+                        {this.state.visited.map(function(l){ return (
+                            <div>
+                            <ResultObject key={l.id}  title={l.title} state={l.state} price={l.price} user={l.user}
+                                          userRating={l.userRating} added={l.added} image={l.image} />
+                            </div>
+                        )})}
+                    </div>
                 </div>
             </div>
         )
