@@ -1,4 +1,14 @@
 
 footer {
+  color: $color;
+  padding: 50px;
 
+  a {
+
+    color: #6daef3;
+    &:hover{
+      cursor: pointer;
+      color: #71b6ff;
+    }
+  }
 }
