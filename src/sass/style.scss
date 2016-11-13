@@ -21,12 +21,20 @@
 .inline{
   display: inline;
 }
+.glyphicon{
+  margin-left: 5px;
+}
 
 
 @import 'layout';
 @import 'navigation';
 @import 'home_page';
 @import 'result_table';
+@import 'result_object';
+@import 'result_object_details';
+@import 'my_books';
+@import 'seller_page';
+@import 'profile_image';
 @import 'search';
 @import "profile";
 @import 'search_filter';

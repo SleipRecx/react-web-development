@@ -3,6 +3,7 @@ import Rater from 'react-rater'
 import '../../public/styles/style.css';
 import sellerStore from '../stores/SellerStore';
 import ResultObjectSeller from './ResultObjectSeller';
+import ProfileImage from './ProfileImage';
 
 export default class Seller extends Component {
 
@@ -54,9 +55,7 @@ export default class Seller extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-4 user-information text-center">
-                            <div className="row image-container">
-                                <img src={this.state.user.image_link} alt="user"/>
-                            </div>
+                            <ProfileImage imageLink={this.state.user.image_link}/>
                             <h2>{this.state.user.first_name + " " + this.state.user.last_name}</h2>
                             <Rater interactive={true} rating={this.state.user.rating}/>
                             <form action={"mailto:"+this.state.user.email}>
