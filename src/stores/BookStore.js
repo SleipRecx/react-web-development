@@ -41,6 +41,7 @@ class BookStore extends EventEmitter{
     for(var i = 0; i <data.length; i++){
       var object = {
         id: data[i].book_id,
+        email: data[i].email,
         image: data[i].image_link,
         price: data[i].price + " kr",
         user: data[i].first_name + " " + data[i].last_name,
@@ -66,6 +67,7 @@ class BookStore extends EventEmitter{
     for(var i = 0; i <data.length; i++){
       var object = {
         id: data[i].book_id,
+        email: data[i].email,
         image: data[i].image_link,
         price: data[i].price + " kr",
         user: data[i].first_name + " " + data[i].last_name,

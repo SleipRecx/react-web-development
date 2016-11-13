@@ -14,7 +14,7 @@
       Actions.login(response);
       setTimeout(()=>{
             this.context.router.push('/profile')
-          }, 150);
+          }, 250);
     }
 
     static get contextTypes() {

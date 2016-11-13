@@ -19,7 +19,7 @@ export default class ResultObjectDetails extends Component {
                         <p><b>Description:</b>{" " +faker.lorem.sentences()}</p>
                         <p><b>Author:</b> {this.props.author}</p>
                         <p className="inline"><b>Seller:</b>  <Link to={"/seller/" + this.props.id}>{this.props.user}</Link>  </p>
-                            <form className="pull-right" action="mailto:seller@bookshelf.com">
+                            <form className="pull-right" action={"mailto:"+this.props.email}>
                                 <button type="submit" className="btn btn-primary" >Contact seller <i className="glyphicon glyphicon-envelope"></i></button>
                             </form>
 
