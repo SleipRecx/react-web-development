@@ -175,6 +175,14 @@ export default class Content extends Component{
       return true
     }
 
+    saveVisited(object){
+      var allBooks = JSON.parse(localStorage.getItem("visited_books")) || [];
+      var books = allBooks.filter(key => key.id === object.id)
+      if(books.length === 0){
+        allBooks.push(object);
+        localStorage.setItem("visited_books", JSON.stringify(allBooks))
+      }
+    }
 
     /**
      * @returns {XML}
@@ -270,10 +278,10 @@ export default class Content extends Component{
                   loadMore={this.loadMoreBooks}
                   hasMore={loadMore}
                   loader={<div className="loader"><br/><Loader color="#2f4f4f" size="18px" margin="5px"/></div>}>
-                  {search_books.sort(this.sortByProp(this.state.sortedBy, this.state.sortedDirection)).map(function(l){ return (
+                  {search_books.sort(this.sortByProp(this.state.sortedBy, this.state.sortedDirection)).map((l) =>{ return (
                     <div key={l.id} className="row result-table-row">
                       <div>
-                          <div data-toggle="collapse" href={"#collapseNr" + l.id} data-parent="#resultTable">
+                          <div data-toggle="collapse" onClick={this.saveVisited.bind(this,l)} href={"#collapseNr" + l.id} data-parent="#resultTable">
                               <ResultObject  title={l.title} state={l.state} price={l.price} user={l.user}
                                             userRating={l.userRating} added={l.added} image={l.image} />
                           </div>
