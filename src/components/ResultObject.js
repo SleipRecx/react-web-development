@@ -1,4 +1,9 @@
-
+/**
+ * Component displaying the metadata of the book list.
+ *
+ * Takes in title, condition(state), price, user, profile image, user rating and added date as props.
+ *
+ */
 import React, {Component} from 'react';
 import Rater from 'react-rater'
 import '../../public/styles/style.css';

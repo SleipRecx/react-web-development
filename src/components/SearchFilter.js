@@ -1,3 +1,8 @@
+/**
+ * Component for holding the search filter components and the filter functions used with the filter components.
+ *
+ *
+ */
 import React, {Component} from 'react';
 import '../../public/styles/style.css';
 import CheckboxFilter from './CheckboxFilter';
@@ -5,6 +10,10 @@ import filterOptions from '../data/filter_options';
 
 export default class Layout extends Component {
 
+    /**
+     * Saves filter_options and filter in state of the component.
+     * @param props
+     */
     constructor(props){
         super(props);
         this.updateStateFilter = this.updateStateFilter.bind(this);
@@ -15,28 +24,12 @@ export default class Layout extends Component {
         };
     }
 
-    handleClick(e){
-      console.log(e.currentTarget.id);
-      if(e.currentTarget.id === "filter-type1"){
-        if (this.state.class1 === 'pull-right glyphicon glyphicon-chevron-right'){
-            this.setState({class1: 'pull-right glyphicon glyphicon-chevron-down'});
-        } else {
-            this.setState({ class1: 'pull-right glyphicon glyphicon-chevron-right'});
-        }
-      }
-      else{
-        if (this.state.class2 === 'pull-right glyphicon glyphicon-chevron-right'){
-            this.setState({class2: 'pull-right glyphicon glyphicon-chevron-down'});
-        } else {
-            this.setState({class2: 'pull-right glyphicon glyphicon-chevron-right'});
-        }
-      }
-    }
-
-
+    /**
+     * Takes the value from the checkbox and depending on state either
+     * adds it to or removes it from state_filter. It is then sent on to the parent component.
+     * @param e
+     */
     updateStateFilter(e){
-        // Takes the value from the checkbox and depending on state either
-        // adds it to or removes it from state_filter. It is then sent on to the parent component.
         if (e.target.checked){
             this.state.filter.state.push(e.target.value)
         }
@@ -47,9 +40,12 @@ export default class Layout extends Component {
         this.props.onChange(this.state.filter);
     }
 
+    /**
+     * Takes the value from the checkbox and depending on state either
+     * adds it to or removes it from rating_filter. It is then sent on to the parent component.
+     * @param e
+     */
     updateRatingFilter(e){
-        // Takes the value from the checkbox and depending on state either
-        // adds it to or removes it from rating_filter. It is then sent on to the parent component.
         if (e.target.checked){
             this.state.filter.rating.push(e.target.value)
         }
