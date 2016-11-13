@@ -9,7 +9,9 @@ In order to set up and run our application follow these steps:
  3. Compile the stylesheet by running ```npm run sass```
  4. Run ```npm run dev``` The application is now running.
 
-##Documentation
+#Documentation
+##Table of Contents
+[Folder Structure](https://bitbucket.org/trondaal/it2810-07-oppgave-3/overview#markdown-header-folder-structure)
 
 ##Folder Structure##
 ![structure.png](https://bitbucket.org/repo/6bKr4j/images/3606287871-structure.png)
@@ -75,7 +77,16 @@ This file includes all routes from ```routes.js``` and loads our app content int
 File containing project description and all our dependencies.
 More information on how this file works: [https://docs.npmjs.com/files/package.json](https://docs.npmjs.com/files/package.json)
 
-##NPM Dependencies:
+####/rest_api  This folder is a node project in it's self.
+* ```index.js``` File containing the routing and api logic.
+* ```generate.js``` Node script that populates our database with mockup data.
+* ```package.json``` Contains all dependencies used by the api.
+* ```api_doc.json``` Full documentation on how to use the api and what it supports.
+
+This documentation is accessible at [http://it2810-07.idi.ntnu.no:9001/api](http://it2810-07.idi.ntnu.no:9001/api)
+
+
+##List of all dependencies:
 * react-dom
 * react-router
 * react-scripts
@@ -94,4 +105,5 @@ More information on how this file works: [https://docs.npmjs.com/files/package.j
 * faker
 * json-web-token 
 * sweetalert2
-Documentation for all dependencies can be found at [https://www.npmjs.com/](https://www.npmjs.com/)
+
+For more information about our dependencies look them up at  [https://www.npmjs.com/](https://www.npmjs.com/)
