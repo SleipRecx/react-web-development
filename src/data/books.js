@@ -1,11 +1,23 @@
+/**
+ * This file generates data to populate the application.
+ */
+
 let faker = require('faker');
 const books = generate_data();
 
-
+/**
+ * Converts a string to Title Case (capital letters to start the principal words)
+ * @param str
+ * @returns {*|string|XML|void}
+ */
 function toTitleCase(str){
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
+/**
+ * Generates book data by using Faker
+ * @returns {Array} --> array of entries
+ */
 function generate_data() {
     let array = [];
     let book_states = ['New', 'As New', "Normal Use", "Readable"];

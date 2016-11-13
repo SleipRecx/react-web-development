@@ -1,15 +1,23 @@
 /**
- * Defines the filter options for the search.
- *
+ * This file defines the filter options for the search.
  */
 import React from 'react';
 import Rater from 'react-rater'
 import label_converter from '../data/label_converter';
 
+/**
+ * Converts a integer rating to a rating represented as stars.
+ * @param num --> a rating as an int
+ * @returns {XML}
+ */
 function rater(num){
     return (<Rater interactive={false} rating={num}/>);
 }
 
+/**
+ * Holds all available filter options for the book search.
+ * @type {{states: *[], user_ratings: *[]}}
+ */
 const filterOptions =
     {
         states: [
