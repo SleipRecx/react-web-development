@@ -45,3 +45,16 @@ export function newBookAdded(){
       type: "NEW_BOOK_ADDED"
   });
 }
+
+export function getSessionInformation(){
+  dispatcher.dispatch({
+      type: "GET_SESSION"
+  });
+}
+
+export function getUserInformation(id){
+  dispatcher.dispatch({
+      type: "GET_USER",
+      id
+  });
+}

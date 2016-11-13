@@ -3,36 +3,54 @@ import '../../public/styles/style.css';
 import LoginStore from '../stores/LoginStore';
 import ProfileStore from '../stores/ProfileStore';
 import * as Actions from '../stores/Actions'
+import Rater from 'react-rater'
 
 export default class Profile extends Component{
 
     constructor(props) {
         super(props);
         this.fetchToken = this.fetchToken.bind(this);
-        this.visited = JSON.parse(localStorage.getItem("visited_books")) || [];
+        this.fetchUser = this.fetchUser.bind(this);
+        this.visited =
         this.state = {
-          user: {},
-          token: this.fetchToken()
+          visited: JSON.parse(localStorage.getItem("visited_books")) || [],
+          token: {},
+          user: {}
         }
+
     }
 
 
     componentWillMount(){
-      LoginStore.on("change", this.fetchToken);
+      this.setState({
+        visited: this.state.visited.reverse()
+      })
+      LoginStore.on("token_decrypted", this.fetchToken);
+      ProfileStore.on("change", this.fetchUser);
+      Actions.getSessionInformation()
 
     }
 
     componentWillUnmount(){
-      LoginStore.removeListener("change", this.fetchToken);
+      LoginStore.removeListener("token_decrypted", this.fetchToken);
+      ProfileStore.removeListener("change", this.fetchUser);
     }
 
 
-    async fetchToken(){
-      var data= await LoginStore.decrypt(localStorage.getItem("token"))
-       this.data=data;
-        this.setState({
-            token: data
-        })
+    fetchToken(){
+      this.setState({
+        token: LoginStore.getToken()
+      })
+      Actions.getUserInformation(this.state.token.id)
+
+    }
+
+    fetchUser(){
+      this.setState({
+        user: ProfileStore.getUser()
+      })
+
+      console.log(this.state.user)
     }
 
     render(){
@@ -46,22 +64,24 @@ export default class Profile extends Component{
                          <div className="col-md-7">
                              <p className="name">{this.state.token.first_name} {this.state.token.last_name}</p>
                               <p className="email">{this.state.token.email}</p>
-                                <p className="name">add user rating(Kanskje)</p>
+                              <h2><Rater interactive={false} rating={this.state.user.rating}/></h2>
+                              <ul className="list-group">
+                              <li className="list-group-item"><b>Recently Viewed Books</b></li>
+                                {this.state.visited.map((book_object) =>{
+                                  return(
+                                    <li key={book_object.id} className="list-group-item">{book_object.title}</li>
+                                )
+                                })}
+
+
+                              </ul>
                          </div>
 
                     </div>
 
-                    <div className="col-md-3">
-                    <ul className="list-group">
-                      {this.visited.map((book_object) =>{
-                        return(
-                          <li key={book_object.id} className="list-group-item">{book_object.title}</li>
-                      )
-                      })}
 
 
-                    </ul>
-                    </div>
+
 
                 </div>
             </div>

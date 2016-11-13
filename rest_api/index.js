@@ -253,11 +253,12 @@ app.post('/api/user', function(req, res, next) {
    var face_id = req.body.facebook_id;
    var first_name = req.body.first_name;
    var last_name = req.body.last_name;
+   var email = req.body.email;
    var rating = req.body.rating;
    var connection = connect_db();
-   var sql = "INSERT INTO users(facebook_id, image_link, first_name, last_name, rating) VALUES (?, ?, ?, ?, ?)";
+   var sql = "INSERT INTO users(facebook_id, image_link, first_name, last_name, rating, email) VALUES (?, ?, ?, ?, ?, ?)";
 
-   var inserts = [face_id,image_link, first_name, last_name, rating];
+   var inserts = [face_id,image_link, first_name, last_name, rating, email];
    sql = mysql.format(sql, inserts)
    connection.query(sql, function (error, results, fields) {
       if(error){

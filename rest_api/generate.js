@@ -34,6 +34,7 @@ function generate_user_data(number) {
             }
         }
         object.title = toTitleCase(word);
+        object.email = object.f_name + "." + object.l_name + "@gmail.com";
         array.push(object);
     }
     return array;
@@ -54,6 +55,7 @@ function insert_db_users(array){
       "facebook_id": "0",
       "first_name": array[i].f_name,
       "last_name": array[i].l_name,
+      "email": array[i].email,
       "rating":array[i].userRating};
 
       var data = queryString.stringify(payload)

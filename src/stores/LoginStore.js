@@ -5,6 +5,14 @@ var jwt = require('json-web-token');
 let secret = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
 
 class LoginStore extends EventEmitter{
+  constructor(){
+    super();
+    this.token = {};
+  }
+
+  getToken(){
+    return this.token;
+  }
 
  loginCheck(){
     return new Promise(function(resolve, reject) {
@@ -46,12 +54,21 @@ class LoginStore extends EventEmitter{
     }
 
 
+   decryptToken(){
+     this.decrypt(localStorage.getItem("token")).then((token)=>{
+       this.token = token;
+       this.emit("token_decrypted")
+     });
+    }
+
+
     handleNewUser(user_data){
       var payload = {
       "image_link": user_data.image,
       "facebook_id": user_data.face_id,
       "first_name": user_data.first_name,
       "last_name": user_data.last_name,
+      "email": user_data.email,
       "rating": 5};
       var data = queryString.stringify(payload)
         fetch("http://localhost:9001/api/user",
@@ -82,11 +99,14 @@ class LoginStore extends EventEmitter{
         }
       })
       .catch(e => console.log("async function failed"))
-
     }
 
   handleActions(action){
     switch(action.type){
+      case "GET_SESSION": {
+        this.decryptToken()
+          break;
+      }
       case "LOGIN": {
           this.handleLogin(action.token)
           break;
