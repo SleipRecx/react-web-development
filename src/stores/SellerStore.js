@@ -2,12 +2,16 @@ import { EventEmitter } from "events";
 import dispatcher from "../dispatcher";
 
 class SellerStore extends EventEmitter{
+
+  /**
+   * Initializes the seller and books objects.
+   */
   constructor(){
     super();
     this.seller = {};
     this.books = [];
   }
-
+  
   getSeller(){
     return this.seller[0]
   }
@@ -16,7 +20,10 @@ class SellerStore extends EventEmitter{
     return this.books;
   }
 
-
+  /**
+   * Fetches data about a user based on the user's id
+   * @param id
+     */
   getSellerData(id){
     var url = "http://localhost:9001/api/user/" +  id;
     fetch(url).then(r => r.json())
@@ -27,6 +34,10 @@ class SellerStore extends EventEmitter{
     .catch(e => console.log(e))
   }
 
+  /**
+   * Fetches data about the books sold by a specific user, by id.
+   * @param id
+     */
   fetchBooks(id){
     var url = "http://localhost:9001/api/books/user/" + id;
     fetch(url).then(r => r.json())
@@ -51,7 +62,7 @@ class SellerStore extends EventEmitter{
 
 
 }
- // Registeres object to dispatcher and exports it
+ // Registers object to dispatcher and exports it
 const sellerStore = new SellerStore();
 dispatcher.register(sellerStore.handleActions.bind(sellerStore));
 export default sellerStore;

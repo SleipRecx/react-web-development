@@ -28,7 +28,7 @@ export default class ResultObjectMyBook extends Component {
     cancelButtonText: 'No'
   }).then(function () {
     Actions.deleteBook(id)
-  })
+  }).catch(swal.noop)
 
   }
 
