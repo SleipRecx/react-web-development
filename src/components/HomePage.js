@@ -17,14 +17,21 @@ import '../../public/styles/style.css';
 
 export default class HomePage extends Component{
 
+    /**
+     *
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.state = { filter: {state: [], rating: []} };
         this.updateFilter = this.updateFilter.bind(this);
     }
 
+    /**
+     * Gets the array with filter options from SearchFilter and sets it to state_filter
+     * @param e
+     */
     updateFilter(e){
-        // gets the array with filter options from SearchFilter and sets it to state_filter
         this.setState({filter:e});
     }
 

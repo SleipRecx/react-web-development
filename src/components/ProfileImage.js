@@ -1,3 +1,8 @@
+/**
+ * A component for displaying big profile images.
+ *
+ * Takes in imageURL as prop.
+ */
 
 import React, {Component} from 'react';
 import '../../public/styles/style.css';

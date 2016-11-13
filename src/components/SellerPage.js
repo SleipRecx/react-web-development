@@ -1,3 +1,8 @@
+/**
+ * Component for displaying the seller page.
+ *
+ * Imports sellserStore in order to retrieve data about sellers.
+ */
 import React, {Component} from 'react';
 import Rater from 'react-rater'
 import '../../public/styles/style.css';
@@ -7,6 +12,10 @@ import ProfileImage from './ProfileImage';
 
 export default class Seller extends Component {
 
+    /**
+     * Saves user data and books related to the user in the state of the component in order to access it later.
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.handleData = this.handleData.bind(this);
@@ -17,6 +26,9 @@ export default class Seller extends Component {
         }
     }
 
+    /**
+     * Sets state.user to the data retrieved from the database
+     */
     handleData() {
         this.setState({
             user: sellerStore.getSeller()
@@ -25,6 +37,9 @@ export default class Seller extends Component {
         console.log(this.state.user)
     }
 
+    /**
+     * Sets state.books to the list of books retrieved from the database
+     */
     handleBooks() {
         this.setState({
             books: sellerStore.getBooks()
@@ -32,7 +47,12 @@ export default class Seller extends Component {
         console.log(this.state.books)
     }
 
-
+    /**
+     * When component mounts: try to get data about the user and the books related to the user based on
+     * user id sent in as prop.
+     *
+     * Then listen to response from api and update data with handleData/handleBooks.
+     */
     componentWillMount() {
         sellerStore.getSellerData(this.props.params.id);
         sellerStore.on("new_data", this.handleData);
@@ -40,13 +60,19 @@ export default class Seller extends Component {
         sellerStore.on("new_books", this.handleBooks);
     }
 
+    /**
+     * Stops listening to data changes on unmount
+     */
     componentWillUnmount() {
         sellerStore.removeListener("new_data", this.handleData);
         sellerStore.removeListener("new_books", this.handleBooks);
     }
 
 
-
+    /**
+     *
+     * @returns {XML}
+     */
     render() {
 
         let books = this.state.books;

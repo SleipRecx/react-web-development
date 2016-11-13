@@ -1,3 +1,12 @@
+/**
+ * Component for holding the more detailed information that is shown when a ResultObject is clicked.
+ *
+ * Takes in title, author, user (seller) and email as props.
+ *
+ * Faker is used to generate a description for the book. With more time we would have added descriptions and book cover
+ * images to the database.
+ *
+ */
 import React, {Component} from 'react';
 import '../../public/styles/style.css';
 import {Link} from 'react-router';

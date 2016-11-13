@@ -1,3 +1,10 @@
+/**
+ * Component for displaying books at the "Seller" page.
+ *
+ * Differs from the other ResultObject component as it displays only information relevant for the seller page.
+ *
+ * label_converter is imported and used to get the correct label based on the condition sent in as prop.
+ */
 import React, {Component} from 'react';
 import '../../public/styles/style.css';
 import label_converter from '../data/label_converter';

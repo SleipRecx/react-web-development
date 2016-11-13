@@ -1,5 +1,7 @@
 /**
  * Footer component meant to contain the content to be placed in the footer
+ *
+ * Currently holds standard information about the page, such as what kind of site it is and links to relevant information.
  */
 
 import React, { Component} from 'react';

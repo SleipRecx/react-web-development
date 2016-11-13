@@ -1,3 +1,8 @@
+/**
+ * Component for displaying books at the "My Books" page.
+ *
+ * Differs from the other ResultObject component as it displays less information and also have a delete button for your books.
+ */
 import React, {Component} from 'react';
 import '../../public/styles/style.css';
 import label_converter from '../data/label_converter';
@@ -7,7 +12,11 @@ import "sweetalert2/dist/sweetalert2.min.css"
 
 export default class ResultObjectMyBook extends Component {
 
-  deleteBook(){
+
+    /**
+     * Delete the book bound to this object.
+     */
+    deleteBook(){
     var id = this.props.id
     swal({
     title: 'Are you sure?',
@@ -23,6 +32,10 @@ export default class ResultObjectMyBook extends Component {
 
   }
 
+    /**
+     *
+     * @returns {XML}
+     */
     render() {
         return (
                 <ul className="list-inline row result-object">
