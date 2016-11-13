@@ -1,73 +1,25 @@
-##Setup and starting the application##
+##What is it?
+
+##Getting Started
 This application requires Node.js and NPM installed on your computer.
 In order to set up and run our application follow these steps:
 
- 1. Download the complete project.
- 2. Install all node dependencies by running ```npm install```
+ 1. Clone or fork this repo.
+ 2. Install dependencies by running ```npm install```
  3. Compile the stylesheet by running ```npm run sass```
- 4. Run ```npm start```, the server is now listening on port 3000
+ 4. Run ```npm run dev``` The application is now running.
 
+##Documentation
 
-##Project Structure##
-```
-├── README.md
-├── Server
-│   └── index.js
-├── node_modules
-├── package.json
-├── public
-│   ├── favicon.ico
-│   ├── index.html
-│   └── styles
-│       └── style.css
-├── rest_api
-│   ├── api_doc.json
-│   ├── generate.js
-│   ├── index.js
-│   ├── node_modules
-│   └── package.json
-└── src
-    ├── components
-    │   ├── Button.js
-    │   ├── FooterContent.js
-    │   ├── HomePage.js
-    │   ├── Layout.js
-    │   ├── Navigation.js
-    │   ├── NotFound.js
-    │   ├── ResultTable.js
-    │   ├── Search.js
-    │   └── SearchFilter.js
-    ├── data
-    │   ├── books.js
-    │   ├── label_converter.js
-    │   └── nav_options.js
-    ├── dispatcher.js
-    ├── index.js
-    ├── routes.js
-    ├── sass
-    │   ├── _about.scss
-    │   ├── _content.scss
-    │   ├── _footer_content.scss
-    │   ├── _home_page.scss
-    │   ├── _layout.scss
-    │   ├── _navigation.scss
-    │   ├── _not_found.scss
-    │   ├── _result_table.scss
-    │   ├── _search.scss
-    │   ├── _search_filter.scss
-    │   └── style.scss
-    └── stores
-        └── BookStore.js
-```
+##Folder Structure##
+![structure.png](https://bitbucket.org/repo/6bKr4j/images/3606287871-structure.png)
+##Folder Structure Explanation##
 
-##Project Structure Documentation##
-
-###/public###
+####/public
 * ```favicon.ico``` is just our favicon image.
 * ```index.html``` is a html template, when our react app fires up it loads all it's content inside the root div in this file.
 
-
-###/src/components###
+####/src/components
 All the pages on our website will be split into several react components.
 When performing alterations or maintenance to the application we only need to work on the relevant components.
 In our project we got the following components.
@@ -80,44 +32,66 @@ In our project we got the following components.
 * ```Search.js``` -> A search input component, this is a part of the ResultTable component.
 * ```FooterContent.js``` ->  This is just a footer component
 
-
 For more information on react components check out: [https://facebook.github.io/react/]( https://facebook.github.io/react/)
 
 For more information about our components see the comments in each file.
 
-###/src/data###
+####/src/data
 * ```books.js``` -> This file generates book mockup data using the faker module. This data is included in the ResultTable component.
 * ```label_converter.js``` -> Simple file that maps book status to appropriate class names.
 * ```nav_options.js``` -> Data file that contains all navigation options we use on the web app. This file is included by the Navigation component.
 
-
-
-###src/sass###
+####src/sass
 This folder contains all our sass files.
 The ```style.scss``` includes all sass files in this folder and get's generated into ```style.css```. This gives us easy access to the style files for each individual component.
 
 For more info on how sass works checkout: [http://sass-lang.com/]( http://sass-lang.com/)
 
-###src/routes.js###
+####src/routes.js
 We use the react-router module to handle our routing. A route configuration is basically a set of instructions that tell a router how to try to match the URL and what code to run when it does. Here is an example from our routes.js.
 
 ```
-const Routes = (props) => (
-    <Router {...props}>
+ <Router {...props}>
         <Route path="/" component={Layout}>
-            <IndexRoute component={ResultTable}/>
+            <IndexRoute component={HomePage}/>
+            <Route path="/profile" component={Profile} onEnter={login_needed} />
+            <Route path="/mybooks" component={MyBooks} onEnter={login_needed} />
+            <Route path="/messages" component={Messages} onEnter={login_needed} />
+            <Route path="/noaccess" component={NoAccess}/>
+            <Route path="/seller/:id" component={Seller} onEnter={login_needed}/>
+            <Route path="/logout" component={Logout}/>
             <Route path="*" component={NotFound} />
         </Route>
     </Router>
 );
 ```
-This configuration tells us to always render the Layout component and if the route is "/" render ResultTable component, otherwise render NotFound component.
+This configuration tells us to always render the Layout component and if the route is "/" render HomePage component, otherwise render NotFound component.
 
-###src/index.js###
+####src/index.js
 This file includes all routes from ```routes.js``` and loads our app content into ```public/index.html```
 
 
-###package.json###
+####package.json
 File containing project description and all our dependencies.
-
 More information on how this file works: [https://docs.npmjs.com/files/package.json](https://docs.npmjs.com/files/package.json)
+
+##NPM Dependencies:
+* react-dom
+* react-router
+* react-scripts
+* react-facebook-login
+* react-infinite-scroller
+* react-search-input
+* bootstrap
+* flux 
+* morgan 
+* classnames 
+* halogen 
+* node-sass 
+* express 
+* jquery 
+* query-string 
+* faker
+* json-web-token 
+* sweetalert2
+Documentation for all dependencies can be found at [https://www.npmjs.com/](https://www.npmjs.com/)
