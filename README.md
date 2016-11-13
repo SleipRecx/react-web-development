@@ -20,7 +20,7 @@ In order to set up and run our application follow these steps:
 
 
 ##Folder Structure##
-![structure.png](https://bitbucket.org/repo/6bKr4j/images/3606287871-structure.png)
+![structure2.png](https://bitbucket.org/repo/6bKr4j/images/462258600-structure2.png)
 
 ##Folder Structure Explanation##
 
