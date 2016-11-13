@@ -17,34 +17,40 @@ import Login from './Login';
 export default class Navigation extends Component {
   constructor(props) {
       super(props);
+      this.isLoggedIn = this.isLoggedIn.bind(this)
       this.state = {
         loggedIn: false,
         name: "User"
       };
   }
 
+  // Checks if user is logged in and adds a listener to "change" emits.
  componentWillMount(){
-   this.login_needed();
-    LoginStore.on("change", () =>{
-        this.login_needed()
-    });
-    this.get_data();
+   this.isLoggedIn();
+   this.get_data();
+   LoginStore.on("change",this.isLoggedIn)
   }
 
-  async login_needed(){
+  // Removes listeners to prevent flux memory leaks
+  componentWillUnmount(){
+   LoginStore.removeListener("change",this.isLoggedIn)
+ }
+
+ // Checks if user is logged in
+  async isLoggedIn(){
     var login = await LoginStore.loginCheck();
     this.setState({
       loggedIn: login
     })
   }
 
+  // Get's decrypted user date from LoginStore and alters state
   async get_data(){
     var data = await LoginStore.decrypt(localStorage.getItem("token"));
     this.setState({
       name: data.first_name + " " + data.last_name
     })
   }
-
 
 
     render() {
