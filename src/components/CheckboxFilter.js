@@ -1,16 +1,30 @@
+/**
+ * Component for adding collapsable boxes containing checkboxes filtering values.
+ *
+ * Title of the filter as well as the filter options are sent in as props.
+ */
+
 import React, {Component} from 'react';
 import '../../public/styles/style.css';
 
 export default class CheckboxFilter extends Component {
 
+    /**
+     * state.class is used to decide which icon is to be displayed in the component.
+     * @param props
+     */
     constructor(props){
         super(props);
         this.handleClick = this.handleClick.bind(this);
         this.state = {
-            class: 'pull-right glyphicon glyphicon-chevron-right'
+            class: 'pull-right glyphicon glyphicon-chevron-down'
         };
     }
 
+    /**
+     * Toggles the icon when the collapsable object is clicked.
+     * @param e
+     */
     handleClick(e){
         console.log(e.currentTarget.id);
         if (this.state.class === 'pull-right glyphicon glyphicon-chevron-right'){
@@ -21,6 +35,11 @@ export default class CheckboxFilter extends Component {
 
     }
 
+    /**
+     * Generates the html used to display the checkboxes inside the component.
+     * @returns {*}
+     * @private
+     */
     _getOptions(){
         return this.props.options.map((option) => {
             return(
@@ -47,7 +66,7 @@ export default class CheckboxFilter extends Component {
                             {this.props.title} <span className={this.state.class}></span>
                         </h7>
                     </div>
-                    <div id={collapseId} className="panel-collapse collapse">
+                    <div id={collapseId} className="panel-collapse collapse in">
                         <div className="panel-body">
                             {options}
                         </div>

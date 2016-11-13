@@ -1,17 +1,105 @@
+
+$background: #607D8B;
+$color: white;
+$hover: #dbe6e6;
+$background-hover: darken($background, 3%);
+
 .content-body {
   min-height: calc(100vh - 100px);
 }
 .navbar{
   margin-bottom: 0px;
+  background-color: $background;
+  border: 0;
+  border-radius: 0;
+
+  .navbar-brand {
+    color: $color;
+    &:hover {
+      color: $hover;
+    }
+    &:focus {
+      color: $hover;
+    }
+    &:active {
+      color: $hover;
+    }
+    &:target {
+      color: $hover;
+    }
+  }
 }
+
+.navbar-default .navbar-nav>li>a {
+  color: $color;
+  &:hover {
+    color: $hover;
+  }
+  &:focus {
+    color: $hover;
+  }
+  &:active {
+    color: $hover;
+  }
+  &:target {
+    color: $hover;
+  }
+}
+
+.btn.btn-primary{
+  color: $color;
+  background-color: $background;
+  border: 0;
+  &:hover {
+    color: $hover;
+    background-color: darken($background, 2%);
+  }
+  &:focus {
+    color: $hover;
+    background-color: darken($background, 2%);
+  }
+  &:active {
+    color: $hover;
+    background-color: darken($background, 2%);
+  }
+  &:target {
+    color: $hover;
+    background-color: darken($background, 2%);
+  }
+}
+
+
 .center{
   text-align: center;
 }
+.input-group{
+  padding: 10px;
+  margin: 0 auto;
+  width: 40%;
+}
+.input-wrapper{
+  padding-top: 30px;
+}
+.loader{
+  padding-left: 41%
+}
+.inline{
+  display: inline;
+}
+.glyphicon{
+  margin-left: 5px;
+}
+
 
 @import 'layout';
 @import 'navigation';
 @import 'home_page';
 @import 'result_table';
+@import 'result_object';
+@import 'result_object_details';
+@import 'my_books';
+@import 'seller_page';
+@import 'profile_image';
 @import 'search';
 @import "profile";
 @import 'search_filter';

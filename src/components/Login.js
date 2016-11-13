@@ -1,6 +1,12 @@
+/** Component handles login with facebook
+*Uses standard facebook login that opens in new window.
+*Render method opens login window.
+*Calls action.login with the response received from Facebook
+
+ */
   import React, { Component } from 'react';
   import FacebookLogin from 'react-facebook-login';
-  import * as LoginActions from '../stores/LoginActions'
+  import * as Actions from '../stores/Actions'
 
   import '../../public/styles/style.css';
 
@@ -11,8 +17,10 @@
     }
 
     responseFacebook(response){
-      LoginActions.login(response);
-      this.context.router.push('/profile');
+      Actions.login(response);
+      setTimeout(()=>{
+            this.context.router.push('/profile')
+          }, 250);
     }
 
     static get contextTypes() {
@@ -23,19 +31,14 @@
 
     render() {
         return (
-            <div>
-            <center>
-            <br></br>
-            <h1>Login is required to view some pages</h1>
-            <br></br>
             <FacebookLogin
               appId="1743409112576577"
               autoLoad={false}
               fields="id, name,link, gender,email,picture.type(large)"
               scope="public_profile, email"
+              cssClass="facebook-button"
+              textButton="Sign in"
               callback={this.responseFacebook} />
-              </center>
-            </div>
         );
     }
 }

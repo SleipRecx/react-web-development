@@ -76,7 +76,7 @@ connection.end();
 app.get('/api/books/user/:id', function (req, res) {
   connection = connect_db();
   var id = req.params.id
-  var sql = "SELECT * FROM books WHERE user_id_foreign = ?";
+  var sql = "SELECT * FROM books WHERE user_id_foreign = ? order by book_id ";
   var inserts = [id];
   sql = mysql.format(sql, inserts)
   connection.query(sql, function(err, rows, fields) {
@@ -91,9 +91,9 @@ connection.end();
 });
 
 
-app.get('/api/books_users', function (req, res) {
+app.get('/api/all/books/users', function (req, res) {
   connection = connect_db();
-  var sql = "SELECT * FROM books JOIN users on user_id_foreign=user_id ";
+  var sql = "SELECT * FROM books JOIN users on user_id_foreign=user_id order by book_id ";
   connection.query(sql, function(err, rows, fields) {
     if (err){
       res.rest.serverError(err);
@@ -105,6 +105,40 @@ app.get('/api/books_users', function (req, res) {
 connection.end();
 });
 
+app.get('/api/all/books/users/limit/:length', function (req, res) {
+  connection = connect_db();
+  var length = req.params.length
+  var sql = "SELECT * FROM books JOIN users on user_id_foreign=user_id order by book_id DESC limit ?, 20";
+  var length =  parseInt(length)
+  var inserts = [length];
+  sql = mysql.format(sql, inserts)
+  connection.query(sql, function(err, rows, fields) {
+    if (err){
+      res.rest.serverError(err);
+    }
+    else{
+      res.rest.success(rows);
+    }
+  });
+connection.end();
+});
+
+app.get('/api/all/books/user/:id', function (req, res) {
+  connection = connect_db();
+  var id = req.params.id
+  var sql = 'select * from books join users on books.user_id_foreign = users.user_id where user_id_foreign = ? order by book_id DESC'
+  var inserts = [id];
+  sql = mysql.format(sql, inserts)
+  connection.query(sql, function(err, rows, fields) {
+    if (err){
+      res.rest.serverError(err);
+    }
+    else{
+        res.rest.success(rows);
+    }
+  });
+connection.end();
+});
 
 app.post('/api/book', function(req, res, next) {
    var title = req.body.title;
@@ -212,23 +246,27 @@ connection.end();
 });
 
 
+
+
 app.post('/api/user', function(req, res, next) {
    var image_link = req.body.image_link;
    var face_id = req.body.facebook_id;
    var first_name = req.body.first_name;
    var last_name = req.body.last_name;
+   var email = req.body.email;
    var rating = req.body.rating;
    var connection = connect_db();
-   var sql = "INSERT INTO users(facebook_id, image_link, first_name, last_name, rating) VALUES (?, ?, ?, ?, ?)";
+   var sql = "INSERT INTO users(facebook_id, image_link, first_name, last_name, rating, email) VALUES (?, ?, ?, ?, ?, ?)";
 
-   var inserts = [face_id,image_link, first_name, last_name, rating];
+   var inserts = [face_id,image_link, first_name, last_name, rating, email];
    sql = mysql.format(sql, inserts)
    connection.query(sql, function (error, results, fields) {
       if(error){
          res.rest.badRequest('creation failed because of bad request');
       }
       else{
-         res.rest.created('creation successful');
+
+        res.rest.success(results);
       }
 
    });

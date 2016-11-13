@@ -1,11 +1,21 @@
+/**
+*Component that handles logout.
+*Calls actions.logout.
+*Returns nothing in render.
+ */
 import React, { Component } from 'react';
-import * as LoginActions from '../stores/LoginActions'
+import * as Actions from '../stores/Actions'
 
 export default class Logout extends Component {
 
   componentWillMount () {
-      LoginActions.logout();
-      this.context.router.push('/login');
+      Actions.logout();
+      if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+         window.location="/";
+      }
+      else{
+            this.context.router.push('/');
+      }
    }
 
    static get contextTypes() {

@@ -20,31 +20,19 @@ import NotFound from './components/NotFound';
 import Layout from './components/Layout';
 import HomePage from './components/HomePage';
 import loginStore from './stores/LoginStore'
-import Login from './components/Login';
 import Logout from './components/Logout';
-import Messages from './components/Messages';
 import MyBooks from './components/MyBooks';
 import Profile from './components/Profile';
+import NoAccess from './components/NoAccess';
+import Seller from './components/SellerPage';
 
 
-
-
+// Function that get's called when trying to enter a route that requires the user to be logged in
 async function login_needed(nextState, replace, callback){
   var login = await loginStore.loginCheck();
   if(!login){
     replace({
-      pathname: '/login',
-      state: { nextPathname: nextState.location.pathname }
-    })
-  }
-  callback();
-}
-
-async function logout_needed(nextState, replace, callback){
-  var login = await loginStore.loginCheck();
-  if(login){
-    replace({
-      pathname: '/logout',
+      pathname: '/noaccess',
       state: { nextPathname: nextState.location.pathname }
     })
   }
@@ -52,16 +40,15 @@ async function logout_needed(nextState, replace, callback){
 }
 
 
-
-
+// All routes and component to render
 const Routes = (props) => (
     <Router {...props}>
         <Route path="/" component={Layout}>
             <IndexRoute component={HomePage}/>
             <Route path="/profile" component={Profile} onEnter={login_needed} />
             <Route path="/mybooks" component={MyBooks} onEnter={login_needed} />
-            <Route path="/messages" component={Messages} onEnter={login_needed} />
-            <Route path="/login" component={Login} onEnter={logout_needed} />
+            <Route path="/noaccess" component={NoAccess}/>
+            <Route path="/seller/:id" component={Seller} onEnter={login_needed}/>
             <Route path="/logout" component={Logout}/>
             <Route path="*" component={NotFound} />
         </Route>
