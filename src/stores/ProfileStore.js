@@ -1,3 +1,8 @@
+/*
+ProfileStore is used to fetch data the user from DB
+Uses EventEmitter to notify changes in data
+Uses dispatcher to bin actions
+ */
 import { EventEmitter } from "events";
 import dispatcher from "../dispatcher";
 
@@ -6,12 +11,12 @@ class ProfileStore extends EventEmitter{
     super();
     this.user = {};
   }
-
+//returns user
   getUser(){
     return this.user;
   }
 
-
+//returns userdata from DB
   fecthUserFromDB(id){
     var url = "http://localhost:9001/api/user/" + id
     fetch(url).then(r => r.json())
@@ -22,7 +27,7 @@ class ProfileStore extends EventEmitter{
     .catch(e => console.log("async function failed"))
   }
 
-
+//Handles actions
   handleActions(action){
     switch(action.type){
       case "GET_USER": {
