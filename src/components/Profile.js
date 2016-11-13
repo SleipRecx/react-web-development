@@ -1,3 +1,11 @@
+/*
+Profile Component displays logged in users info
+Component uses LoginStore to decrypt token. Token is used to access basic info on user
+Component uses ProfileStore to fetch data regarding user from DB based on token. This retrieves data only stored in our database.
+Component uses this.state.visited as browsing history
+Component uses ResultObject component to display History
+Component uses ResultObjectDetails component to display History
+*/
 import React, {Component} from 'react';
 import '../../public/styles/style.css';
 import LoginStore from '../stores/LoginStore';
@@ -38,7 +46,7 @@ export default class Profile extends Component{
       ProfileStore.removeListener("change", this.fetchUser);
     }
 
-
+// Fetches token in order to access faceID
     fetchToken(){
       this.setState({
         token: LoginStore.getToken()
@@ -46,7 +54,7 @@ export default class Profile extends Component{
       Actions.getUserInformation(this.state.token.id)
 
     }
-
+//Fetches user from Database
     fetchUser(){
       this.setState({
         user: ProfileStore.getUser()
@@ -58,6 +66,8 @@ export default class Profile extends Component{
 
     render(){
         return (
+            //Render method displays user info
+            // Browsing history is displayed in a table.
             <div>
                 <div className="container">
                     <div className="row">
