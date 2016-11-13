@@ -32,6 +32,7 @@
     "sass": "node-sass src/sass -o public/styles",
     "watchsass": "node-sass -w src/sass -o public/styles",
     "server": "cd rest_api && nodemon index.js",
-    "dev": "concurrently \"npm start\" \"npm run watchsass\" \"npm run server\" "
+    "dev": "concurrently \"npm start\" \"npm run watchsass\" \"npm run server\" ",
+    "prod": "concurrently \"npm run sass\" \"cd rest_api && forever start index.js \" \"cd Server && forever start index.js\" "
   }
 }
