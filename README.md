@@ -27,23 +27,41 @@ In order to set up and run our application follow these steps:
 ####/public
 * ```favicon.ico``` is just our favicon image.
 * ```index.html``` is a html template, when our react app fires up it loads all it's content inside the root div in this file.
+* ```styles/style.css``` the compiled css from sass.
 
-####/src/components
+###/server###
+* ```index.js``` bootstrapping for the application.
+
+###/src/components###
 All the pages on our website will be split into several react components.
 When performing alterations or maintenance to the application we only need to work on the relevant components.
 In our project we got the following components.
 
-* ```Layout.js``` -> A component that renders a layout that is always a part of the page users see.
-* ```Navigation.js``` -> A Navigation component, it takes the paths from nav_options.js and renders links.
-* ```NotFound.js``` -> A component that gets rendered whenever a non existing path get's accessed.
-* ```ResultTable.js``` -> A component rendering all the results filtered by the Search component
-* ```Button.js``` ->  A button component that let's you switch between results to search for
-* ```Search.js``` -> A search input component, this is a part of the ResultTable component.
-* ```FooterContent.js``` ->  This is just a footer component
+* ```Button.js``` A button component that let's you switch between results to search for
+* ```CheckboxFilter.js``` A search filter component for the home page, this lets you limit your search.
+* ```FooterContent.js``` This is a footer component which contain the footer content.
+* ```HomePage.js``` The home page component takes in the other components making up the home page.
+* ```Layout.js``` A component that renders a layout that is always a part of the page users see.
+* ```Login.js``` The component for the Facebook login.
+* ```Logout.js``` The component for logging out and redirecting to the root path.
+* ```MyBooks.js``` The component used to display the content of the “My Books” page. This is where the user can view its books for sale, as well as add and delete books.
+* ```Navigation.js``` A Navigation component, it takes the paths from nav_options.js and renders links.
+* ```NoAccess.js``` The component is used to inform the user that he/she does not have the current access required to view the selected page.
+* ```NotFound.js``` A component that gets rendered whenever a non existing path get's accessed.
+* ```Profile.js``` The profile component displays logged in user info
+* ```ProfileImage.js``` A component for displaying bif profile images.
+* ```ResultObject.js``` The component used to display the books that are listed on the main page.
+* ```ResultObjectDetails.js``` The component used to display the more detailed information about books that is shown when expanding a ResultObject.
+* ```ResultObjectMyBook.js``` The component used to display the books listed at the “My Books” page.
+* ```ResultObjectSeller.js``` The component used to display the books listed under the “Seller” page.
+* ```ResultTable.js``` A component rendering all the results filtered by the Search component
+* ```SearchFilter.js``` The component holding the CheckboxFilter components and the filter functions used with the filter components.
+* ```SellerPage.js``` The component used to display the content of the “Seller” page.
 
 For more information on react components check out: [https://facebook.github.io/react/]( https://facebook.github.io/react/)
 
 For more information about our components see the comments in each file.
+
 
 ####/src/data
 * ```books.js``` -> This file generates book mockup data using the faker module. This data is included in the ResultTable component.
