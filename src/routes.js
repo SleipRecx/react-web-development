@@ -28,8 +28,7 @@ import NoAccess from './components/NoAccess';
 import Seller from './components/SellerPage';
 
 
-
-
+// Function that get's called when trying to enter a route that requires the user to be logged in
 async function login_needed(nextState, replace, callback){
   var login = await loginStore.loginCheck();
   if(!login){
@@ -42,7 +41,7 @@ async function login_needed(nextState, replace, callback){
 }
 
 
-
+// All routes and component to render
 const Routes = (props) => (
     <Router {...props}>
         <Route path="/" component={Layout}>

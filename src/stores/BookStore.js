@@ -16,7 +16,7 @@ class BookStore extends EventEmitter{
     return this.allBooks;
   }
 
-
+  //Get's books from the api 20 results at a time
   fetchBooksWithLimit(length,reset){
     var url = "http://localhost:9001/api/all/books/users/limit/" +length;
     fetch(url).then(r => r.json())
@@ -26,6 +26,7 @@ class BookStore extends EventEmitter{
     .catch(e => console.log(e))
   }
 
+  // Get's all books from db using the api
   fetchAllBooks(){
     var url = "http://localhost:9001/api/all/books/users";
     fetch(url).then(r => r.json())
@@ -36,6 +37,7 @@ class BookStore extends EventEmitter{
 
   }
 
+  // Handles data after fetching all books
   handleFetchingAllBooks(data){
     this.allBooks = []
     for(var i = 0; i <data.length; i++){
@@ -57,6 +59,7 @@ class BookStore extends EventEmitter{
     this.emit("all_data");
   }
 
+  // Handles data after fetching books with limit
   handleFetchingBooksWithLimit(data,reset){
     if(reset){
       this.books = []
@@ -83,6 +86,7 @@ class BookStore extends EventEmitter{
     this.emit("change");
   }
 
+  // Listens for dispatched actions
   handleActions(action){
     switch(action.type){
       case "NEW_BOOK_ADDED": {
@@ -101,10 +105,9 @@ class BookStore extends EventEmitter{
     }
   }
 
-
-
 }
 
+ // Registeres object to dispatcher and exports it
 const bookStore = new BookStore();
 dispatcher.register(bookStore.handleActions.bind(bookStore));
 export default bookStore;

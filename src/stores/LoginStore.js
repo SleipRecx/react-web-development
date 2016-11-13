@@ -10,10 +10,12 @@ class LoginStore extends EventEmitter{
     this.token = {};
   }
 
+  // Returns token
   getToken(){
     return this.token;
   }
 
+ // Decrypts json web token to check id user is logged in
  loginCheck(){
     return new Promise(function(resolve, reject) {
       var token = localStorage.getItem("token");
@@ -29,7 +31,7 @@ class LoginStore extends EventEmitter{
     });
   }
 
-
+  // Encrypts payload and saves it in localStorage
   encrypt(payload){
     return new Promise(function(resolve, reject) {
         jwt.encode(secret, payload, function (err, token) {
@@ -42,6 +44,7 @@ class LoginStore extends EventEmitter{
       });
     }
 
+   // Decrypts token
   decrypt(token){
     return new Promise(function(resolve, reject) {
         jwt.decode(secret, token, function (err, decode) {
@@ -53,7 +56,7 @@ class LoginStore extends EventEmitter{
       });
     }
 
-
+   // Decrypts token and saves it then emits that token has been decrypted
    decryptToken(){
      this.decrypt(localStorage.getItem("token")).then((token)=>{
        this.token = token;
@@ -61,7 +64,7 @@ class LoginStore extends EventEmitter{
      });
     }
 
-
+    // Handles a new user by saving information about them to db using the api
     handleNewUser(user_data){
       var payload = {
       "image_link": user_data.image,
@@ -85,6 +88,7 @@ class LoginStore extends EventEmitter{
 
     }
 
+    // Handles login
     handleLogin(user_data){
       var url = "http://localhost:9001/api/user/face/" + user_data.face_id
       fetch(url).then(r => r.json())
@@ -101,6 +105,7 @@ class LoginStore extends EventEmitter{
       .catch(e => console.log("async function failed"))
     }
 
+  // Listens for dispatched actions
   handleActions(action){
     switch(action.type){
       case "GET_SESSION": {
@@ -126,7 +131,7 @@ class LoginStore extends EventEmitter{
 
 }
 
+ // Registeres object to dispatcher and exports it
 const loginStore = new LoginStore();
 dispatcher.register(loginStore.handleActions.bind(loginStore));
-window.dispatcher = dispatcher;
 export default loginStore;

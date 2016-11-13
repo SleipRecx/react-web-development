@@ -11,12 +11,13 @@ class ProfileStore extends EventEmitter{
     super();
     this.user = {};
   }
+
 //returns user
   getUser(){
     return this.user;
   }
 
-//returns userdata from DB
+//fetches user date from db using the api
   fecthUserFromDB(id){
     var url = "http://localhost:9001/api/user/" + id
     fetch(url).then(r => r.json())
@@ -27,7 +28,7 @@ class ProfileStore extends EventEmitter{
     .catch(e => console.log("async function failed"))
   }
 
-//Handles actions
+ // Listens for dispatched actions
   handleActions(action){
     switch(action.type){
       case "GET_USER": {
@@ -41,10 +42,8 @@ class ProfileStore extends EventEmitter{
     }
   }
 
-
-
 }
-
+ // Registeres object to dispatcher and exports it
 const profileStore = new ProfileStore();
 dispatcher.register(profileStore.handleActions.bind(profileStore));
 export default profileStore
