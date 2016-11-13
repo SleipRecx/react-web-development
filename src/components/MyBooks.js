@@ -121,7 +121,7 @@ buttonPressed(e) {
 
           <center>
           <div className="input-group">
-            <input type="submit" className="btn btn-info" value="Submit Book"/>
+            <input type="submit" className="btn btn-primary" value="Submit Book"/>
           </div>
           </center>
           </form>

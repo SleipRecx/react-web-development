@@ -31,10 +31,13 @@
   }
 
   .filter-type {
+    border-radius: 0;
+    background-color: $background;
+    color: $color;
 
     &:hover {
       cursor: pointer;
-      color: #555;
+      color: $hover;
     }
   }
 
@@ -70,3 +73,4 @@
 .search-input > input:focus {
   outline: 0 none;
 }
+

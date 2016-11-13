@@ -77,12 +77,18 @@
 }
 
 .result-table {
+
+  margin-bottom: 50px;
+
   .result-object-header{
 
 
     li{
       $table-border-color: #bbb;
       $table-border-size: 1px;
+
+      background-color: $background;
+      color: $color;
 
       font-weight: bold;
 
@@ -96,7 +102,7 @@
 
       &:hover{
         cursor: pointer;
-        background-color: #fcfcfc;
+        color: $hover;
       }
     }
 
