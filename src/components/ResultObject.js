@@ -26,7 +26,7 @@ export default class ResultObject extends Component {
                     </li>
                     <li className="col-sm-3">
                         <span>
-                            <img src={this.props.image} className="img-circle" alt={"Profile pciture of " + this.props.user}
+                            <img src={this.props.image} className="img-circle" alt={"profile picture of " + this.props.user}
                                  width="20" height="20"/>{"     " + this.props.user}
                         </span>
                     </li>

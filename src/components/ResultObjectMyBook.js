@@ -49,7 +49,7 @@ export default class ResultObjectMyBook extends Component {
                         <span className={"label label-" + label_converter(this.props.state)} >{this.props.state}</span>
                     </li>
                     <li className="col-sm-2 price">
-                        {this.props.price}
+                        {this.props.price + " kr"}
                     </li>
                     <li className="col-sm-2">
                         {this.props.added}

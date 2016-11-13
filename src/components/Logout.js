@@ -10,7 +10,12 @@ export default class Logout extends Component {
 
   componentWillMount () {
       Actions.logout();
-      this.context.router.push('/');
+      if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+         window.location="/";
+      }
+      else{
+            this.context.router.push('/');
+      }
    }
 
    static get contextTypes() {
