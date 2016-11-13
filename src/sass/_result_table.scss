@@ -42,11 +42,9 @@
 
   &.header {
     li {
-      background-color: rgb(83, 142, 142);
+      background-color: $background;
       color: white;
-      border-top: solid 1px rgb(83, 142, 142);
-      border-left: solid 1px rgb(83, 142, 142);
-      border-right: solid 1px rgb(83, 142, 142);
+
     }
   }
 
@@ -90,7 +88,6 @@
       background-color: $background;
       color: $color;
 
-      font-weight: bold;
 
       border-right: solid $table-border-size $table-border-color;
       border-bottom: solid $table-border-size $table-border-color;

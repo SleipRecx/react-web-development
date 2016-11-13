@@ -34,12 +34,12 @@
     font-size:1em;
     padding-top: 15px;
     padding-bottom: 15px;
-    color: #777;
+    color: white;
     outline: none;
     padding-left: 15px;
     padding-right: 15px;
 
     &:hover{
-      color: black;
+      color: $hover;
     }
   }

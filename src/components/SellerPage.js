@@ -72,12 +72,12 @@ export default class Seller extends Component {
                                             Title
                                         </div>
                                     </li>
-                                    <li className="col-sm-2">
+                                    <li className="col-sm-2 price">
                                         <div>
                                             Condition
                                         </div>
                                     </li>
-                                    <li className="col-sm-2">
+                                    <li className="col-sm-2 price">
                                         <div>
                                             Price
                                         </div>
