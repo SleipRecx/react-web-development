@@ -1,0 +1,47 @@
+.user-information {
+  min-height: calc(100vh - 100px);
+  padding-top: 100px;
+  padding-bottom: 100px;
+  color: black;
+
+  a {
+    font-size: 3em;
+  }
+
+  form {
+    margin-top: 15px;
+  }
+
+}
+
+.seller-books {
+  min-height: calc(100vh - 100px);
+  padding: 150px 30px 50px 30px;
+
+  li {
+    background-color: white;
+  }
+
+  ::-webkit-scrollbar {
+    height: 6px;
+    width: 13px;
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: darkslategrey;
+    border-radius: 1ex;
+  }
+  ::-webkit-scrollbar-thumb:active, ::-webkit-scrollbar-thumb:hover{
+    background: #4d7d7d;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: #f1f1f1;
+  }
+}
+
+.book-list {
+  max-height: 500px;
+  overflow-y: auto;
+}
