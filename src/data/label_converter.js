@@ -1,6 +1,5 @@
 /**
- *
- * Simple JS file that sets the label item on all books.
+ * A simple JS file that sets the appropriate Bootstrap label for a book based on its state.
  */
 var LabelConverter = function(label) {
     if(label === "New"){
@@ -15,8 +14,6 @@ var LabelConverter = function(label) {
     else{
         return "default";
     }
-
-
 }
 
 export default LabelConverter;
