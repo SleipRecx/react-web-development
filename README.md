@@ -1,5 +1,7 @@
 #What is it?
+This project is an web application that allows people to resell books, basically the same concept as ibok.no.
 
+It allows users to register and login using the facebook, once inside it's possible to search for books, add books, remove books, and visit book seller's page. 
 
 ##Table of Contents
 * [Getting Started](https://bitbucket.org/trondaal/it2810-07-oppgave-3/overview#markdown-header-getting-started)
@@ -58,19 +60,16 @@ For more info on how sass works checkout: [http://sass-lang.com/]( http://sass-l
 We use the react-router module to handle our routing. A route configuration is basically a set of instructions that tell a router how to try to match the URL and what code to run when it does. Here is an example from our routes.js.
 
 ```
- <Router {...props}>
-        <Route path="/" component={Layout}>
-            <IndexRoute component={HomePage}/>
-            <Route path="/profile" component={Profile} onEnter={login_needed} />
-            <Route path="/mybooks" component={MyBooks} onEnter={login_needed} />
-            <Route path="/messages" component={Messages} onEnter={login_needed} />
-            <Route path="/noaccess" component={NoAccess}/>
-            <Route path="/seller/:id" component={Seller} onEnter={login_needed}/>
-            <Route path="/logout" component={Logout}/>
-            <Route path="*" component={NotFound} />
-        </Route>
-    </Router>
-);
+<Route path="/" component={Layout}>
+    <IndexRoute component={HomePage}/>
+    <Route path="/profile" component={Profile} onEnter={login_needed} />
+    <Route path="/mybooks" component={MyBooks} onEnter={login_needed} />
+    <Route path="/messages" component={Messages} onEnter={login_needed} />
+    <Route path="/noaccess" component={NoAccess}/>
+    <Route path="/seller/:id" component={Seller} onEnter={login_needed}/>
+    <Route path="/logout" component={Logout}/>
+    <Route path="*" component={NotFound} />
+</Route>
 ```
 This configuration tells us to always render the Layout component and if the route is "/" render HomePage component, otherwise render NotFound component.
 
@@ -92,6 +91,8 @@ This documentation is accessible at [http://it2810-07.idi.ntnu.no:9001/api](http
 
 
 ##List of all dependencies
+####project:
+
 * react-dom
 * react-router
 * react-scripts
@@ -110,5 +111,15 @@ This documentation is accessible at [http://it2810-07.idi.ntnu.no:9001/api](http
 * faker
 * json-web-token 
 * sweetalert2
+
+####api:
+
+* body-parser
+* form-data
+* node-fetch
+* query-string
+* express-rest-response
+* mysql
+* nodemon
 
 For more information about our dependencies look them up at  [https://www.npmjs.com/](https://www.npmjs.com/)
