@@ -44,10 +44,19 @@
           "method":"GET",
           "url":" /api/user/:id",
           "responses":["200 ok","400 badRequest"]}]},{
-      "all books matched with user":[{
+      "all books and user information":[{
           "method":"GET",
-          "url":"/api/books_users",
-          "responses":["200 ok","500 serverError"]}]}],
+          "url":"/api/all/books/users",
+          "responses":["200 ok","500 serverError"]}]},{
+      "all books and user information for a specific user":[{
+          "method":"GET",
+          "url":"/api/all/books/user/:id",
+          "responses":["200 ok","500 serverError"]}]},{
+      "all books and user information in chuncks of 20 results with offset equal limit ":[{
+          "method":"GET",
+          "url":"/api/all/books/users/limit/:length'",
+          "responses":["200 ok","500 serverError"]}]}
+       ],
 
   "DELETE":[{
       "a book":[{
