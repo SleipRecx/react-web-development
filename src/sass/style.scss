@@ -2,6 +2,7 @@
 $background: #607D8B;
 $color: white;
 $hover: #dbe6e6;
+$background-hover: darken($background, 3%);
 
 .content-body {
   min-height: calc(100vh - 100px);

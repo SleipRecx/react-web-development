@@ -10,6 +10,7 @@
 
 .react-rater {
   a {
+    font-size: 1.4em;
     color: #ccc;
     &:hover {
       cursor: pointer;
@@ -52,19 +53,19 @@
 
 .result-table-row {
   &:nth-child(odd){
-    background-color: #fff;
     .result-object{
       &:hover{
-        background-color: #fcfcfc;
+        background-color: darken(white, 3%);
         cursor: pointer;
       }
     }
   }
 
   &:nth-child(even){
+    background-color: #f0f7fa;
     .result-object{
       &:hover{
-        background-color: #fcfcfc;
+        background-color: darken(#E6EFF2, 3%);
         cursor: pointer;
       }
     }
@@ -100,6 +101,7 @@
       &:hover{
         cursor: pointer;
         color: $hover;
+        background-color: $background-hover;
       }
     }
 

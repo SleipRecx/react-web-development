@@ -28,48 +28,6 @@ font-size: large;
   padding-top: 8%;
 }
 
-
-.result-table-row {
-  &:nth-child(odd){
-    background-color: #fff;
-    .result-object{
-      &:hover{
-        background-color: #fcfcfc;
-        cursor: pointer;
-      }
-    }
-  }
-
-  &:nth-child(even){
-    .result-object{
-      &:hover{
-        background-color: #fcfcfc;
-        cursor: pointer;
-      }
-    }
-  }
-  &:last-child{
-    border-bottom: solid 1px #ddd;
-  }
-}
-
-.result-object{
-  display: flex;
-  margin: 0;
-
-  li{
-    border-bottom: solid 1px #ddd;
-    border-right: solid 1px #ddd;
-    display: flex;
-    padding: 10px;
-    flex-direction: column;
-    justify-content: center;
-    &:first-child{
-      border-left: solid 1px #ddd;
-    }
-  }
-
-}
 .booksViewed{
   padding-top: 2%;
   text-align: center;
