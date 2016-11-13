@@ -1,3 +1,9 @@
+/*Component handles login with facebook
+Uses standard facebook login that opens in new window.
+Render method opens login window.
+Calls action.login with the response received from Facebook
+
+ */
   import React, { Component } from 'react';
   import FacebookLogin from 'react-facebook-login';
   import * as Actions from '../stores/Actions'

@@ -1,3 +1,8 @@
+/*
+Component that handles logout.
+Calls actions.logout.
+Returns nothing in render.
+ */
 import React, { Component } from 'react';
 import * as Actions from '../stores/Actions'
 
