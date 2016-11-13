@@ -30,10 +30,10 @@ In order to set up and run our application follow these steps:
 * ```index.html``` is a html template, when our react app fires up it loads all it's content inside the root div in this file.
 * ```styles/style.css``` the compiled css from sass.
 
-###/server###
+####/server
 * ```index.js``` bootstrapping for the application.
 
-###/src/components###
+####/src/components
 All the pages on our website will be split into several react components.
 When performing alterations or maintenance to the application we only need to work on the relevant components.
 In our project we got the following components.
@@ -99,7 +99,7 @@ This file includes all routes from ```routes.js``` and loads our app content int
 File containing project description and all our dependencies.
 More information on how this file works: [https://docs.npmjs.com/files/package.json](https://docs.npmjs.com/files/package.json)
 
-###/rest_api  This folder is a node project in it's self.
+####/rest_api  This folder is a node project in it's self.
 * ```index.js``` File containing the routing and api logic.
 * ```generate.js``` Node script that populates our database with mockup data.
 * ```package.json``` Contains all dependencies used by the api.
@@ -145,19 +145,19 @@ For more information about our dependencies look them up at  [https://www.npmjs.
 
 ##How we fulfilled the task requirements
 
-####The web application runs on the group’s virtual machine###
+####The web application runs on the group’s virtual machine
 The application runs on the group’s virtual machine.
 
 
-####The web application should use React or Angular 2.0###
+####The web application should use React or Angular 2.0
 The application uses React
 
 
-####The web application should use a database###
+####The web application should use a database
 The application uses a MySQL database for storing books and users.
 
 
-####You should demonstrate both reading and writing to the database from the web application inclusive a form of search functionality###
+####You should demonstrate both reading and writing to the database from the web application inclusive a form of search functionality
 The application reads stored books from the Database.
 The application allows users to register view and delete their own book objects
 The application searches the database for all books
@@ -165,35 +165,35 @@ The application searches the database for all users
 The application searches the database for the current user
 
 
-####The graphical user interface should have a list of results with a few details for each result###
+####The graphical user interface should have a list of results with a few details for each result
 At our home page a list of books that are on sale are listed with a few details like title, condition, who is selling etc.
 
 
-####The user should be able to view more details regarding the object either by opening a new window or by expanding the list view###
+####The user should be able to view more details regarding the object either by opening a new window or by expanding the list view
 The user can view more detail by expanding the object in the list view
 
-####The list-based view should have at least two sorting options###
+####The list-based view should have at least two sorting options
  The user can sort the list with 6 different options:
 Title,Condition,Price,Seller,Seller Rating and time added
 
 
-####The list-based view should have at least two filtration options### 
+####The list-based view should have at least two filtration options
 The list has two filter options, displayed to the left of the list. The user can filter on ratings (star rating from 0 to 5) and state of the book (such as “new” and “readable”).
 
 
-####The list-based view should load data dynamically ###
+####The list-based view should load data dynamically
 The list loads more results when scrolling to the end of the list, using infinite scrolling.
 
 
-####The web page should have a my page functionality###
+####The web page should have a my page functionality
 The application has a profile page where user can view their own profile.
 The “My Page” logs which books you have recently viewed.
 The application has a Your books page where the user can view, add and delete their own list items
 
 
-####The web page must implement session handling###
+####The web page must implement session handling
 The web page stores a token for each session based on facebook login.
 
 
-####The web page shall have a slightly “fancy” alternative view of the list. For instance view on map or a graphical representation of data, wordcloud etc...###
+####The web page shall have a slightly “fancy” alternative view of the list. For instance view on map or a graphical representation of data, wordcloud etc...
 The web page has graphical representation of user rating by using star rating.
