@@ -165,17 +165,20 @@
 }
 
 .image-container {
-
-  margin: 15px 0 50px 0;
-
+  position: relative;
+  width:  200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 100%;
+  -webkit-box-shadow:0 0 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow:0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow:0 0 5px rgba(0, 0, 0, 0.5);
+  margin: 15px auto 50px auto;
   img{
-    width: 60%;
-    border-radius: 500px;
+    width: 200px;
     height: auto;
-    -webkit-box-shadow:0 0 5px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow:0 0 5px rgba(0, 0, 0, 0.5);
-    box-shadow:0 0 5px rgba(0, 0, 0, 0.5);
   }
+
 }
 
 .seller-books {
