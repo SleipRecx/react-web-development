@@ -4,7 +4,6 @@ import LoginStore from '../stores/LoginStore';
 import ProfileStore from '../stores/ProfileStore';
 import ResultObject from './ResultObject';
 import ResultObjectDetails from './ResultObjectDetails';
-import {Link} from 'react-router';
 import * as Actions from '../stores/Actions'
 import Rater from 'react-rater'
 
@@ -55,6 +54,9 @@ export default class Profile extends Component{
 
       console.log(this.state.user)
     }
+    toSeller(sellerID){
+
+    }
 
     render(){
         return (
@@ -81,35 +83,49 @@ export default class Profile extends Component{
                 </div>
                 <div className="result-table container">
                     <h4 className="booksViewed">Recently Viewed Books</h4>
-                    <div >
-                        <ul className="list-inline row result-object result-object-header color">
-                            <li className="col-sm-3">
+                    <div className="row" >
+                        <ul className="list-inline  result-object result-object-header color">
+                            <li className="col-sm-3 "pull-right >
                                 Title
+
                             </li>
-                            <li className="col-sm-2 price">
+                            <li className="col-sm-2">
                                 Condition
+
                             </li>
-                            <li className="col-sm-1 price">
+                            <li className="col-sm-1" >
                                 Price
+
                             </li>
-                            <li className="col-sm-3 ">
+                            <li className="col-sm-3">
                                 Seller
+
                             </li>
                             <li className="col-sm-2">
                                 Rating
+
                             </li>
                             <li className="col-sm-2">
                                 Added
+
                             </li>
 
                         </ul>
+                    </div>
                         {this.state.visited.map(function(l){ return (
-                            <div>
-                            <ResultObject key={l.id}  title={l.title} state={l.state} price={l.price} user={l.user}
+                            <div key={l.id} className="row result-table-row" >
+                                <div>
+                            <div data-toggle="collapse"  href={"#collapseNr" + l.id} data-parent="#Profile">
+                            <ResultObject   title={l.title} state={l.state} price={l.price} user={l.userId}
                                           userRating={l.userRating} added={l.added} image={l.image} />
                             </div>
+                                <div id={"collapseNr" + l.id } className="collapse">
+                                    <ResultObjectDetails email={l.email} id={l.userId} title={l.title} author={l.author} user={l.user}/>
+                                </div>
+                                </div>
+                            </div>
                         )})}
-                    </div>
+
                 </div>
             </div>
         )
