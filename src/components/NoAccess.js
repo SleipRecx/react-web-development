@@ -1,3 +1,6 @@
+/**
+* Component used to inform user he does not have the current access required to view selected page
+ */
 import React, { Component } from 'react';
 
 import '../../public/styles/style.css';
