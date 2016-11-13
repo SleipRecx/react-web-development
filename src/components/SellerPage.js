@@ -46,6 +46,7 @@ export default class Seller extends Component {
     }
 
 
+
     render() {
 
         let books = this.state.books;
@@ -57,13 +58,13 @@ export default class Seller extends Component {
                         <div className="col-xs-4 user-information text-center">
                             <ProfileImage imageLink={this.state.user.image_link}/>
                             <h2>{this.state.user.first_name + " " + this.state.user.last_name}</h2>
-                            <Rater interactive={true} rating={this.state.user.rating}/>
+                            <Rater ref="halla" interactive={true} rating={this.state.user.rating}/>
                             <form action={"mailto:"+this.state.user.email}>
                                 <button type="submit" className="btn btn-default" >Contact seller <i className="glyphicon glyphicon-envelope"></i></button>
                             </form>
                         </div>
                         <div className="col-xs-8 seller-books">
-                            <h1>Books for sale:</h1>
+                            <h3>Books for sale:</h3>
                             <div className="row">
                                 <ul className="list-inline row result-object header">
                                     <li className="col-sm-4">
