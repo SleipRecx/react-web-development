@@ -23,7 +23,7 @@ class MyBookStore extends EventEmitter{
 
   // Fetches book with book_id = id from db using the api then emits provided action
   fetchBooks(id, action){
-    var url = "http://localhost:9001/api/all/books/user/" + id
+    var url = "http://it2810-07.idi.ntnu.no:9001/api/all/books/user/" + id
     fetch(url).then(r => r.json())
     .then(data => {
       this.books = data;
@@ -34,7 +34,7 @@ class MyBookStore extends EventEmitter{
 
   // Deltes book with book_id = id from db using the api then fetches books and uses actions to dispatch event
   deleteBook(id){
-  fetch("http://localhost:9001/api/book/" + id,{
+  fetch("http://it2810-07.idi.ntnu.no:9001/api/book/" + id,{
       method: "DELETE"
   })
   .then(r => r.json()).then(data => {
@@ -59,7 +59,7 @@ async addNewBook(book_data){
     "state": book_data.state,
     "user_id_foreign": id};
     var data = queryString.stringify(payload)
-      fetch("http://localhost:9001/api/book",
+      fetch("http://it2810-07.idi.ntnu.no:9001/api/book",
       {
           method: "POST",
           body: data,

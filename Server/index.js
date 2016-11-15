@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const path = require('path');
 
 const app = express();
- 
+
 //setup logger
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ' +
     '":method :url HTTP/:http-version" :status' +
@@ -17,7 +17,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 });
 
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 80;
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}!`);

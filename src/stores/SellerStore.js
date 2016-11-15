@@ -25,7 +25,7 @@ class SellerStore extends EventEmitter{
    * @param id
      */
   getSellerData(id){
-    var url = "http://localhost:9001/api/user/" +  id;
+    var url = "http://it2810-07.idi.ntnu.no:9001/api/user/" +  id;
     fetch(url).then(r => r.json())
     .then(data => {
       this.seller = data
@@ -39,7 +39,7 @@ class SellerStore extends EventEmitter{
    * @param id
      */
   fetchBooks(id){
-    var url = "http://localhost:9001/api/books/user/" + id;
+    var url = "http://it2810-07.idi.ntnu.no:9001/api/books/user/" + id;
     fetch(url).then(r => r.json())
     .then(data => {
       this.books = data;

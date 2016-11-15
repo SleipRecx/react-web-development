@@ -74,7 +74,7 @@ class LoginStore extends EventEmitter{
       "email": user_data.email,
       "rating": 5};
       var data = queryString.stringify(payload)
-        fetch("http://localhost:9001/api/user",
+        fetch("http://it2810-07.idi.ntnu.no:9001/api/user",
         {
             method: "POST",
             body: data,
@@ -90,7 +90,7 @@ class LoginStore extends EventEmitter{
 
     // Handles login
     handleLogin(user_data){
-      var url = "http://localhost:9001/api/user/face/" + user_data.face_id
+      var url = "http://it2810-07.idi.ntnu.no:9001/api/user/face/" + user_data.face_id
       fetch(url).then(r => r.json())
       .then(data => {
         if(data.length === 0){

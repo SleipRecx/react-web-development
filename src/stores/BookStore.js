@@ -18,7 +18,7 @@ class BookStore extends EventEmitter{
 
   //Get's books from the api 20 results at a time
   fetchBooksWithLimit(length,reset){
-    var url = "http://localhost:9001/api/all/books/users/limit/" +length;
+    var url = "http://it2810-07.idi.ntnu.no:9001/api/all/books/users/limit/" +length;
     fetch(url).then(r => r.json())
     .then(data => {
       this.handleFetchingBooksWithLimit(data,reset);
@@ -28,7 +28,7 @@ class BookStore extends EventEmitter{
 
   // Get's all books from db using the api
   fetchAllBooks(){
-    var url = "http://localhost:9001/api/all/books/users";
+    var url = "http://it2810-07.idi.ntnu.no:9001/api/all/books/users";
     fetch(url).then(r => r.json())
     .then(data => {
       this.handleFetchingAllBooks(data);

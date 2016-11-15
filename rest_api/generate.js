@@ -42,7 +42,7 @@ function generate_user_data(number) {
 
 
 function get_all_users(){
-  var url = "http://localhost:9001/api/users"
+  var url = "http://it2810-07.idi.ntnu.no:9001/api/users"
   fetch(url).then(r => r.json())
   .then(data => users = data)
   .catch(e => console.log("async function failed"))
@@ -59,7 +59,7 @@ function insert_db_users(array){
       "rating":array[i].userRating};
 
       var data = queryString.stringify(payload)
-        fetch("http://localhost:9001/api/user",
+        fetch("http://it2810-07.idi.ntnu.no:9001/api/user",
         {
             method: "POST",
             body: data,
@@ -115,7 +115,7 @@ function insert_db_books(array){
       "user_id_foreign":array[i].foreign};
 
       var data = queryString.stringify(payload)
-        fetch("http://localhost:9001/api/book",
+        fetch("http://it2810-07.idi.ntnu.no:9001/api/book",
         {
             method: "POST",
             body: data,

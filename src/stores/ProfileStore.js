@@ -22,7 +22,7 @@ class ProfileStore extends EventEmitter{
    */
 
   fecthUserFromDB(id){
-    var url = "http://localhost:9001/api/user/" + id
+    var url = "http://it2810-07.idi.ntnu.no:9001/api/user/" + id
     fetch(url).then(r => r.json())
     .then(data => {
       this.user = data[0];
